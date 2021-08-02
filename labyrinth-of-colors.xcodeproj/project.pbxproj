@@ -12,6 +12,8 @@
 		7E69BF15269742E7001F84C2 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E69BF14269742E7001F84C2 /* SDL2.framework */; };
 		7EC3C76E26B82990004E8331 /* key_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C76C26B82990004E8331 /* key_handler.cpp */; };
 		7EC3C77326B8369B004E8331 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C77126B8369B004E8331 /* window.cpp */; };
+		7EC3C77826B84231004E8331 /* map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C77726B84230004E8331 /* map.cpp */; };
+		7EC3C77B26B843B4004E8331 /* cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C77A26B843B4004E8331 /* cell.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,13 +35,16 @@
 		7E69BF082697429B001F84C2 /* labyrinth-of-colors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "labyrinth-of-colors"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E69BF0B2697429B001F84C2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7E69BF14269742E7001F84C2 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
-		7EC3C76826B823A0004E8331 /* map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = map.h; sourceTree = "<group>"; };
-		7EC3C76926B823BC004E8331 /* cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cell.h; sourceTree = "<group>"; };
+		7EC3C76826B823A0004E8331 /* map.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = map.hpp; sourceTree = "<group>"; };
+		7EC3C76926B823BC004E8331 /* cell.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = cell.hpp; sourceTree = "<group>"; };
 		7EC3C76A26B825DB004E8331 /* player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
 		7EC3C76C26B82990004E8331 /* key_handler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = key_handler.cpp; sourceTree = "<group>"; };
 		7EC3C76D26B82990004E8331 /* key_handler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = key_handler.hpp; sourceTree = "<group>"; };
 		7EC3C77126B8369B004E8331 /* window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
 		7EC3C77226B8369B004E8331 /* window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = window.hpp; sourceTree = "<group>"; };
+		7EC3C77626B83F9E004E8331 /* render_component.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = render_component.h; sourceTree = "<group>"; };
+		7EC3C77726B84230004E8331 /* map.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = map.cpp; sourceTree = "<group>"; };
+		7EC3C77A26B843B4004E8331 /* cell.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cell.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,13 +83,16 @@
 				7E54A2AA269C53C400332A48 /* wizard-sprite.png */,
 				7E69BF0B2697429B001F84C2 /* main.cpp */,
 				7E54A2AC269C578D00332A48 /* texture.h */,
-				7EC3C76826B823A0004E8331 /* map.h */,
-				7EC3C76926B823BC004E8331 /* cell.h */,
+				7EC3C76826B823A0004E8331 /* map.hpp */,
+				7EC3C77726B84230004E8331 /* map.cpp */,
+				7EC3C76926B823BC004E8331 /* cell.hpp */,
+				7EC3C77A26B843B4004E8331 /* cell.cpp */,
 				7EC3C76A26B825DB004E8331 /* player.h */,
 				7EC3C76C26B82990004E8331 /* key_handler.cpp */,
 				7EC3C76D26B82990004E8331 /* key_handler.hpp */,
 				7EC3C77126B8369B004E8331 /* window.cpp */,
 				7EC3C77226B8369B004E8331 /* window.hpp */,
+				7EC3C77626B83F9E004E8331 /* render_component.h */,
 			);
 			path = "labyrinth-of-colors";
 			sourceTree = "<group>";
@@ -156,6 +164,8 @@
 			files = (
 				7EC3C76E26B82990004E8331 /* key_handler.cpp in Sources */,
 				7E69BF0C2697429B001F84C2 /* main.cpp in Sources */,
+				7EC3C77826B84231004E8331 /* map.cpp in Sources */,
+				7EC3C77B26B843B4004E8331 /* cell.cpp in Sources */,
 				7EC3C77326B8369B004E8331 /* window.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

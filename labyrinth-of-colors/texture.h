@@ -35,9 +35,9 @@ public:
 		this->frame = SDL_Rect{x, y, w, h};
 	}
 	
-	void render()
+	void render(const int x, const int y)
 	{
-		SDL_Rect render_rect{this->frame.x, this->frame.y, this->frame.w, this->frame.h};
+		SDL_Rect render_rect{x, y, this->frame.w, this->frame.h};
 		
 		SDL_RenderCopy(this->renderer, this->texture, &this->frame, &render_rect);
 	}

@@ -1,5 +1,5 @@
 //
-//  init.cpp
+//  window.cpp
 //  labyrinth-of-colors
 //
 //  Created by Fiodar Navumenka on 2.08.21.
@@ -15,7 +15,7 @@
 
 bool Window::init_window()
 {
-	this->window_handler = SDL_CreateWindow("Labyrinth Of Colors", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI);
+	window_handler = SDL_CreateWindow("Labyrinth Of Colors", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI);
 	
 	return window_handler != nullptr;
 }

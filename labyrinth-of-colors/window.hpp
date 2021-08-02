@@ -1,12 +1,12 @@
 //
-//  init.hpp
+//  window.hpp
 //  labyrinth-of-colors
 //
 //  Created by Fiodar Navumenka on 2.08.21.
 //
 
-#ifndef init_hpp
-#define init_hpp
+#ifndef window_hpp
+#define window_hpp
 
 const int WIDTH = 800;
 const int HEIGHT = 600;
@@ -50,4 +50,4 @@ public:
 	~Window();
 };
 
-#endif /* init_hpp */
+#endif /* window_hpp */
