@@ -1,14 +1,15 @@
-//
-//  main.cpp
-//  labyrinth-of-colors
-//
-//  Created by Fiodar Navumenka on 8.07.21.
-//
-
 #include <iostream>
+#include "window.hpp"
 
-int main(int argc, const char * argv[]) {
-	// insert code here...
-	std::cout << "Hello, World!\n";
-	return 0;
+int main(int argc, char *argv[])
+{
+	Window window = Window{};
+	
+	while (not window.is_quited())
+	{
+		window.process_events();
+		window.render();
+	}
+	
+	return EXIT_SUCCESS;
 }
