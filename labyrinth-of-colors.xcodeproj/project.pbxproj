@@ -14,6 +14,7 @@
 		7EC3C77326B8369B004E8331 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C77126B8369B004E8331 /* window.cpp */; };
 		7EC3C77826B84231004E8331 /* map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C77726B84230004E8331 /* map.cpp */; };
 		7EC3C77B26B843B4004E8331 /* cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C77A26B843B4004E8331 /* cell.cpp */; };
+		7EC3C77F26B9A755004E8331 /* events_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C77D26B9A755004E8331 /* events_queue.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +46,8 @@
 		7EC3C77626B83F9E004E8331 /* render_component.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = render_component.h; sourceTree = "<group>"; };
 		7EC3C77726B84230004E8331 /* map.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = map.cpp; sourceTree = "<group>"; };
 		7EC3C77A26B843B4004E8331 /* cell.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cell.cpp; sourceTree = "<group>"; };
+		7EC3C77D26B9A755004E8331 /* events_queue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = events_queue.cpp; sourceTree = "<group>"; };
+		7EC3C77E26B9A755004E8331 /* events_queue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = events_queue.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +96,8 @@
 				7EC3C77126B8369B004E8331 /* window.cpp */,
 				7EC3C77226B8369B004E8331 /* window.hpp */,
 				7EC3C77626B83F9E004E8331 /* render_component.h */,
+				7EC3C77D26B9A755004E8331 /* events_queue.cpp */,
+				7EC3C77E26B9A755004E8331 /* events_queue.hpp */,
 			);
 			path = "labyrinth-of-colors";
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 				7E69BF0C2697429B001F84C2 /* main.cpp in Sources */,
 				7EC3C77826B84231004E8331 /* map.cpp in Sources */,
 				7EC3C77B26B843B4004E8331 /* cell.cpp in Sources */,
+				7EC3C77F26B9A755004E8331 /* events_queue.cpp in Sources */,
 				7EC3C77326B8369B004E8331 /* window.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
