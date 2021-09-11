@@ -31,3 +31,12 @@ void Map::render()
 		y += cells.front().front().height();
 	}
 }
+
+Cell& Map::at(size_t i, size_t j)
+{
+	if (i > cells.size() or j > cells.front().size()) {
+		throw;
+	}
+	
+	return cells[i][j];
+}

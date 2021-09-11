@@ -12,20 +12,14 @@
 #include <map>
 #include <vector>
 
-enum class Event
-{
-	K_LEFT_KEYDOWN,
-	K_RIGHT_KEYDOWN,
-	K_UP_KEYDOWN,
-	K_DOWN_KEYDOWN,
-};
+enum class Event;
 
 using ListenerId = int32_t;
 
 class EventsQueue
 {
 	using listeners_map = std::map<
-		Event,
+	Event,
 		std::vector< std::pair<ListenerId, std::function<void()>> >
 	>;
 	
@@ -38,8 +32,15 @@ private:
 		return listeners.empty() ? 0 : listeners.back().first + 1;
 	};
 	
+	static ListenerId add_listener(Event event, ListenerId id, std::function<void()> listener)
+	{
+		EventsQueue::listeners.at(event).emplace_back(id, listener);
+		
+		return id;
+	}
+	
 public:
-	static void subscribe(Event event, std::function<void()> listener);
+	static ListenerId subscribe(Event event, std::function<void()> listener);
 	
 	static void unsubscribe(Event event, ListenerId event_id);
 	

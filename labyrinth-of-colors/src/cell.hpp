@@ -17,11 +17,15 @@ class Cell
 public:
 	Cell(std::unique_ptr<RenderComponent> render_comp);
 	
-	void render(const int x, const int y) const;
+	void render(const int32_t x, const int32_t y) const;
 	
-	int width() const;
+	size_t width() const;
 	
-	int height() const;
+	size_t height() const;
+	
+	int32_t x() const;
+	
+	int32_t y() const;
 };
 
 #endif /* cell_hpp */

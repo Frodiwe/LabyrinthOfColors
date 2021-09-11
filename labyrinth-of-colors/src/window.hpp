@@ -8,12 +8,15 @@
 #ifndef window_hpp
 #define window_hpp
 
+#include <memory>
+
 const int WIDTH = 800;
 const int HEIGHT = 600;
 
 class SDL_Window;
 class SDL_Renderer;
 class KeyHandler;
+class RenderController;
 
 union SDL_Event;
 
@@ -28,6 +31,8 @@ private:
 	
 	KeyHandler* key_handler = nullptr;
 	
+	std::shared_ptr<RenderController> render_controller;
+	
 	bool _is_quited = false;
 	
 	bool is_inited = false;
@@ -39,7 +44,7 @@ private:
 	bool init_image_loading();
 	
 public:
-	Window();
+	Window(std::shared_ptr<RenderController> render_controller);
 	
 	void render();
 	

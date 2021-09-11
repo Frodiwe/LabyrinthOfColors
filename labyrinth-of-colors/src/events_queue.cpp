@@ -6,18 +6,19 @@
 //
 
 #include "events_queue.hpp"
+#include "event.h"
 
 #include <algorithm>
 
 EventsQueue::listeners_map EventsQueue::listeners = {};
 
-void EventsQueue::subscribe(Event event, std::function<void ()> listener)
+ListenerId EventsQueue::subscribe(Event event, std::function<void ()> listener)
 {
 	if (EventsQueue::listeners.count(event) == 0) {
 		EventsQueue::listeners[event] = {};
 	}
 	
-	EventsQueue::listeners.at(event).emplace_back(gen_event_id(EventsQueue::listeners.at(event)), listener);
+	return add_listener(event, gen_event_id(EventsQueue::listeners.at(event)), listener);
 }
 
 void EventsQueue::unsubscribe(Event event, ListenerId event_id)
@@ -38,7 +39,7 @@ void EventsQueue::unsubscribe(Event event, ListenerId event_id)
 	);
 }
 
-void EventsQueue::publish(Event event) { 
+void EventsQueue::publish(Event event) {
 	if (EventsQueue::listeners.count(event) == 0) {
 		return;
 	}

@@ -12,35 +12,11 @@
 
 #include "window.hpp"
 #include "key_handler.hpp"
+#include "render/render_controller.hpp"
 
-bool Window::init_window()
-{
-	window_handler = SDL_CreateWindow("Labyrinth Of Colors", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI);
-	
-	return window_handler != nullptr;
-}
-
-bool Window::init_renderer(SDL_Window* window)
-{
-	this->renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-	
-	if (renderer == nullptr) {
-		return false;
-	}
-	
-	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-	
-	return true;
-}
-
-bool Window::init_image_loading()
-{
-	const auto flags = IMG_INIT_PNG;
-	
-	return IMG_Init(flags) & flags;
-}
-
-Window::Window() :key_handler{new KeyHandler{}}, event{new SDL_Event{}}
+Window::Window(std::shared_ptr<RenderController> render_controller) :
+	key_handler{new KeyHandler{}}, event{new SDL_Event{}},
+	render_controller{render_controller}
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	
@@ -69,6 +45,33 @@ Window::Window() :key_handler{new KeyHandler{}}, event{new SDL_Event{}}
 	is_inited = true;
 }
 
+bool Window::init_window()
+{
+	window_handler = SDL_CreateWindow("Labyrinth Of Colors", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI);
+	
+	return window_handler != nullptr;
+}
+
+bool Window::init_renderer(SDL_Window* window)
+{
+	this->renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	
+	if (renderer == nullptr) {
+		return false;
+	}
+	
+	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	
+	return true;
+}
+
+bool Window::init_image_loading()
+{
+	const auto flags = IMG_INIT_PNG;
+	
+	return IMG_Init(flags) & flags;
+}
+
 void Window::process_events()
 {
 	while (SDL_PollEvent(event) != 0)
@@ -89,7 +92,7 @@ void Window::render()
 {
 	SDL_RenderClear(renderer);
 	
-	// rendering goes here
+	render_controller->render_all();
 	
 	SDL_RenderPresent(renderer);
 }

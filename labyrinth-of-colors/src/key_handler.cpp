@@ -10,6 +10,7 @@
 #include <SDL2/SDL.h>
 
 #include "events_queue.hpp"
+#include "event.h"
 
 void KeyHandler::process(const SDL_KeyboardEvent& key) const
 {

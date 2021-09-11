@@ -11,27 +11,24 @@
 #include <vector>
 #include <memory>
 
+#include "events_queue.hpp"
+#include "event.h"
+#include "entity.h"
+
 class RenderComponent;
 class Cell;
-
-struct MapPosition
-{
-	size_t i;
-	
-	size_t j;
-};
 
 class Map
 {
 private:
 	std::vector<std::vector<Cell>> cells;
 	
-	MapPosition player_position;
-	
 public:
 	Map();
 	
 	void render();
+	
+	Cell& at(size_t i, size_t j);
 };
 
 #endif /* map_hpp */

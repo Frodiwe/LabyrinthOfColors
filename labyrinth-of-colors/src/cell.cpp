@@ -18,12 +18,22 @@ void Cell::render(const int x, const int y) const
 	
 }
 
-int Cell::width() const
+size_t Cell::width() const
 {
 	return 0;
 }
 
-int Cell::height() const
+size_t Cell::height() const
+{
+	return 0;
+}
+
+int32_t Cell::x() const
+{
+	return 0;
+}
+
+int32_t Cell::y() const
 {
 	return 0;
 }
