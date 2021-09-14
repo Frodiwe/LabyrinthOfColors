@@ -11,20 +11,20 @@
 #include <memory>
 
 class Map;
-class Player;
+class Entity;
 class MapPositionController;
 
 class Level
 {
 private:
-	std::unique_ptr<Map> map;
+	std::shared_ptr<Map> map;
 	
-	std::unique_ptr<Player> player;
+	std::shared_ptr<Entity> player;
 	
 	std::unique_ptr<MapPositionController> map_position_controller;
 	
 public:
-	Level(std::unique_ptr<Player>, std::unique_ptr<Map>, std::unique_ptr<MapPositionController>);
+	Level(std::shared_ptr<Entity>, std::shared_ptr<Map>, std::unique_ptr<MapPositionController>);
 	
 	void render();
 };

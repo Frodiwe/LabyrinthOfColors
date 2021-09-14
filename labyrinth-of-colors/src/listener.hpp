@@ -1,12 +1,12 @@
 //
-//  listener.h
+//  listener.hpp
 //  labyrinth-of-colors
 //
 //  Created by Fiodar Navumenka on 9.08.21.
 //
 
-#ifndef listener_h
-#define listener_h
+#ifndef listener_hpp
+#define listener_hpp
 
 #include <functional>
 
@@ -27,4 +27,4 @@ public:
 	~Listener();
 };
 
-#endif /* listener_h */
+#endif /* listener_hpp */

@@ -20,7 +20,7 @@ private:
 	int32_t y;
 	
 public:
-	Player();
+	Player(int32_t, int32_t);
 	
 	~Player() = default;
 	

@@ -8,10 +8,15 @@
 #ifndef texture_h
 #define texture_h
 
+#include <string_view>
+#include <iostream>
+
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 
-class Texture
+#include "src/render_component.h"
+
+class Texture : public RenderComponent
 {
 public:
 	Texture(SDL_Renderer* renderer, std::string_view path)

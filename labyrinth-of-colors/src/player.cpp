@@ -7,7 +7,9 @@
 
 #include "player.hpp"
 
-Player::Player()
+Player::Player(int32_t x, int32_t y):
+	x{x},
+	y{y}
 { }
 
 void Player::move(int32_t to_x, int32_t to_y)

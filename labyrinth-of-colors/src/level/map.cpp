@@ -7,19 +7,21 @@
 
 #include "map.hpp"
 #include "cell.hpp"
-#include "render_component.h"
 
-Map::Map() :cells{}
-{
-	
-}
+#include "src/render_component.h"
+
+Map::Map(std::vector<std::vector<Cell>>&& cells, int32_t start_x, int32_t start_y):
+	cells{std::move(cells)},
+	start_x{start_x},
+	start_y{start_y}
+{ }
 
 void Map::render()
 {
 	for (const auto& cells_row : cells)
 	{
-		int x = 0;
-		int y = 0;
+		int x = start_x;
+		int y = start_y;
 		
 		for (const auto& cell : cells_row)
 		{

@@ -11,9 +11,9 @@
 #include <vector>
 #include <memory>
 
-#include "events_queue.hpp"
-#include "event.h"
-#include "entity.h"
+#include "src/events_queue.hpp"
+#include "src/event.h"
+#include "src/entity.h"
 
 class RenderComponent;
 class Cell;
@@ -23,8 +23,12 @@ class Map
 private:
 	std::vector<std::vector<Cell>> cells;
 	
+	int32_t start_x;
+	
+	int32_t start_y;
+	
 public:
-	Map();
+	Map(std::vector<std::vector<Cell>>&&, int32_t, int32_t);
 	
 	void render();
 	
