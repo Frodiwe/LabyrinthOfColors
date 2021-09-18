@@ -15,14 +15,15 @@
 #include <SDL2_image/SDL_image.h>
 
 #include "src/render_component.h"
+#include "src/rect.hpp"
 
 class Texture : public RenderComponent
 {
 public:
-	Texture(SDL_Renderer* renderer, std::string_view path)
+	Texture(SDL_Renderer* renderer, std::string_view path, Rect frame)
 		: texture{this->load_texture(renderer, path)},
 		  renderer{renderer},
-		  frame{}
+		  frame{frame.x, frame.y, frame.w, frame.h}
 	{ }
 	
 	~Texture()
@@ -40,11 +41,9 @@ public:
 		this->frame = SDL_Rect{x, y, w, h};
 	}
 	
-	void render(const int x, const int y)
+	void render(const Rect& target_rect)
 	{
-		SDL_Rect render_rect{x, y, this->frame.w, this->frame.h};
-		
-		SDL_RenderCopy(this->renderer, this->texture, &this->frame, &render_rect);
+		SDL_RenderCopy(this->renderer, this->texture, &this->frame, new SDL_Rect{target_rect.x, target_rect.y, target_rect.w, target_rect.h});
 	}
 	
 protected:

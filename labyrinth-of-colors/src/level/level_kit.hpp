@@ -12,11 +12,17 @@
 
 class Level;
 class SDL_Renderer;
+class MapKit;
 
 class LevelKit
 {
+private:
+	MapKit* map_kit;
+	
 public:
-	Level create_test_level(SDL_Renderer* renderer, std::string_view cell_texture_path) const;
+	LevelKit(MapKit*);
+	
+	Level create_level(SDL_Renderer*) const;
 };
 
 #endif /* level_kit_hpp */

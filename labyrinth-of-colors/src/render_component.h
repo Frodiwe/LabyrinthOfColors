@@ -8,10 +8,12 @@
 #ifndef render_component_h
 #define render_component_h
 
+#include "src/rect.hpp"
+
 class RenderComponent
 {
 public:
-	virtual void render(const int x, const int y) = 0;
+	virtual void render(const Rect& target) = 0;
 };
 
 #endif /* render_component_h */

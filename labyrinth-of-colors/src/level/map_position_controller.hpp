@@ -25,18 +25,18 @@ private:
 	
 	size_t current_j = 0;
 	
-	std::shared_ptr<Entity> entity;
+	Entity* entity;
 	
-	std::shared_ptr<Map> map;
+	Map* map;
 	
 	std::array<std::unique_ptr<Listener>, 4> listeners;
 	
 	void move(size_t, size_t);
 	
-	void move_to_cell(const Cell&);
+	void move_to_cell(Cell*);
 	
 public:
-	MapPositionController(std::shared_ptr<Entity>, std::shared_ptr<Map>);
+	MapPositionController(Entity*, Map*);
 };
 
 #endif /* map_position_controller_hpp */

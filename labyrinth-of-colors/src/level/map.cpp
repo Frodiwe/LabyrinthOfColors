@@ -6,35 +6,26 @@
 //
 
 #include "map.hpp"
-#include "cell.hpp"
 
+#include "cell.hpp"
 #include "src/render_component.h"
 
-Map::Map(std::vector<std::vector<Cell>>&& cells, int32_t start_x, int32_t start_y):
-	cells{std::move(cells)},
-	start_x{start_x},
-	start_y{start_y}
+Map::Map(std::vector<std::vector<Cell*>>&& cells):
+	cells{std::move(cells)}
 { }
 
 void Map::render()
 {
 	for (const auto& cells_row : cells)
 	{
-		int x = start_x;
-		int y = start_y;
-		
 		for (const auto& cell : cells_row)
 		{
-			cell.render(x, y);
-			
-			x += cells_row.front().width();
+			cell->render();
 		}
-		
-		y += cells.front().front().height();
 	}
 }
 
-Cell& Map::at(size_t i, size_t j)
+Cell* Map::at(size_t i, size_t j)
 {
 	if (i > cells.size() or j > cells.front().size()) {
 		throw;

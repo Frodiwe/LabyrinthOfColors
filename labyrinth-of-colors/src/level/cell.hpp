@@ -10,14 +10,23 @@
 
 #include <memory>
 
+#include "src/rect.hpp"
+
 class RenderComponent;
 
 class Cell
 {
-public:
-	Cell(std::unique_ptr<RenderComponent> render_comp);
+private:
+	std::unique_ptr<RenderComponent> render_comp;
 	
-	void render(const int32_t x, const int32_t y) const;
+	Rect target_rect;
+	
+public:
+	Cell(std::unique_ptr<RenderComponent> render_comp, Rect target_rect);
+	
+	Cell(Cell&&) noexcept;
+	
+	void render() const;
 	
 	size_t width() const;
 	
@@ -26,6 +35,7 @@ public:
 	int32_t x() const;
 	
 	int32_t y() const;
+
 };
 
 #endif /* cell_hpp */

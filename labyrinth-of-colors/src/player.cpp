@@ -7,18 +7,20 @@
 
 #include "player.hpp"
 
-Player::Player(int32_t x, int32_t y):
-	x{x},
-	y{y}
+#include "src/render_component.h"
+
+Player::Player(std::unique_ptr<RenderComponent>&& render_comp, Rect target_rect):
+	render_comp{std::move(render_comp)},
+	target_rect{target_rect}
 { }
 
 void Player::move(int32_t to_x, int32_t to_y)
 {
-	x = to_x;
-	y = to_y;
+	target_rect.x = to_x;
+	target_rect.y = to_y;
 }
 
 void Player::render()
 {
-	
+	render_comp->render(target_rect);
 }

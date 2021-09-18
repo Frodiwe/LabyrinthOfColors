@@ -11,11 +11,7 @@
 #include "src/level/map.hpp"
 #include "src/level/map_position_controller.hpp"
 
-Level::Level(
-			 std::shared_ptr<Entity> player,
-			 std::shared_ptr<Map> map,
-			 std::unique_ptr<MapPositionController> map_position_controller
-			):
+Level::Level(Entity* player, Map* map, MapPositionController* map_position_controller):
 	map{map},
 	player{player},
 	map_position_controller{std::move(map_position_controller)}
@@ -23,5 +19,11 @@ Level::Level(
 
 void Level::render()
 {
-	
+	map->render();
+//	player->render();
+}
+
+RenderableId Level::r_id() const
+{
+	return 666;
 }

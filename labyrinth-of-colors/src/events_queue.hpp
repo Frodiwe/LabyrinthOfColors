@@ -19,7 +19,7 @@ using ListenerId = int32_t;
 class EventsQueue
 {
 	using listeners_map = std::map<
-	Event,
+		Event,
 		std::vector< std::pair<ListenerId, std::function<void()>> >
 	>;
 	

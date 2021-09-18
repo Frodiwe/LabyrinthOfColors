@@ -9,18 +9,22 @@
 #define player_hpp
 
 #include <array>
+#include <memory>
 
 #include "entity.h"
+#include "src/rect.hpp"
+
+class RenderComponent;
 
 class Player : public Entity
 {
 private:
-	int32_t x;
+	Rect target_rect;
 	
-	int32_t y;
+	std::unique_ptr<RenderComponent> render_comp;
 	
 public:
-	Player(int32_t, int32_t);
+	Player(std::unique_ptr<RenderComponent>&&, Rect);
 	
 	~Player() = default;
 	

@@ -102,6 +102,11 @@ bool Window::is_quited() const
 	return _is_quited;
 }
 
+SDL_Renderer* Window::get_renderer() const
+{
+	return renderer;
+}
+
 Window::~Window()
 {
 	SDL_DestroyWindow(window_handler);

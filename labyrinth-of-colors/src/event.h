@@ -14,6 +14,7 @@ enum class Event
 	K_RIGHT_KEYDOWN,
 	K_UP_KEYDOWN,
 	K_DOWN_KEYDOWN,
+	START_GAME,
 };
 
 #endif /* event_h */

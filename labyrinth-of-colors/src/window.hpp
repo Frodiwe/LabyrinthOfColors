@@ -52,6 +52,8 @@ public:
 	
 	bool is_quited() const;
 	
+	SDL_Renderer* get_renderer() const;
+	
 	~Window();
 };
 

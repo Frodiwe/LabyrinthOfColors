@@ -18,16 +18,16 @@ class Renderable;
 class RenderList
 {
 private:
-	std::vector<std::unique_ptr<Renderable>> objs = {};
+	std::vector<Renderable*> objs = {};
 	
 public:
-	RenderableId add(std::unique_ptr<Renderable>&& obj);
+	RenderableId add(Renderable* obj);
 	
-	const std::vector<std::unique_ptr<Renderable>>& all() const;
+	const std::vector<Renderable*>& all() const;
 	
-	const std::unique_ptr<Renderable>& get(RenderableId id) const;
+	Renderable* const get(RenderableId id) const;
 	
-	std::unique_ptr<Renderable> pop(RenderableId id);
+	Renderable* pop(RenderableId id);
 };
 
 #endif /* render_list_hpp */

@@ -13,7 +13,7 @@
 #include "src/events_queue.hpp"
 #include "src/level/cell.hpp"
 
-MapPositionController::MapPositionController(std::shared_ptr<Entity> entity, std::shared_ptr<Map> map):
+MapPositionController::MapPositionController(Entity* entity, Map* map):
 	entity{entity},
 	map{map},
 	listeners{
@@ -32,7 +32,7 @@ void MapPositionController::move(size_t to_i, size_t to_j)
 	move_to_cell(map->at(current_i, current_j));
 }
 
-void MapPositionController::move_to_cell(const Cell& cell)
+void MapPositionController::move_to_cell(Cell* const cell)
 {
-	entity->move(cell.x() + cell.width() / 2, cell.y() + cell.height() / 2);
+	entity->move(cell->x() + cell->width() / 2, cell->y() + cell->height() / 2);
 }

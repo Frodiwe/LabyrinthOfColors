@@ -10,23 +10,27 @@
 
 #include <memory>
 
+#include "src/render/renderable.h"
+
 class Map;
 class Entity;
 class MapPositionController;
 
-class Level
+class Level : public Renderable
 {
 private:
-	std::shared_ptr<Map> map;
+	Map* map;
 	
-	std::shared_ptr<Entity> player;
+	Entity* player;
 	
-	std::unique_ptr<MapPositionController> map_position_controller;
+	MapPositionController* map_position_controller;
 	
 public:
-	Level(std::shared_ptr<Entity>, std::shared_ptr<Map>, std::unique_ptr<MapPositionController>);
+	Level(Entity*, Map*, MapPositionController*);
 	
 	void render();
+	
+	RenderableId r_id() const;
 };
 
 #endif /* level_hpp */

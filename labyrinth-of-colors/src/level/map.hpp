@@ -21,18 +21,14 @@ class Cell;
 class Map
 {
 private:
-	std::vector<std::vector<Cell>> cells;
-	
-	int32_t start_x;
-	
-	int32_t start_y;
+	std::vector<std::vector<Cell*>> cells;
 	
 public:
-	Map(std::vector<std::vector<Cell>>&&, int32_t, int32_t);
+	Map(std::vector<std::vector<Cell*>>&&);
 	
 	void render();
 	
-	Cell& at(size_t i, size_t j);
+	Cell* at(size_t i, size_t j);
 };
 
 #endif /* map_hpp */

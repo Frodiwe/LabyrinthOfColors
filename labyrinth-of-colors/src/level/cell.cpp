@@ -7,33 +7,42 @@
 
 #include "cell.hpp"
 
+#include <SDL2/SDL.h>
 
-Cell::Cell(std::unique_ptr<RenderComponent> render_comp)
-{
-	
-}
+#include "src/render_component.h"
+#include "src/rect.hpp"
 
-void Cell::render(const int x, const int y) const
-{
-	
-}
+Cell::Cell(std::unique_ptr<RenderComponent> render_comp, Rect target_rect):
+	render_comp{std::move(render_comp)},
+	target_rect{target_rect}
+{ }
+
+Cell::Cell(Cell&& rhs) noexcept:
+	render_comp{std::move(rhs.render_comp)},
+	target_rect{std::move(rhs.target_rect)}
+{ }
 
 size_t Cell::width() const
 {
-	return 0;
+	return target_rect.w;
 }
 
 size_t Cell::height() const
 {
-	return 0;
+	return target_rect.h;
 }
 
 int32_t Cell::x() const
 {
-	return 0;
+	return target_rect.x;
 }
 
 int32_t Cell::y() const
 {
-	return 0;
+	return target_rect.y;
+}
+
+void Cell::render() const
+{
+	render_comp->render(target_rect);
 }
