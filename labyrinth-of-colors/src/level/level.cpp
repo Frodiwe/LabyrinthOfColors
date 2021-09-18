@@ -7,11 +7,11 @@
 
 #include "level.hpp"
 
-#include "src/entity.h"
+#include "src/player.hpp"
 #include "src/level/map.hpp"
 #include "src/level/map_position_controller.hpp"
 
-Level::Level(Entity* player, Map* map, MapPositionController* map_position_controller):
+Level::Level(Player* player, Map* map, MapPositionController* map_position_controller):
 	map{map},
 	player{player},
 	map_position_controller{std::move(map_position_controller)}
@@ -20,7 +20,7 @@ Level::Level(Entity* player, Map* map, MapPositionController* map_position_contr
 void Level::render()
 {
 	map->render();
-//	player->render();
+	player->render();
 }
 
 RenderableId Level::r_id() const

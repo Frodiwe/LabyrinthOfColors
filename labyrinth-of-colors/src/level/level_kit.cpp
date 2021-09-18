@@ -36,7 +36,7 @@ Level LevelKit::create_level(SDL_Renderer* renderer) const
 				{0, 0, 32, 32}
 			}
 		},
-		{0, 0, 32, 32}
+		{0, 0, 100, 100}
 	};
 	
 	return Level{player, map, new MapPositionController{player, map}};

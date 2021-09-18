@@ -13,7 +13,7 @@
 #include "src/render/renderable.h"
 
 class Map;
-class Entity;
+class Player;
 class MapPositionController;
 
 class Level : public Renderable
@@ -21,12 +21,12 @@ class Level : public Renderable
 private:
 	Map* map;
 	
-	Entity* player;
+	Player* player;
 	
 	MapPositionController* map_position_controller;
 	
 public:
-	Level(Entity*, Map*, MapPositionController*);
+	Level(Player*, Map*, MapPositionController*);
 	
 	void render();
 	
