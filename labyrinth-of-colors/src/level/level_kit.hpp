@@ -13,6 +13,7 @@
 class Level;
 class SDL_Renderer;
 class MapKit;
+class LevelConfig;
 
 class LevelKit
 {
@@ -22,7 +23,7 @@ private:
 public:
 	LevelKit(MapKit*);
 	
-	Level create_level(SDL_Renderer*) const;
+	Level create_level(SDL_Renderer*, LevelConfig config) const;
 };
 
 #endif /* level_kit_hpp */

@@ -10,9 +10,6 @@
 
 #include <memory>
 
-const int WIDTH = 800;
-const int HEIGHT = 600;
-
 class SDL_Window;
 class SDL_Renderer;
 class KeyHandler;
@@ -23,6 +20,10 @@ union SDL_Event;
 class Window
 {
 private:
+	int32_t WIDTH = 800;
+	
+	int32_t HEIGHT = 600;
+	
 	SDL_Window* window_handler = nullptr;
 	
 	SDL_Renderer* renderer = nullptr;
@@ -44,7 +45,7 @@ private:
 	bool init_image_loading();
 	
 public:
-	Window(std::shared_ptr<RenderController> render_controller);
+	Window(std::shared_ptr<RenderController>, int32_t, int32_t);
 	
 	void render();
 	

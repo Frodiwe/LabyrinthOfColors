@@ -13,6 +13,8 @@
 		7E2CFF8526EF976A0023414F /* level_kit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E2CFF8326EF976A0023414F /* level_kit.cpp */; };
 		7E2CFFB226F3648F0023414F /* cell_kit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E2CFFB026F3648F0023414F /* cell_kit.cpp */; };
 		7E2CFFBB26F3912A0023414F /* map_kit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E2CFFB926F3912A0023414F /* map_kit.cpp */; };
+		7E2CFFD326F69EBC0023414F /* config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E2CFFD126F69EBC0023414F /* config.cpp */; };
+		7E2CFFDB26F803EC0023414F /* coord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E2CFFD926F803EC0023414F /* coord.cpp */; };
 		7E54A2A8269C4C0B00332A48 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E54A2A7269C4C0B00332A48 /* SDL2_image.framework */; };
 		7E69BF0C2697429B001F84C2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E69BF0B2697429B001F84C2 /* main.cpp */; };
 		7E69BF15269742E7001F84C2 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E69BF14269742E7001F84C2 /* SDL2.framework */; };
@@ -57,6 +59,13 @@
 		7E2CFFBA26F3912A0023414F /* map_kit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = map_kit.hpp; sourceTree = "<group>"; };
 		7E2CFFBF26F4E7A60023414F /* wizard-idle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard-idle.png"; sourceTree = "<group>"; };
 		7E2CFFC126F4E9880023414F /* brick-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brick-1.png"; sourceTree = "<group>"; };
+		7E2CFFCF26F69CA90023414F /* level_0 */ = {isa = PBXFileReference; lastKnownFileType = text; path = level_0; sourceTree = "<group>"; };
+		7E2CFFD126F69EBC0023414F /* config.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = config.cpp; sourceTree = "<group>"; };
+		7E2CFFD226F69EBC0023414F /* config.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = config.hpp; sourceTree = "<group>"; };
+		7E2CFFD626F69EED0023414F /* level_config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = level_config.h; sourceTree = "<group>"; };
+		7E2CFFD726F69F780023414F /* cell_color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cell_color.h; sourceTree = "<group>"; };
+		7E2CFFD926F803EC0023414F /* coord.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = coord.cpp; sourceTree = "<group>"; };
+		7E2CFFDA26F803EC0023414F /* coord.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = coord.hpp; sourceTree = "<group>"; };
 		7E54A2A7269C4C0B00332A48 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		7E54A2AC269C578D00332A48 /* texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = texture.h; sourceTree = "<group>"; };
 		7E69BF082697429B001F84C2 /* labyrinth-of-colors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "labyrinth-of-colors"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +132,10 @@
 				7E2CFF7A26ED32370023414F /* di.cpp */,
 				7E2CFF7B26ED32370023414F /* di.hpp */,
 				7E2CFFA326F20FE20023414F /* rect.hpp */,
+				7E2CFFD126F69EBC0023414F /* config.cpp */,
+				7E2CFFD226F69EBC0023414F /* config.hpp */,
+				7E2CFFD926F803EC0023414F /* coord.cpp */,
+				7E2CFFDA26F803EC0023414F /* coord.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -132,6 +145,7 @@
 			children = (
 				7E2CFFC126F4E9880023414F /* brick-1.png */,
 				7E2CFFBF26F4E7A60023414F /* wizard-idle.png */,
+				7E2CFFCF26F69CA90023414F /* level_0 */,
 			);
 			path = assets;
 			sourceTree = "<group>";
@@ -165,6 +179,8 @@
 				7E2CFFB126F3648F0023414F /* cell_kit.hpp */,
 				7E2CFFB926F3912A0023414F /* map_kit.cpp */,
 				7E2CFFBA26F3912A0023414F /* map_kit.hpp */,
+				7E2CFFD626F69EED0023414F /* level_config.h */,
+				7E2CFFD726F69F780023414F /* cell_color.h */,
 			);
 			path = level;
 			sourceTree = "<group>";
@@ -270,6 +286,7 @@
 				7EC3C77826B84231004E8331 /* map.cpp in Sources */,
 				7E2CFFBB26F3912A0023414F /* map_kit.cpp in Sources */,
 				7EC3C7A126C2CDB5004E8331 /* level.cpp in Sources */,
+				7E2CFFDB26F803EC0023414F /* coord.cpp in Sources */,
 				7EC3C79126C194AB004E8331 /* listener.cpp in Sources */,
 				7EC3C77B26B843B4004E8331 /* cell.cpp in Sources */,
 				7E2CFF7726ED2A6B0023414F /* render_controller.cpp in Sources */,
@@ -277,6 +294,7 @@
 				7EC3C77326B8369B004E8331 /* window.cpp in Sources */,
 				7EC3C78626C18517004E8331 /* map_position_controller.cpp in Sources */,
 				7E2CFF7126ECEE9A0023414F /* render_list.cpp in Sources */,
+				7E2CFFD326F69EBC0023414F /* config.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

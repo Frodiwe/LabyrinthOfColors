@@ -25,6 +25,16 @@ void Map::render()
 	}
 }
 
+size_t Map::col_count() const
+{
+	return cells.front().size();
+}
+
+size_t Map::row_count() const
+{
+	return cells.size();
+}
+
 Cell* Map::at(size_t i, size_t j)
 {
 	if (i > cells.size() or j > cells.front().size()) {

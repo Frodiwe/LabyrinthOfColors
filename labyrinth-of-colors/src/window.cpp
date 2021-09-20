@@ -14,9 +14,11 @@
 #include "key_handler.hpp"
 #include "render/render_controller.hpp"
 
-Window::Window(std::shared_ptr<RenderController> render_controller) :
+Window::Window(std::shared_ptr<RenderController> render_controller, int32_t width, int32_t height) :
 	key_handler{new KeyHandler{}}, event{new SDL_Event{}},
-	render_controller{render_controller}
+	render_controller{render_controller},
+	WIDTH{width},
+	HEIGHT{height}
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	
@@ -60,7 +62,7 @@ bool Window::init_renderer(SDL_Window* window)
 		return false;
 	}
 	
-	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_SetRenderDrawColor(renderer, 0x0, 0x0, 0x0, 0x0);
 	
 	return true;
 }

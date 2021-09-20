@@ -31,9 +31,11 @@ private:
 	
 	std::array<std::unique_ptr<Listener>, 4> listeners;
 	
+	bool can_move(size_t, size_t);
+	
 	void move(size_t, size_t);
 	
-	void move_to_cell(Cell*);
+	void move(const Cell*, const Cell*);
 	
 public:
 	MapPositionController(Entity*, Map*);

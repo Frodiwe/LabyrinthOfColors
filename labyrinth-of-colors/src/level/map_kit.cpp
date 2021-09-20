@@ -19,7 +19,7 @@ MapKit::MapKit(CellKit* cell_kit):
 	cell_kit{cell_kit}
 { }
 
-Map* MapKit::create_map(SDL_Renderer* renderer)
+Map* MapKit::create_map(SDL_Renderer* renderer, const std::vector<std::vector<CellColor>>& labyrinth)
 {
 	auto x = 0;
 	auto y = 0;
@@ -32,18 +32,18 @@ Map* MapKit::create_map(SDL_Renderer* renderer)
 	
 	auto result = std::vector<std::vector<Cell*>>{};
 	
-	for (auto i = 0; i < 4; i++)
+	for (const auto& row : labyrinth)
 	{
 		result.emplace_back(std::vector<Cell*>{});
 		
-		y = -height;
+		x = -width;
 		
-		for (auto j = 0; j < 4; j++)
+		for (const auto& color : row)
 		{
-			result.back().emplace_back(cell_kit->create_cell(renderer, texture_path, {0, 0, 32, 32}, {x, y += height + offset, width, height}));
+			result.back().emplace_back(cell_kit->create_cell(renderer, texture_path, {0, 0, 32, 32}, {x += width + offset, y, width, height}, color));
 		}
 		
-		x += width + offset;
+		y += height + offset;
 	}
 	
 	return new Map{std::move(result)};

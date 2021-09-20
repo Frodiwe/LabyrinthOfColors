@@ -11,6 +11,7 @@
 #include <memory>
 
 #include "src/rect.hpp"
+#include "src/level/cell_color.h"
 
 class RenderComponent;
 
@@ -21,12 +22,16 @@ private:
 	
 	Rect target_rect;
 	
+	CellColor _color;
+	
 public:
-	Cell(std::unique_ptr<RenderComponent> render_comp, Rect target_rect);
+	Cell(std::unique_ptr<RenderComponent> render_comp, Rect target_rect, CellColor color);
 	
 	Cell(Cell&&) noexcept;
 	
 	void render() const;
+	
+	CellColor color() const;
 	
 	size_t width() const;
 	

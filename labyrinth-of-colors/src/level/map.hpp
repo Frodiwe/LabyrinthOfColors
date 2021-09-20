@@ -28,6 +28,10 @@ public:
 	
 	void render();
 	
+	size_t col_count() const;
+	
+	size_t row_count() const;
+	
 	Cell* at(size_t i, size_t j);
 };
 

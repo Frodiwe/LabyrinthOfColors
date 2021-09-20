@@ -10,6 +10,8 @@
 
 #include <string_view>
 
+#include "src/level/cell_color.h"
+
 class Cell;
 struct Rect;
 class SDL_Renderer;
@@ -17,7 +19,7 @@ class SDL_Renderer;
 class CellKit
 {
 public:
-	Cell* create_cell(SDL_Renderer*, std::string_view, Rect, Rect) const;
+	Cell* create_cell(SDL_Renderer*, std::string_view, Rect, Rect, CellColor) const;
 };
 
 #endif /* cell_kit_hpp */

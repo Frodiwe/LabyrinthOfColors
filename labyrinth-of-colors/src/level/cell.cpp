@@ -11,10 +11,12 @@
 
 #include "src/render_component.h"
 #include "src/rect.hpp"
+#include "src/coord.hpp"
 
-Cell::Cell(std::unique_ptr<RenderComponent> render_comp, Rect target_rect):
+Cell::Cell(std::unique_ptr<RenderComponent> render_comp, Rect target_rect, CellColor color):
 	render_comp{std::move(render_comp)},
-	target_rect{target_rect}
+	target_rect{target_rect},
+	_color{color}
 { }
 
 Cell::Cell(Cell&& rhs) noexcept:
@@ -44,5 +46,19 @@ int32_t Cell::y() const
 
 void Cell::render() const
 {
-	render_comp->render(target_rect);
+	if (_color == CellColor::WALL) {
+		return;
+	}
+	
+	render_comp->render({
+		Coord::start_x + target_rect.x,
+		Coord::start_y + target_rect.y,
+		target_rect.w,
+		target_rect.h
+	});
+}
+
+CellColor Cell::color() const
+{
+	return _color;
 }
