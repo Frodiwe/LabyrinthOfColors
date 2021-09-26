@@ -36,9 +36,6 @@ void KeyHandler::process(const SDL_KeyboardEvent& key) const
 			
 			return;
 			
-		case SDLK_s:
-			EventsQueue::publish(Event::START_GAME);
-			
 		default:
 			return;
 	}

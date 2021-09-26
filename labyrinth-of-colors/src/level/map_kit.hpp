@@ -9,7 +9,9 @@
 #define map_kit_hpp
 
 #include <vector>
+
 #include "src/level/cell_color.h"
+#include "src/level/level_config.h"
 
 class SDL_Renderer;
 class Map;
@@ -20,10 +22,12 @@ class MapKit
 private:
 	CellKit* cell_kit;
 	
+	CellAction get_cell_action(LevelActions, size_t, size_t) const;
+	
 public:
 	MapKit(CellKit*);
 	
-	Map* create_map(SDL_Renderer*, const std::vector<std::vector<CellColor>>&);
+	Map* create_map(SDL_Renderer* renderer, const LevelMap& labyrinth, const LevelActions& actions);
 };
 
 #endif /* map_kit_hpp */

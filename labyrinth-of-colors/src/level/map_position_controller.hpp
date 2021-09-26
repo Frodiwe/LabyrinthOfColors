@@ -15,7 +15,7 @@
 #include "src/listener.hpp"
 
 class Map;
-class Entity;
+class Player;
 class Cell;
 
 class MapPositionController
@@ -25,7 +25,7 @@ private:
 	
 	size_t current_j = 0;
 	
-	Entity* entity;
+	Player* player;
 	
 	Map* map;
 	
@@ -38,7 +38,7 @@ private:
 	void move(const Cell*, const Cell*);
 	
 public:
-	MapPositionController(Entity*, Map*);
+	MapPositionController(Player*, Map*, size_t, size_t);
 };
 
 #endif /* map_position_controller_hpp */

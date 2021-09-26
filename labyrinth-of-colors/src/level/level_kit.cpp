@@ -29,7 +29,7 @@ LevelKit::LevelKit(MapKit* map_kit):
 
 Level LevelKit::create_level(SDL_Renderer* renderer, LevelConfig config) const
 {
-	auto map = map_kit->create_map(renderer, config.labyrinth);
+	auto map = map_kit->create_map(renderer, config.labyrinth, config.actions);
 	auto player = new Player{
 		std::unique_ptr<RenderComponent>{
 			new Texture{
@@ -38,8 +38,13 @@ Level LevelKit::create_level(SDL_Renderer* renderer, LevelConfig config) const
 				{0, 0, 32, 32}
 			}
 		},
-		{Coord::start_x + map->at(0, 0)->x(), Coord::start_y + map->at(0, 0)->y(), 100, 100}
+		{
+			Coord::start_x + map->at(config.start_i, config.start_j)->x(),
+			Coord::start_y + map->at(config.start_i, config.start_j)->y(),
+			100,
+			100
+		},
 	};
 	
-	return Level{player, map, new MapPositionController{player, map}};
+	return Level{player, map, new MapPositionController{player, map, config.start_i, config.start_j}};
 }

@@ -22,7 +22,6 @@
 		7EC3C77326B8369B004E8331 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C77126B8369B004E8331 /* window.cpp */; };
 		7EC3C77826B84231004E8331 /* map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C77726B84230004E8331 /* map.cpp */; };
 		7EC3C77B26B843B4004E8331 /* cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C77A26B843B4004E8331 /* cell.cpp */; };
-		7EC3C77F26B9A755004E8331 /* events_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C77D26B9A755004E8331 /* events_queue.cpp */; };
 		7EC3C78626C18517004E8331 /* map_position_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C78426C18517004E8331 /* map_position_controller.cpp */; };
 		7EC3C79126C194AB004E8331 /* listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C79026C194AB004E8331 /* listener.cpp */; };
 		7EC3C79B26C29CFC004E8331 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C79926C29CFC004E8331 /* player.cpp */; };
@@ -59,13 +58,15 @@
 		7E2CFFBA26F3912A0023414F /* map_kit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = map_kit.hpp; sourceTree = "<group>"; };
 		7E2CFFBF26F4E7A60023414F /* wizard-idle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard-idle.png"; sourceTree = "<group>"; };
 		7E2CFFC126F4E9880023414F /* brick-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brick-1.png"; sourceTree = "<group>"; };
-		7E2CFFCF26F69CA90023414F /* level_0 */ = {isa = PBXFileReference; lastKnownFileType = text; path = level_0; sourceTree = "<group>"; };
+		7E2CFFCF26F69CA90023414F /* level_map */ = {isa = PBXFileReference; lastKnownFileType = text; path = level_map; sourceTree = "<group>"; };
 		7E2CFFD126F69EBC0023414F /* config.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = config.cpp; sourceTree = "<group>"; };
 		7E2CFFD226F69EBC0023414F /* config.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = config.hpp; sourceTree = "<group>"; };
 		7E2CFFD626F69EED0023414F /* level_config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = level_config.h; sourceTree = "<group>"; };
 		7E2CFFD726F69F780023414F /* cell_color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cell_color.h; sourceTree = "<group>"; };
 		7E2CFFD926F803EC0023414F /* coord.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = coord.cpp; sourceTree = "<group>"; };
 		7E2CFFDA26F803EC0023414F /* coord.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = coord.hpp; sourceTree = "<group>"; };
+		7E2CFFE426FBCF250023414F /* level_actions */ = {isa = PBXFileReference; lastKnownFileType = text; path = level_actions; sourceTree = "<group>"; };
+		7E2CFFE526FBD08D0023414F /* cell_action.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cell_action.h; sourceTree = "<group>"; };
 		7E54A2A7269C4C0B00332A48 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		7E54A2AC269C578D00332A48 /* texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = texture.h; sourceTree = "<group>"; };
 		7E69BF082697429B001F84C2 /* labyrinth-of-colors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "labyrinth-of-colors"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,7 +81,6 @@
 		7EC3C77626B83F9E004E8331 /* render_component.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = render_component.h; sourceTree = "<group>"; };
 		7EC3C77726B84230004E8331 /* map.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = map.cpp; sourceTree = "<group>"; };
 		7EC3C77A26B843B4004E8331 /* cell.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cell.cpp; sourceTree = "<group>"; };
-		7EC3C77D26B9A755004E8331 /* events_queue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = events_queue.cpp; sourceTree = "<group>"; };
 		7EC3C77E26B9A755004E8331 /* events_queue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = events_queue.hpp; sourceTree = "<group>"; };
 		7EC3C78126C17598004E8331 /* event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
 		7EC3C78326C182CB004E8331 /* entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity.h; sourceTree = "<group>"; };
@@ -120,7 +120,6 @@
 				7EC3C77126B8369B004E8331 /* window.cpp */,
 				7EC3C77226B8369B004E8331 /* window.hpp */,
 				7EC3C77626B83F9E004E8331 /* render_component.h */,
-				7EC3C77D26B9A755004E8331 /* events_queue.cpp */,
 				7EC3C77E26B9A755004E8331 /* events_queue.hpp */,
 				7EC3C78126C17598004E8331 /* event.h */,
 				7EC3C78326C182CB004E8331 /* entity.h */,
@@ -145,7 +144,8 @@
 			children = (
 				7E2CFFC126F4E9880023414F /* brick-1.png */,
 				7E2CFFBF26F4E7A60023414F /* wizard-idle.png */,
-				7E2CFFCF26F69CA90023414F /* level_0 */,
+				7E2CFFCF26F69CA90023414F /* level_map */,
+				7E2CFFE426FBCF250023414F /* level_actions */,
 			);
 			path = assets;
 			sourceTree = "<group>";
@@ -181,6 +181,7 @@
 				7E2CFFBA26F3912A0023414F /* map_kit.hpp */,
 				7E2CFFD626F69EED0023414F /* level_config.h */,
 				7E2CFFD726F69F780023414F /* cell_color.h */,
+				7E2CFFE526FBD08D0023414F /* cell_action.h */,
 			);
 			path = level;
 			sourceTree = "<group>";
@@ -290,7 +291,6 @@
 				7EC3C79126C194AB004E8331 /* listener.cpp in Sources */,
 				7EC3C77B26B843B4004E8331 /* cell.cpp in Sources */,
 				7E2CFF7726ED2A6B0023414F /* render_controller.cpp in Sources */,
-				7EC3C77F26B9A755004E8331 /* events_queue.cpp in Sources */,
 				7EC3C77326B8369B004E8331 /* window.cpp in Sources */,
 				7EC3C78626C18517004E8331 /* map_position_controller.cpp in Sources */,
 				7E2CFF7126ECEE9A0023414F /* render_list.cpp in Sources */,

@@ -11,7 +11,8 @@
 
 Player::Player(std::unique_ptr<RenderComponent>&& render_comp, Rect target_rect):
 	render_comp{std::move(render_comp)},
-	target_rect{target_rect}
+	target_rect{target_rect},
+	bag{CellColor::YELLOW}
 { }
 
 void Player::move(int32_t to_x, int32_t to_y)
@@ -23,4 +24,14 @@ void Player::move(int32_t to_x, int32_t to_y)
 void Player::render()
 {
 	render_comp->render(target_rect);
+}
+
+bool Player::has_color(Color color) const
+{
+	return bag.find(color) != bag.end();
+}
+
+void Player::add_color(Color color)
+{
+	bag.emplace(color);
 }

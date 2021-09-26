@@ -9,6 +9,8 @@
 #define cell_hpp
 
 #include <memory>
+#include <optional>
+#include <functional>
 
 #include "src/rect.hpp"
 #include "src/level/cell_color.h"
@@ -24,12 +26,14 @@ private:
 	
 	CellColor _color;
 	
-public:
-	Cell(std::unique_ptr<RenderComponent> render_comp, Rect target_rect, CellColor color);
+	std::function<void()> action;
 	
-	Cell(Cell&&) noexcept;
+public:
+	Cell(std::unique_ptr<RenderComponent> render_comp, Rect target_rect, CellColor color, std::function<void()>);
 	
 	void render() const;
+	
+	void perform_action() const;
 	
 	CellColor color() const;
 	

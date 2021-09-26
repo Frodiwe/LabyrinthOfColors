@@ -13,15 +13,11 @@
 #include "src/rect.hpp"
 #include "src/coord.hpp"
 
-Cell::Cell(std::unique_ptr<RenderComponent> render_comp, Rect target_rect, CellColor color):
+Cell::Cell(std::unique_ptr<RenderComponent> render_comp, Rect target_rect, CellColor color, std::function<void()> action):
 	render_comp{std::move(render_comp)},
 	target_rect{target_rect},
-	_color{color}
-{ }
-
-Cell::Cell(Cell&& rhs) noexcept:
-	render_comp{std::move(rhs.render_comp)},
-	target_rect{std::move(rhs.target_rect)}
+	_color{color},
+	action{action}
 { }
 
 size_t Cell::width() const
@@ -56,6 +52,14 @@ void Cell::render() const
 		target_rect.w,
 		target_rect.h
 	});
+}
+
+void Cell::perform_action() const
+{
+	if (not action)
+		return;
+	
+	action();
 }
 
 CellColor Cell::color() const
