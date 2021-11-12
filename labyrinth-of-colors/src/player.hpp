@@ -12,6 +12,7 @@
 #include <memory>
 
 #include "entity.h"
+#include "src/render/renderable.h"
 #include "src/rect.hpp"
 #include "src/level/cell_color.h"
 
@@ -20,21 +21,26 @@ class Bag;
 
 using Color = CellColor;
 
-class Player : public Entity
+class Player : public Entity, public Renderable
 {
 private:
 	Rect target_rect;
 	
-	std::unique_ptr<RenderComponent> render_comp;
+	RenderComponent* render_comp;
 	
 	std::set<Color> bag;
 	
 public:
-	Player(std::unique_ptr<RenderComponent>&&, Rect);
+	Player(RenderComponent*, Rect);
 	
 	~Player() = default;
 	
 	void render();
+	
+	RenderableId r_id() const
+	{
+		return 666;
+	}
 	
 	void move(int32_t, int32_t);
 	

@@ -9,8 +9,8 @@
 
 #include "src/render_component.h"
 
-Player::Player(std::unique_ptr<RenderComponent>&& render_comp, Rect target_rect):
-	render_comp{std::move(render_comp)},
+Player::Player(RenderComponent* render_comp, Rect target_rect):
+	render_comp{render_comp},
 	target_rect{target_rect},
 	bag{CellColor::YELLOW}
 { }

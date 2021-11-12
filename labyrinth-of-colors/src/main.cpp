@@ -8,11 +8,16 @@
 #include <regex>
 #include <tuple>
 
-#include "src/level/level_kit.hpp"
-#include "src/level/level.hpp"
-#include "src/level/level_config.h"
+#include "src/player_kit.hpp"
+#include "src/player.hpp"
+#include "src/level/cell.hpp"
 #include "src/level/cell_color.h"
 #include "src/level/cell_action.h"
+#include "src/level/map_kit.hpp"
+#include "src/level/map.hpp"
+#include "src/level/map_position_controller.hpp"
+#include "src/level/level.hpp"
+#include "src/level/level_config.h"
 #include "src/render/render_list.hpp"
 #include "src/coord.hpp"
 #include "src/event.h"
@@ -82,9 +87,17 @@ int main(int argc, char *argv[])
 	Coord::start_x = 800;
 	Coord::start_y = 600;
 	
-	auto level = DI::get_level_kit()->create_level(window.get_renderer(), get_level_config(0));
+	auto config = get_level_config(0);
+	auto map = DI::get_map_kit()->create_map(window.get_renderer(), config.labyrinth, config.actions);
+	auto player = DI::get_player_kit()->create_player(
+		window.get_renderer(),
+		Coord::start_x + map.at(config.start_i, config.start_j)->x(),
+		Coord::start_y + map.at(config.start_i, config.start_j)->y()
+	);
+	auto map_controller = new MapPositionController{&player, &map, config.start_i, config.start_j};
 	
-	DI::get_render_list()->add(&level);
+	DI::get_render_list()->add(&map);
+	DI::get_render_list()->add(&player);
 	
 	while (not window.is_quited())
 	{

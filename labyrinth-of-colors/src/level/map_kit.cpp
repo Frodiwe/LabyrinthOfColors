@@ -19,7 +19,7 @@ MapKit::MapKit(CellKit* cell_kit):
 	cell_kit{cell_kit}
 { }
 
-Map* MapKit::create_map(SDL_Renderer* renderer, const LevelMap& labyrinth, const LevelActions& actions)
+Map MapKit::create_map(SDL_Renderer* renderer, const LevelMap& labyrinth, const LevelActions& actions)
 {
 	auto x = 0;
 	auto y = 0;
@@ -46,7 +46,7 @@ Map* MapKit::create_map(SDL_Renderer* renderer, const LevelMap& labyrinth, const
 		y += height + offset;
 	}
 	
-	return new Map{std::move(result)};
+	return Map{std::move(result)};
 }
 
 CellAction MapKit::get_cell_action(LevelActions actions, size_t i, size_t j) const

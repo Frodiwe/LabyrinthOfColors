@@ -13,8 +13,8 @@
 
 class RenderList;
 class RenderController;
-class LevelKit;
 class MapKit;
+class PlayerKit;
 class CellKit;
 
 class DI
@@ -28,14 +28,16 @@ private:
 	
 	static MapKit* map_kit;
 	
-	static LevelKit* level_kit;
+	static PlayerKit* player_kit;
 	
 public:
 	static std::shared_ptr<RenderList> get_render_list();
 	
 	static std::shared_ptr<RenderController> get_render_controller();
 	
-	static LevelKit* get_level_kit();
+	static MapKit* get_map_kit();
+	
+	static PlayerKit* get_player_kit();
 };
 
 #endif /* di_hpp */

@@ -27,7 +27,7 @@ private:
 public:
 	MapKit(CellKit*);
 	
-	Map* create_map(SDL_Renderer* renderer, const LevelMap& labyrinth, const LevelActions& actions);
+	Map create_map(SDL_Renderer* renderer, const LevelMap& labyrinth, const LevelActions& actions);
 };
 
 #endif /* map_kit_hpp */
