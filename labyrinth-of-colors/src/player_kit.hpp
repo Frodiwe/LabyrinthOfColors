@@ -10,13 +10,20 @@
 
 #include "stdlib.h"
 
-class Player;
+#include "third_party/entt/entity/registry.hpp"
+
 class SDL_Renderer;
 
 class PlayerKit
 {
+private:
+	entt::registry& registry;
+	
 public:
-	Player create_player(SDL_Renderer* renderer, int32_t start_x, int32_t start_y) const;
+	PlayerKit(entt::registry& registry) : registry{registry}
+	{ };
+	
+	entt::entity create_player(SDL_Renderer* renderer, int32_t start_x, int32_t start_y) const;
 };
 
 #endif /* player_kit_hpp */

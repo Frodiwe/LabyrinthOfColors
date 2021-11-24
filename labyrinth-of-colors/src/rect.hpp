@@ -14,9 +14,9 @@ struct Rect
 	
 	int32_t y;
 	
-	int32_t w;
+	size_t w;
 	
-	int32_t h;
+	size_t h;
 };
 
 #endif /* rect_hpp */

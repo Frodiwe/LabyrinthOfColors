@@ -10,6 +10,8 @@
 
 #include <string_view>
 
+#include "third_party/entt/entity/registry.hpp"
+
 #include "src/level/cell_color.h"
 #include "src/level/cell_action.h"
 
@@ -22,8 +24,13 @@ class CellKit
 private:
 	std::function<void()> create_action(CellAction) const;
 	
+	entt::registry& registry;
+	
 public:
-	Cell* create_cell(SDL_Renderer*, std::string_view, Rect, Rect, CellColor, CellAction) const;
+	CellKit(entt::registry& registry) : registry{registry}
+	{ }
+	
+	entt::entity create_cell(SDL_Renderer*, std::string_view, Rect, Rect, CellColor, CellAction) const;
 };
 
 #endif /* cell_kit_hpp */

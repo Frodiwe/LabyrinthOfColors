@@ -7,27 +7,23 @@
 
 #include "di.hpp"
 
-#include "src/render/render_list.hpp"
-#include "src/render/render_controller.hpp"
 #include "src/level/cell_kit.hpp"
 #include "src/level/map_kit.hpp"
 #include "src/player_kit.hpp"
+#include "src/systems/movement_system.hpp"
+#include "src/systems/render_system.hpp"
 
-std::shared_ptr<RenderList> DI::render_list = std::shared_ptr<RenderList>{new RenderList()};
-std::shared_ptr<RenderController> DI::render_controller = std::shared_ptr<RenderController>{new RenderController(DI::render_list)};
-CellKit* DI::cell_kit = new CellKit();
-MapKit* DI::map_kit = new MapKit(DI::cell_kit);
-PlayerKit* DI::player_kit = new PlayerKit();
+entt::registry DI::registry;
 
-std::shared_ptr<RenderList> DI::get_render_list()
-{
-	return render_list;
-}
+CellKit* DI::cell_kit = new CellKit(DI::registry);
 
-std::shared_ptr<RenderController> DI::get_render_controller()
-{
-	return render_controller;
-}
+MapKit* DI::map_kit = new MapKit(DI::registry, DI::cell_kit);
+
+PlayerKit* DI::player_kit = new PlayerKit(DI::registry);
+
+MovementSystem* DI::movement_system = new MovementSystem(DI::registry);
+
+RenderSystem* DI::render_system = new RenderSystem(DI::registry);
 
 MapKit* DI::get_map_kit()
 {
@@ -37,4 +33,19 @@ MapKit* DI::get_map_kit()
 PlayerKit* DI::get_player_kit()
 {
 	return player_kit;
+}
+
+entt::registry& DI::get_registry()
+{
+	return registry;
+}
+
+MovementSystem* DI::get_movement_system()
+{
+    return movement_system;
+}
+
+RenderSystem* DI::get_render_system()
+{
+    return render_system;
 }

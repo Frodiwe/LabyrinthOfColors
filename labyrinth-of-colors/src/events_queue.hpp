@@ -39,23 +39,23 @@ private:
 		return listeners.empty() ? 0 : listeners.back().first + 1;
 	};
 	
-	template<typename... Args>
-	static ListenerId add_listener(Event event, ListenerId id, std::function<void(Args...)> listener)
+	template<typename Func, typename... Args>
+	static ListenerId add_listener(Event event, ListenerId id, Func&& listener)
 	{
-		EventsQueue::listeners<Args...>.at(event).emplace_back(id, listener);
+		EventsQueue::listeners<Args...>.at(event).emplace_back(id, std::forward<Func>(listener));
 		
 		return id;
 	}
 	
 public:
-	template<typename... Args>
-	static ListenerId subscribe(Event event, std::function<void(Args...)> listener)
+	template<typename Func, typename... Args>
+	static ListenerId subscribe(Event event, Func&& listener)
 	{
 		if (EventsQueue::listeners<Args...>.count(event) == 0) {
 			EventsQueue::listeners<Args...>[event] = {};
 		}
 		
-		return add_listener(event, gen_event_id(EventsQueue::listeners<Args...>.at(event)), listener);
+		return add_listener(event, gen_event_id(EventsQueue::listeners<Args...>.at(event)), std::forward<Func>(listener));
 	}
 	
 	template<typename... Args>

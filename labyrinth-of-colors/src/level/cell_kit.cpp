@@ -9,36 +9,38 @@
 
 #include <SDL2/SDL.h>
 
-#include "src/level/cell.hpp"
+#include "src/components/position.h"
+#include "src/components/size.h"
+#include "src/level/components/action.h"
+#include "src/level/tags/cell.h"
+
 #include "src/texture.h"
-#include "src/render_component.h"
 #include "src/rect.hpp"
 #include "src/events_queue.hpp"
 #include "src/event.h"
 
-Cell* CellKit::create_cell(SDL_Renderer* renderer, std::string_view texture_path, Rect frame, Rect target_frame, CellColor color, CellAction action) const
+entt::entity CellKit::create_cell(SDL_Renderer* renderer, std::string_view texture_path, Rect frame, Rect target_frame, CellColor color, CellAction action) const
 {
+	const auto cell = registry.create();
+	
+    registry.emplace<Cell>(cell);
+	registry.emplace<Position>(cell, target_frame.x, target_frame.y);
+	registry.emplace<Size>(cell, target_frame.w, target_frame.h);
+//	registry.emplace<Action>(cell, create_action(action));
+	registry.emplace<CellColor>(cell, color);
+	
 	switch (color) {
 		case CellColor::YELLOW:
 		case CellColor::RED:
-			return new Cell{
-				std::unique_ptr<RenderComponent>{new Texture(renderer, texture_path, frame)},
-				target_frame,
-				color,
-				create_action(action)
-			};
+			registry.emplace<Texture>(cell, Texture(renderer, texture_path, frame));
+			break;
 			
-		case CellColor::WALL:
-			return new Cell{
-				nullptr,
-				target_frame,
-				color,
-				create_action(action)
-			};
-			
+		case CellColor::WALL:			
 		default:
 			break;
 	};
+	
+	return cell;
 }
 
 std::function<void()> CellKit::create_action(CellAction action) const
@@ -46,7 +48,7 @@ std::function<void()> CellKit::create_action(CellAction action) const
 	switch (action)
 	{
 		case CellAction::NONE:
-			return nullptr;
+			return [] { };
 			
 		case CellAction::START:
 			return [] { EventsQueue::publish(Event::START_LEVEL); };
