@@ -13,8 +13,7 @@
 
 #include "third_party/entt/entity/registry.hpp"
 
-#include "src/event.h"
-#include "src/listener.hpp"
+#include "src/events/event.h"
 
 struct MapPosition;
 
@@ -23,19 +22,15 @@ class MovementSystem
 private:
 	entt::registry& registry;
 	
-	void move(const entt::entity& from, const entt::entity& to);
-	
-	entt::entity get_cell(MapPosition at) const;
+	void move_world_coords(const entt::entity& from, const entt::entity& to);
 	
 public:
     MovementSystem(entt::registry& registry) : registry{registry}
     { }
 	
-	void move(const entt::entity& entity, MapPosition to);
+    void move(const entt::entity& entity, const entt::entity& from, const entt::entity& to);
 	
-	bool can_move(MapPosition to);
-	
-	bool is_cell_exists(MapPosition cell) const;
+	bool can_move(const entt::entity& cell);
 };
 
 #endif /* movement_system_hpp */

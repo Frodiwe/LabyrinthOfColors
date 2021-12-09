@@ -13,88 +13,82 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <typeindex>
 
 #include "events_queue.hpp"
 #include "event.h"
-
-enum class Event;
+#include "src/listeners/listener.h"
 
 using ListenerId = int32_t;
 
 class EventsQueue
 {
-	template<typename... Args>
-	using listeners_map = std::map<
-		Event,
-		std::vector< std::pair<ListenerId, std::function<void(Args...)>> >
-	>;
+    using Listeners = std::vector<std::pair<ListenerId, Listener*>>;
+	using ListenersMap = std::map<std::type_index, Listeners>;
 	
 private:
-	template <class... Args>
-	static listeners_map<Args...> listeners;
+    ListenersMap listeners = {};
 	
-	template<typename T>
-	static ListenerId gen_event_id(const T& listeners)
+	ListenerId gen_event_id(const Listeners& listeners)
 	{
 		return listeners.empty() ? 0 : listeners.back().first + 1;
 	};
 	
-	template<typename Func, typename... Args>
-	static ListenerId add_listener(Event event, ListenerId id, Func&& listener)
+    template<typename EventT>
+	ListenerId add_listener(ListenerId id, Listener* listener)
 	{
-		EventsQueue::listeners<Args...>.at(event).emplace_back(id, std::forward<Func>(listener));
+		EventsQueue::listeners.at(typeid(EventT)).emplace_back(id, listener);
 		
 		return id;
 	}
 	
 public:
-	template<typename Func, typename... Args>
-	static ListenerId subscribe(Event event, Func&& listener)
+    template<typename EventT>
+	ListenerId subscribe(Listener* listener)
 	{
-		if (EventsQueue::listeners<Args...>.count(event) == 0) {
-			EventsQueue::listeners<Args...>[event] = {};
+		if (EventsQueue::listeners.count(typeid(EventT)) == 0) {
+			EventsQueue::listeners[typeid(EventT)] = {};
 		}
 		
-		return add_listener(event, gen_event_id(EventsQueue::listeners<Args...>.at(event)), std::forward<Func>(listener));
+		return add_listener<EventT>(gen_event_id(EventsQueue::listeners.at(typeid(EventT))), listener);
 	}
 	
-	template<typename... Args>
-	static void unsubscribe(Event event, ListenerId event_id)
+    template<typename EventT>
+    void unsubscribe(ListenerId listener_id)
 	{
-		if (EventsQueue::listeners<Args...>.count(event) == 0) {
+		if (EventsQueue::listeners.count(typeid(EventT)) == 0) {
 			return;
 		}
 		
-		auto& listeners = EventsQueue::listeners<Args...>.at(event);
+		auto& listeners = EventsQueue::listeners.at(typeid(EventT));
 		
 		listeners.erase(
 			std::remove_if(
 				listeners.begin(),
 				listeners.end(),
-				[&event_id](const auto& l) { return l.first == event_id; }
+				[&listener_id](const auto& l) { return l.first == listener_id; }
 			),
 			listeners.end()
 		);
 	}
 	
-	template<typename... Args>
-	static void publish(Event event, Args... args)
+    template<typename EventT, typename... Args>
+	void publish(Args&&... args)
 	{
+        auto event = new EventT{std::forward<Args>(args)...};
+        
 		std::cout << "Event " << event << " published" << std::endl;
 		 
-		if (EventsQueue::listeners<Args...>.count(event) == 0)
+		if (EventsQueue::listeners.count(typeid(EventT)) == 0)
 		{
 			return;
 		}
 
-		for (const auto& listener : EventsQueue::listeners<Args...>.at(event))
+		for (const auto& listener : EventsQueue::listeners.at(typeid(EventT)))
 		{
-			listener.second(std::forward<Args>(args)...);
+            (*listener.second)(event);
 		}
 	}
 };
-
-template<typename... Args>
-EventsQueue::listeners_map<Args...> EventsQueue::listeners = {};
 
 #endif /* events_queue_hpp */

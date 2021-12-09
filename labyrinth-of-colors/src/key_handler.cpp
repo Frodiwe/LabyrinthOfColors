@@ -10,29 +10,29 @@
 #include <SDL2/SDL.h>
 
 #include "events_queue.hpp"
-#include "event.h"
+#include "src/events/move_event.h"
 
 void KeyHandler::process(const SDL_KeyboardEvent& key) const
 {
 	switch(key.keysym.sym)
 	{
 		case SDLK_LEFT:
-			EventsQueue::publish(Event::K_LEFT_KEYDOWN);
+			events_queue->publish<MoveEvent>(0, -1);
 			
 			return;
 			
 		case SDLK_RIGHT:
-			EventsQueue::publish(Event::K_RIGHT_KEYDOWN);
+            events_queue->publish<MoveEvent>(0, 1);
 			
 			return;
 			
 		case SDLK_UP:
-			EventsQueue::publish(Event::K_UP_KEYDOWN);
+            events_queue->publish<MoveEvent>(-1, 0);
 			
 			return;
 			
 		case SDLK_DOWN:
-			EventsQueue::publish(Event::K_DOWN_KEYDOWN);
+            events_queue->publish<MoveEvent>(1, 0);
 			
 			return;
 			

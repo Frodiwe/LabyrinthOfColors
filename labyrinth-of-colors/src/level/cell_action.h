@@ -13,7 +13,6 @@ enum class CellAction
 	NONE,
 	START,
 	EXIT,
-	RED_PAINT,
 };
 
 #endif /* cell_action_h */

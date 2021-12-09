@@ -43,7 +43,7 @@ private:
 	bool init_image_loading();
 	
 public:
-	Window(int32_t, int32_t);
+	Window(int32_t, int32_t, KeyHandler*);
 	
 	void process_events();
 	

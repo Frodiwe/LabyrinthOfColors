@@ -9,8 +9,6 @@
 
 #include <string_view>
 
-#include <SDL2/SDL.h>
-
 #include "src/components/map_position.h"
 
 #include "src/level/cell_kit.hpp"
@@ -22,7 +20,7 @@ MapKit::MapKit(entt::registry& registry, CellKit* cell_kit):
 	registry{registry}
 { }
 
-void MapKit::create_map(SDL_Renderer* renderer, const LevelMap& labyrinth, const LevelActions& actions)
+void MapKit::create_map(const LevelMap& labyrinth, const LevelActions& actions)
 {
 	const auto width = 100;
 	const auto height = 100;
@@ -38,7 +36,7 @@ void MapKit::create_map(SDL_Renderer* renderer, const LevelMap& labyrinth, const
 		
 		for (auto j = 0u; j < labyrinth[i].size(); j++)
 		{
-			const auto cell = cell_kit->create_cell(renderer, texture_path, {0, 0, 32, 32}, {x, y, width, height}, labyrinth[i][j], get_cell_action(actions, i, j));
+			const auto cell = cell_kit->create_cell(texture_path, {0, 0, 32, 32}, {x, y, width, height}, labyrinth[i][j], get_cell_action(actions, i, j));
 			
 			registry.emplace<MapPosition>(cell, MapPosition{i, j});
             

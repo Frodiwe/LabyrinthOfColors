@@ -19,7 +19,7 @@
 class Texture
 {
 public:
-	Texture(SDL_Renderer* renderer, std::string_view path, Rect frame)
+	Texture(std::string_view path, Rect frame)
 		: path{path},
 		  frame{frame.x, frame.y, static_cast<int32_t>(frame.w), static_cast<int32_t>(frame.h)}
 	{ }

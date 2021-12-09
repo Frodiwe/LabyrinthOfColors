@@ -14,7 +14,7 @@
 #include "src/components/size.h"
 #include "src/tags/player.h"
 
-entt::entity PlayerKit::create_player(SDL_Renderer* renderer, int32_t start_x, int32_t start_y) const
+entt::entity PlayerKit::create_player(int32_t start_x, int32_t start_y) const
 {
 	const auto player = registry.create();
     
@@ -22,7 +22,7 @@ entt::entity PlayerKit::create_player(SDL_Renderer* renderer, int32_t start_x, i
 	registry.emplace<Position>(player, start_x, start_y);
 	registry.emplace<MapPosition>(player, 0ul, 0ul);
 	registry.emplace<Size>(player, 100ul, 100ul);
-	registry.emplace<Texture>(player, Texture(renderer, "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/wizard-idle.png", {0, 0, 32, 32}));
+	registry.emplace<Texture>(player, Texture( "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/wizard-idle.png", {0, 0, 32, 32}));
 	
 	return player;
 }

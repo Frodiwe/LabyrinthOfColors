@@ -29,7 +29,7 @@ private:
 public:
 	MapKit(entt::registry&, CellKit*);
 	
-	void create_map(SDL_Renderer* renderer, const LevelMap& labyrinth, const LevelActions& actions);
+	void create_map(const LevelMap& labyrinth, const LevelActions& actions);
 };
 
 #endif /* map_kit_hpp */

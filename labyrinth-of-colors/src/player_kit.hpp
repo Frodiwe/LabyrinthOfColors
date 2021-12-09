@@ -23,7 +23,7 @@ public:
 	PlayerKit(entt::registry& registry) : registry{registry}
 	{ };
 	
-	entt::entity create_player(SDL_Renderer* renderer, int32_t start_x, int32_t start_y) const;
+	entt::entity create_player(int32_t start_x, int32_t start_y) const;
 };
 
 #endif /* player_kit_hpp */

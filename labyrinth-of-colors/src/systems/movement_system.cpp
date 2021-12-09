@@ -22,29 +22,11 @@
 
 #include <iostream>
 
-bool MovementSystem::is_cell_exists(MapPosition at) const
-{
-	try {
-		get_cell(at);
-		
-		return true;
-	}
-	catch(std::logic_error e) {
-		return false;
-	}
-}
-
-void MovementSystem::move(const entt::entity& player, MapPosition to)
-{
-	if (not is_cell_exists(to) or not can_move(to))
-	{
-		return;
-	}
+void MovementSystem::move(const entt::entity& player, const entt::entity& from, const entt::entity& to)
+{	
+    move_world_coords(from, to);
 	
-	move(get_cell(registry.get<MapPosition>(player)), get_cell(to));
-	
-//	registry.get<Action>(get_cell(to))();
-    registry.get<MapPosition>(player) = to;
+    registry.get<MapPosition>(player) = registry.get<MapPosition>(to);
     
     for (const auto [ent, tex, pos, m] : DI::get_registry().view<Player, Texture, Position, MapPosition>().each())
     {
@@ -52,29 +34,12 @@ void MovementSystem::move(const entt::entity& player, MapPosition to)
     }
 }
 
-bool MovementSystem::can_move(MapPosition to)
+bool MovementSystem::can_move(const entt::entity& cell)
 {
-	return registry.get<CellColor>(get_cell(to)) != CellColor::WALL;
+	return registry.get<CellColor>(cell) != CellColor::WALL;
 }
 
-entt::entity MovementSystem::get_cell(MapPosition at) const
-{
-    for (const auto [ent, tex, pos, m] : DI::get_registry().view<Cell, Texture, Position, MapPosition>().each())
-    {
-        std::cout << pos.x << ", " << pos.y << " –> " << m.i << ", " << m.j << std::endl;
-    }
-    
-	for (const auto [entity, map_position] : registry.view<Cell, MapPosition>().each())
-	{
-		if (map_position.i == at.i and map_position.j == at.j) {
-			return entity;
-		}
-	}
-	
-	throw std::logic_error{""};
-}
-
-void MovementSystem::move(const entt::entity &from, const entt::entity &to)
+void MovementSystem::move_world_coords(const entt::entity &from, const entt::entity &to)
 {
 	Coord::start_x += registry.get<Position>(from).x - registry.get<Position>(to).x;
 	Coord::start_y += registry.get<Position>(from).y - registry.get<Position>(to).y;

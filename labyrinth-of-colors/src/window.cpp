@@ -13,8 +13,8 @@
 #include "window.hpp"
 #include "key_handler.hpp"
 
-Window::Window(int32_t width, int32_t height) :
-	key_handler{new KeyHandler{}},
+Window::Window(int32_t width, int32_t height, KeyHandler* kh) :
+	key_handler{kh},
 	event{new SDL_Event{}},
 	WIDTH{width},
 	HEIGHT{height}
