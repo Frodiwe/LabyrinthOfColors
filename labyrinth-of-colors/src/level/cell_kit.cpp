@@ -17,7 +17,7 @@
 #include "src/texture.h"
 #include "src/rect.hpp"
 
-entt::entity CellKit::create_cell(std::string_view texture_path, Rect frame, Rect target_frame, CellColor color, CellAction action) const
+entt::entity CellKit::create_cell(std::string_view texture_path, Rect frame, Rect target_frame, CellColor color) const
 {
 	const auto cell = registry.create();
 	

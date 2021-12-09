@@ -24,12 +24,10 @@ private:
 	
 	CellKit* cell_kit;
 	
-	CellAction get_cell_action(LevelActions, size_t, size_t) const;
-	
 public:
 	MapKit(entt::registry&, CellKit*);
 	
-	void create_map(const LevelMap& labyrinth, const LevelActions& actions);
+	void create_map(const LevelMap& labyrinth);
 };
 
 #endif /* map_kit_hpp */

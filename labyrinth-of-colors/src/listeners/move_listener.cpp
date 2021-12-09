@@ -33,7 +33,7 @@ void MoveListener::operator()(Event *event)
     
     if (
         not movement_system->can_move(cell) or
-        not inventory_system->has_color(registry.get<CellColor>(cell))
+        not inventory_system->has_color(player, registry.get<CellColor>(cell))
     )
     {
         return;

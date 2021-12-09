@@ -20,7 +20,7 @@ MapKit::MapKit(entt::registry& registry, CellKit* cell_kit):
 	registry{registry}
 { }
 
-void MapKit::create_map(const LevelMap& labyrinth, const LevelActions& actions)
+void MapKit::create_map(const LevelMap& labyrinth)
 {
 	const auto width = 100;
 	const auto height = 100;
@@ -36,7 +36,7 @@ void MapKit::create_map(const LevelMap& labyrinth, const LevelActions& actions)
 		
 		for (auto j = 0u; j < labyrinth[i].size(); j++)
 		{
-			const auto cell = cell_kit->create_cell(texture_path, {0, 0, 32, 32}, {x, y, width, height}, labyrinth[i][j], get_cell_action(actions, i, j));
+			const auto cell = cell_kit->create_cell(texture_path, {0, 0, 32, 32}, {x, y, width, height}, labyrinth[i][j]);
 			
 			registry.emplace<MapPosition>(cell, MapPosition{i, j});
             
@@ -49,17 +49,4 @@ void MapKit::create_map(const LevelMap& labyrinth, const LevelActions& actions)
 	
 	
 	return;
-}
-
-CellAction MapKit::get_cell_action(LevelActions actions, size_t i, size_t j) const
-{
-	auto result = std::find_if(actions.begin(), actions.end(), [&i, &j](const auto& action) {
-		return std::get<1>(action) == i and std::get<2>(action) == j;
-	});
-	
-	if (result == actions.end()) {
-		return CellAction::NONE;
-	}
-	
-	return std::get<0>(*result);
 }

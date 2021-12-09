@@ -12,6 +12,7 @@
 #include "src/components/position.h"
 #include "src/components/map_position.h"
 #include "src/components/size.h"
+#include "src/components/inventory.h"
 #include "src/tags/player.h"
 
 entt::entity PlayerKit::create_player(int32_t start_x, int32_t start_y) const
@@ -23,6 +24,7 @@ entt::entity PlayerKit::create_player(int32_t start_x, int32_t start_y) const
 	registry.emplace<MapPosition>(player, 0ul, 0ul);
 	registry.emplace<Size>(player, 100ul, 100ul);
 	registry.emplace<Texture>(player, Texture( "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/wizard-idle.png", {0, 0, 32, 32}));
+    registry.emplace<Inventory>(player, std::vector{CellColor::YELLOW});
 	
 	return player;
 }

@@ -23,6 +23,6 @@ public:
     
     void give_item(const entt::entity& player, const entt::entity& item);
     
-    bool has_color(CellColor color);
+    bool has_color(const entt::entity& player, CellColor color);
 };
 #endif /* inventory_system_hpp */

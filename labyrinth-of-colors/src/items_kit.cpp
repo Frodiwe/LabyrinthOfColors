@@ -11,13 +11,15 @@
 
 #include "src/components/map_position.h"
 #include "src/components/item.h"
+#include "src/level/cell_color.h"
 
-entt::entity ItemsKit::create_item(const std::string& name, const MapPosition& position)
+entt::entity ItemsKit::create_item(const std::string& name, const CellColor& color, const MapPosition& position)
 {
     const auto item = registry.create();
     
     registry.emplace<Item>(item, name);
     registry.emplace<MapPosition>(item, position);
+    registry.emplace<CellColor>(item, color);
     
     return item;
 }

@@ -8,6 +8,8 @@
 #ifndef item_h
 #define item_h
 
+#include <string>
+
 struct Item
 {
     std::string name;

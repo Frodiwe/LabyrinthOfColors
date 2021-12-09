@@ -27,11 +27,6 @@ void MovementSystem::move(const entt::entity& player, const entt::entity& from, 
     move_world_coords(from, to);
 	
     registry.get<MapPosition>(player) = registry.get<MapPosition>(to);
-    
-    for (const auto [ent, tex, pos, m] : DI::get_registry().view<Player, Texture, Position, MapPosition>().each())
-    {
-        std::cout << pos.x << ", " << pos.y << " –> " << m.i << ", " << m.j << std::endl;
-    }
 }
 
 bool MovementSystem::can_move(const entt::entity& cell)

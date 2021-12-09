@@ -21,7 +21,6 @@
 
 #include "src/player_kit.hpp"
 #include "src/level/cell_color.h"
-#include "src/level/cell_action.h"
 #include "src/level/map_kit.hpp"
 #include "src/items_kit.hpp"
 #include "src/level/level_config.h"
@@ -38,20 +37,17 @@
 LevelConfig Game::get_level_config(size_t i) const
 {
 	auto labyrinth = LevelMap{};
-	auto actions = LevelActions{};
     auto items = LevelItems{};
 	auto color_file = std::ifstream{"/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/level_map"};
-	auto actions_file = std::ifstream{"/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/level_actions"};
     auto items_file = std::ifstream{"/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/level_items"};
 	const auto COLOR_DECODE_MAP = std::map<char16_t, CellColor>{
 		{'0', CellColor::WALL},
 		{'1', CellColor::YELLOW},
 		{'2', CellColor::RED},
 	};
-	const auto ACTION_DECODE_MAP = std::map<std::string, CellAction>{
-		{"start", CellAction::START},
-		{"exit", CellAction::EXIT}
-	};
+    const auto ITEMS_COLOR_MAP = std::map<std::string, CellColor>{
+        {"red_paint", CellColor::RED},
+    };
     
     for (std::string line; std::getline(items_file, line);)
     {
@@ -60,20 +56,9 @@ LevelConfig Game::get_level_config(size_t i) const
         
         if (std::regex_search(line, match, reg))
         {
-            items.emplace_back(match[1].str(), std::stoul(match[2].str()), std::stoul(match[3].str()));
+            items.emplace_back(match[1].str(), ITEMS_COLOR_MAP.at(match[1].str()), std::stoul(match[2].str()), std::stoul(match[3].str()));
         }
     }
-	
-	for (std::string line; std::getline(actions_file, line);)
-	{
-		std::regex reg{R"((\w+):\s(\d+),(\d+))"};
-		std::smatch match;
-		
-		if (std::regex_search(line, match, reg))
-		{
-			actions.emplace_back(ACTION_DECODE_MAP.at(match[1].str()), std::stoul(match[2].str()), std::stoul(match[3].str()));
-		}
-	}
 	
 	for (std::string line; std::getline(color_file, line);)
 	{
@@ -85,7 +70,7 @@ LevelConfig Game::get_level_config(size_t i) const
 		}
 	}
 	
-	return {labyrinth, actions, items, 1, 1};
+	return {labyrinth, items, 0, 0};
 }
 
 Game::Game(Window* window, EventsQueue* events_queue)
@@ -93,11 +78,11 @@ Game::Game(Window* window, EventsQueue* events_queue)
 	auto config = get_level_config(0);
 	
 	DI::get_player_kit()->create_player(Coord::start_x, Coord::start_y);
-	DI::get_map_kit()->create_map(config.labyrinth, config.actions);
+	DI::get_map_kit()->create_map(config.labyrinth);
     
-    for (const auto& [item_name, i, j] : config.items)
+    for (const auto& [item_name, color, i, j] : config.items)
     {
-        DI::get_items_kit()->create_item(item_name, {i, j});
+        DI::get_items_kit()->create_item(item_name, color, {i, j});
     }
     
     events_queue->subscribe<MoveEvent>(new MoveListener{DI::get_registry(), DI::get_movement_system(), DI::get_inventory_system(), DI::get_items_system()});

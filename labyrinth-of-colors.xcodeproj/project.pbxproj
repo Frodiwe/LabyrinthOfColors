@@ -54,8 +54,6 @@
 		7E2CFFD726F69F780023414F /* cell_color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cell_color.h; sourceTree = "<group>"; };
 		7E2CFFD926F803EC0023414F /* coord.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = coord.cpp; sourceTree = "<group>"; };
 		7E2CFFDA26F803EC0023414F /* coord.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = coord.hpp; sourceTree = "<group>"; };
-		7E2CFFE426FBCF250023414F /* level_actions */ = {isa = PBXFileReference; lastKnownFileType = text; path = level_actions; sourceTree = "<group>"; };
-		7E2CFFE526FBD08D0023414F /* cell_action.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cell_action.h; sourceTree = "<group>"; };
 		7E4EFA0027415AED00C296AF /* position.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = position.h; sourceTree = "<group>"; };
 		7E4EFA0327415BB100C296AF /* size.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = size.h; sourceTree = "<group>"; };
 		7E4EFA0427415C6C00C296AF /* action.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = action.h; sourceTree = "<group>"; };
@@ -77,6 +75,7 @@
 		7EC3C78126C17598004E8331 /* event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
 		7EC3C78326C182CB004E8331 /* entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity.h; sourceTree = "<group>"; };
 		7EC3C7A326C2CFBC004E8331 /* entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entity.cpp; sourceTree = "<group>"; };
+		7ECEAE6B276236C5008C42B0 /* inventory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = inventory.h; sourceTree = "<group>"; };
 		7EEF1D61273D61B600E79202 /* locator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = locator.hpp; sourceTree = "<group>"; };
 		7EEF1D63273D61B600E79202 /* hashed_string.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = hashed_string.hpp; sourceTree = "<group>"; };
 		7EEF1D64273D61B600E79202 /* utility.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utility.hpp; sourceTree = "<group>"; };
@@ -216,7 +215,6 @@
 				7E2CFFC126F4E9880023414F /* brick-1.png */,
 				7E2CFFBF26F4E7A60023414F /* wizard-idle.png */,
 				7E2CFFCF26F69CA90023414F /* level_map */,
-				7E2CFFE426FBCF250023414F /* level_actions */,
 				7EFB4FE1275542E1002AD274 /* level_items */,
 			);
 			path = assets;
@@ -233,7 +231,6 @@
 				7E2CFFBA26F3912A0023414F /* map_kit.hpp */,
 				7E2CFFD626F69EED0023414F /* level_config.h */,
 				7E2CFFD726F69F780023414F /* cell_color.h */,
-				7E2CFFE526FBD08D0023414F /* cell_action.h */,
 			);
 			path = level;
 			sourceTree = "<group>";
@@ -268,6 +265,7 @@
 				7E4EFA0027415AED00C296AF /* position.h */,
 				7E4EFA0327415BB100C296AF /* size.h */,
 				7EFB4FE927567AD6002AD274 /* item.h */,
+				7ECEAE6B276236C5008C42B0 /* inventory.h */,
 			);
 			path = components;
 			sourceTree = "<group>";

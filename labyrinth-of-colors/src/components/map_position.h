@@ -14,6 +14,16 @@ struct MapPosition
 	
 	size_t j;
     
+    bool operator==(const MapPosition& v)
+    {
+        return i == v.i and j == v.j;
+    }
+    
+    bool operator!=(const MapPosition& v)
+    {
+        return not (*this == v);
+    }
+    
     MapPosition operator+(const MapPosition& v)
     {
         return {i + v.i, j + v.j};
