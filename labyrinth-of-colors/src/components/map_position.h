@@ -8,6 +8,10 @@
 #ifndef map_position_h
 #define map_position_h
 
+#include <stdlib.h>
+#include <regex>
+#include <string>
+
 struct MapPosition
 {
 	size_t i;
@@ -35,6 +39,21 @@ struct MapPosition
             v.i > i ? i : i - v.i,
             v.j > j ? j : j - v.j
         };
+    }
+    
+    MapPosition(size_t i, size_t j) : i{i}, j{j}
+    { }
+    
+    MapPosition(const std::string& value)
+    {
+        auto reg = std::regex{","};
+        auto splitted_line = std::vector<std::string>{
+            std::sregex_token_iterator{value.begin(), value.end(), reg, -1},
+            std::sregex_token_iterator{}
+        };
+        
+        i = std::stoul(splitted_line[0]);
+        j = std::stoul(splitted_line[1]);
     }
 };
 

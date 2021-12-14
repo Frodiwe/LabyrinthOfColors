@@ -33,44 +33,22 @@
 #include "src/listeners/move_listener.hpp"
 #include "src/events/move_event.h"
 #include "src/events_queue.hpp"
+#include "src/utils/csv.h"
+#include "src/utils/key_value_file.h"
 
 LevelConfig Game::get_level_config(size_t i) const
 {
-	auto labyrinth = LevelMap{};
-    auto items = LevelItems{};
-	auto color_file = std::ifstream{"/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/level_map"};
-    auto items_file = std::ifstream{"/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/level_items"};
-	const auto COLOR_DECODE_MAP = std::map<char16_t, CellColor>{
-		{'0', CellColor::WALL},
-		{'1', CellColor::YELLOW},
-		{'2', CellColor::RED},
-	};
-    const auto ITEMS_COLOR_MAP = std::map<std::string, CellColor>{
-        {"red_paint", CellColor::RED},
-    };
     
-    for (std::string line; std::getline(items_file, line);)
+    auto color_file = CSV{"/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/level_map"};
+    auto items_file = KeyValueFile{"/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/level_items"};
+    auto items = LevelItems{};
+    
+    for (const auto& [item_name, position_str] : items_file.read())
     {
-        std::regex reg{R"((\w+):\s(\d+),(\d+))"};
-        std::smatch match;
-        
-        if (std::regex_search(line, match, reg))
-        {
-            items.emplace_back(match[1].str(), ITEMS_COLOR_MAP.at(match[1].str()), std::stoul(match[2].str()), std::stoul(match[3].str()));
-        }
+        items.emplace_back(item_name, ITEMS_COLOR_MAP.at(item_name), MapPosition{position_str});
     }
 	
-	for (std::string line; std::getline(color_file, line);)
-	{
-		labyrinth.emplace_back();
-		
-		for (const auto& letter : line)
-		{
-			labyrinth.back().emplace_back(COLOR_DECODE_MAP.at(letter));
-		}
-	}
-	
-	return {labyrinth, items, 0, 0};
+	return {color_file.read(COLOR_DECODE_MAP), items, 0, 0};
 }
 
 Game::Game(Window* window, EventsQueue* events_queue)
@@ -80,9 +58,9 @@ Game::Game(Window* window, EventsQueue* events_queue)
 	DI::get_player_kit()->create_player(Coord::start_x, Coord::start_y);
 	DI::get_map_kit()->create_map(config.labyrinth);
     
-    for (const auto& [item_name, color, i, j] : config.items)
+    for (const auto& [item_name, color, pos] : config.items)
     {
-        DI::get_items_kit()->create_item(item_name, color, {i, j});
+        DI::get_items_kit()->create_item(item_name, color, pos);
     }
     
     events_queue->subscribe<MoveEvent>(new MoveListener{DI::get_registry(), DI::get_movement_system(), DI::get_inventory_system(), DI::get_items_system()});
