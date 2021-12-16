@@ -8,7 +8,6 @@
 #include "movement_system.hpp"
 
 #include "src/components/map_position.h"
-#include "src/level/components/action.h"
 #include "src/components/position.h"
 #include "src/level/cell_color.h"
 #include "src/level/tags/cell.h"

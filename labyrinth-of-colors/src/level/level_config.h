@@ -26,10 +26,10 @@ struct LevelConfig
 	LevelMap labyrinth;
     
     LevelItems items;
-	
-	size_t start_i;
-	
-	size_t start_j;
+    
+    MapPosition start;
+    
+    MapPosition exit;
 };
 
 #endif /* level_config_h */

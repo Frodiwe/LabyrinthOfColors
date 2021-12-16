@@ -15,15 +15,15 @@
 #include "src/components/inventory.h"
 #include "src/tags/player.h"
 
-entt::entity PlayerKit::create_player(int32_t start_x, int32_t start_y) const
+entt::entity PlayerKit::create_player(const Position& start_pos, const MapPosition& start_map_pos) const
 {
 	const auto player = registry.create();
     
     registry.emplace<Player>(player);
-	registry.emplace<Position>(player, start_x, start_y);
-	registry.emplace<MapPosition>(player, 0ul, 0ul);
+	registry.emplace<Position>(player, start_pos.x, start_pos.y);
+	registry.emplace<MapPosition>(player, start_map_pos.i, start_map_pos.j);
 	registry.emplace<Size>(player, 100ul, 100ul);
-	registry.emplace<Texture>(player, Texture( "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/wizard-idle.png", {0, 0, 32, 32}));
+	registry.emplace<Texture>(player, Texture( "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/wizard_idle.png", {0, 0, 32, 32}));
     registry.emplace<Inventory>(player, std::vector{CellColor::YELLOW});
 	
 	return player;

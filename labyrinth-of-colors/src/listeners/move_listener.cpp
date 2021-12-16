@@ -10,12 +10,15 @@
 #include "src/components/map_position.h"
 #include "src/level/tags/cell.h"
 #include "src/tags/player.h"
+#include "src/level/components/exit.h"
+#include "src/events/exit_event.h"
 #include "src/events/move_event.h"
 #include "src/events/event.h"
 #include "src/systems/movement_system.hpp"
 #include "src/systems/render_system.hpp"
 #include "src/systems/items_system.hpp"
 #include "src/systems/inventory_system.hpp"
+#include "src/events_queue.hpp"
 
 void MoveListener::operator()(Event *event)
 {
@@ -40,6 +43,13 @@ void MoveListener::operator()(Event *event)
     }
     
     movement_system->move(player, get_cell(registry.get<MapPosition>(player)), cell);
+    
+    if (registry.all_of<Exit>(cell))
+    {
+        events_queue->publish<ExitEvent>();
+        
+        return;
+    }
     
     if (const auto item = items_system->get_item(registry.get<MapPosition>(player)); item != entt::null)
     {

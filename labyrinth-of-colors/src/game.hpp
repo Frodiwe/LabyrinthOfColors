@@ -23,6 +23,8 @@ class Game
 {
 private:
 	LevelConfig get_level_config(size_t) const;
+    
+    entt::entity get_cell_at(const MapPosition&);
 	
 public:
 	Game(Window* window, EventsQueue* events_queue);

@@ -45,12 +45,15 @@ public:
             texture = load_texture(renderer, path);
         }
         
-		SDL_RenderCopy(renderer, this->texture, &this->frame, new SDL_Rect{target_rect.x, target_rect.y, static_cast<int32_t>(target_rect.w), static_cast<int32_t>(target_rect.h)});
+        target_frame = SDL_Rect{target_rect.x, target_rect.y, static_cast<int32_t>(target_rect.w), static_cast<int32_t>(target_rect.h)};
+        
+		SDL_RenderCopy(renderer, this->texture, &this->frame, &this->target_frame);
 	}
 	
 protected:
 	SDL_Texture* texture = nullptr;
 	SDL_Rect frame;
+    SDL_Rect target_frame;
     std::string path;
 	
 	SDL_Texture* load_texture(SDL_Renderer* renderer, std::string_view path)

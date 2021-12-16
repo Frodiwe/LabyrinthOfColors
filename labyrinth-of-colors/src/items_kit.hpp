@@ -11,6 +11,7 @@
 #include "third_party/entt/entity/registry.hpp"
 
 struct MapPosition;
+struct Position;
 enum class CellColor;
 
 class ItemsKit
@@ -22,7 +23,7 @@ public:
     ItemsKit(entt::registry& r) : registry{r}
     { }
     
-    entt::entity create_item(const std::string& item_name, const CellColor&, const MapPosition&);
+    entt::entity create_item(const std::string& item_name, const CellColor&, const MapPosition&, const Position&);
 };
 
 #endif /* items_kit_hpp */

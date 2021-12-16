@@ -13,6 +13,8 @@
 #include "third_party/entt/entity/registry.hpp"
 
 class SDL_Renderer;
+struct Position;
+struct MapPosition;
 
 class PlayerKit
 {
@@ -23,7 +25,7 @@ public:
 	PlayerKit(entt::registry& registry) : registry{registry}
 	{ };
 	
-	entt::entity create_player(int32_t start_x, int32_t start_y) const;
+	entt::entity create_player(const Position& start_pos, const MapPosition& start_map_pos) const;
 };
 
 #endif /* player_kit_hpp */

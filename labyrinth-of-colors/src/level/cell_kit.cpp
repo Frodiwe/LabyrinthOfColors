@@ -11,7 +11,6 @@
 
 #include "src/components/position.h"
 #include "src/components/size.h"
-#include "src/level/components/action.h"
 #include "src/level/tags/cell.h"
 
 #include "src/texture.h"
@@ -25,17 +24,11 @@ entt::entity CellKit::create_cell(std::string_view texture_path, Rect frame, Rec
 	registry.emplace<Position>(cell, target_frame.x, target_frame.y);
 	registry.emplace<Size>(cell, target_frame.w, target_frame.h);
 	registry.emplace<CellColor>(cell, color);
-	
-	switch (color) {
-		case CellColor::YELLOW:
-		case CellColor::RED:
-			registry.emplace<Texture>(cell, Texture(texture_path, frame));
-			break;
-			
-		case CellColor::WALL:			
-		default:
-			break;
-	};
+    
+    if (color != CellColor::WALL)
+    {
+        registry.emplace<Texture>(cell, Texture(texture_path, frame));
+    }
 	
 	return cell;
 }

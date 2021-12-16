@@ -23,6 +23,8 @@ public:
     
     void render_map(SDL_Renderer* renderer);
     
+    void render_items(SDL_Renderer* renderer);
+    
     void render_player(SDL_Renderer* renderer);
 };
 

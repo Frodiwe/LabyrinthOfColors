@@ -48,8 +48,6 @@
 		7E2CFFB126F3648F0023414F /* cell_kit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = cell_kit.hpp; sourceTree = "<group>"; };
 		7E2CFFB926F3912A0023414F /* map_kit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = map_kit.cpp; sourceTree = "<group>"; };
 		7E2CFFBA26F3912A0023414F /* map_kit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = map_kit.hpp; sourceTree = "<group>"; };
-		7E2CFFBF26F4E7A60023414F /* wizard-idle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard-idle.png"; sourceTree = "<group>"; };
-		7E2CFFC126F4E9880023414F /* brick-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brick-1.png"; sourceTree = "<group>"; };
 		7E2CFFCF26F69CA90023414F /* level_map */ = {isa = PBXFileReference; lastKnownFileType = text; path = level_map; sourceTree = "<group>"; };
 		7E2CFFD626F69EED0023414F /* level_config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = level_config.h; sourceTree = "<group>"; };
 		7E2CFFD726F69F780023414F /* cell_color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cell_color.h; sourceTree = "<group>"; };
@@ -57,7 +55,6 @@
 		7E2CFFDA26F803EC0023414F /* coord.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = coord.hpp; sourceTree = "<group>"; };
 		7E4EFA0027415AED00C296AF /* position.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = position.h; sourceTree = "<group>"; };
 		7E4EFA0327415BB100C296AF /* size.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = size.h; sourceTree = "<group>"; };
-		7E4EFA0427415C6C00C296AF /* action.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = action.h; sourceTree = "<group>"; };
 		7E4EFA0627416FD000C296AF /* map_position.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = map_position.h; sourceTree = "<group>"; };
 		7E4EFA0A2742B54B00C296AF /* movement_system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = movement_system.cpp; sourceTree = "<group>"; };
 		7E4EFA0B2742B54B00C296AF /* movement_system.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = movement_system.hpp; sourceTree = "<group>"; };
@@ -80,6 +77,15 @@
 		7ECEAE6E2763BC89008C42B0 /* csv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = csv.h; sourceTree = "<group>"; };
 		7ECEAE70276686A6008C42B0 /* cell_color.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = cell_color.cpp; path = "labyrinth-of-colors/src/level/cell_color.cpp"; sourceTree = SOURCE_ROOT; };
 		7ECEAE7227668C5A008C42B0 /* key_value_file.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = key_value_file.h; sourceTree = "<group>"; };
+		7ECEAE732768D875008C42B0 /* level_actions */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level_actions; sourceTree = "<group>"; };
+		7ECEAE742768D876008C42B0 /* cell_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell_red.png; sourceTree = "<group>"; };
+		7ECEAE752768D876008C42B0 /* cell_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell_yellow.png; sourceTree = "<group>"; };
+		7ECEAE762768D876008C42B0 /* bucket_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bucket_red.png; sourceTree = "<group>"; };
+		7ECEAE772768D876008C42B0 /* wizard_idle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wizard_idle.png; sourceTree = "<group>"; };
+		7ECEAE782768E4F4008C42B0 /* exit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exit.h; sourceTree = "<group>"; };
+		7ECEAE792768E8D9008C42B0 /* exit_event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exit_event.h; sourceTree = "<group>"; };
+		7ECEAE7A27690822008C42B0 /* consts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = consts.h; sourceTree = "<group>"; };
+		7ECEAE7B27691990008C42B0 /* exit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exit.png; sourceTree = "<group>"; };
 		7EEF1D61273D61B600E79202 /* locator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = locator.hpp; sourceTree = "<group>"; };
 		7EEF1D63273D61B600E79202 /* hashed_string.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = hashed_string.hpp; sourceTree = "<group>"; };
 		7EEF1D64273D61B600E79202 /* utility.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utility.hpp; sourceTree = "<group>"; };
@@ -210,6 +216,7 @@
 				7E4EFA0F27454B1500C296AF /* game.hpp */,
 				7EFB4FE627567331002AD274 /* items_kit.cpp */,
 				7EFB4FE727567331002AD274 /* items_kit.hpp */,
+				7ECEAE7A27690822008C42B0 /* consts.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -217,8 +224,12 @@
 		7E2CFF6C26ECECF30023414F /* assets */ = {
 			isa = PBXGroup;
 			children = (
-				7E2CFFC126F4E9880023414F /* brick-1.png */,
-				7E2CFFBF26F4E7A60023414F /* wizard-idle.png */,
+				7ECEAE7B27691990008C42B0 /* exit.png */,
+				7ECEAE762768D876008C42B0 /* bucket_red.png */,
+				7ECEAE742768D876008C42B0 /* cell_red.png */,
+				7ECEAE752768D876008C42B0 /* cell_yellow.png */,
+				7ECEAE732768D875008C42B0 /* level_actions */,
+				7ECEAE772768D876008C42B0 /* wizard_idle.png */,
 				7E2CFFCF26F69CA90023414F /* level_map */,
 				7EFB4FE1275542E1002AD274 /* level_items */,
 			);
@@ -244,7 +255,7 @@
 		7E4EFA0127415AF600C296AF /* components */ = {
 			isa = PBXGroup;
 			children = (
-				7E4EFA0427415C6C00C296AF /* action.h */,
+				7ECEAE782768E4F4008C42B0 /* exit.h */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -512,6 +523,7 @@
 			children = (
 				7EC3C78126C17598004E8331 /* event.h */,
 				7EFB4FFA275C0852002AD274 /* move_event.h */,
+				7ECEAE792768E8D9008C42B0 /* exit_event.h */,
 			);
 			path = events;
 			sourceTree = "<group>";

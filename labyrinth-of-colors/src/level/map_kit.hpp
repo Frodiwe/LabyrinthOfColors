@@ -27,7 +27,7 @@ private:
 public:
 	MapKit(entt::registry&, CellKit*);
 	
-	void create_map(const LevelMap& labyrinth);
+	void create_map(const LevelMap& labyrinth, const MapPosition& exit);
 };
 
 #endif /* map_kit_hpp */

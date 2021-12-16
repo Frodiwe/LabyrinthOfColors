@@ -27,6 +27,7 @@
 #include "src/coord.hpp"
 #include "src/events_queue.hpp"
 #include "src/systems/render_system.hpp"
+#include "src/systems/movement_system.hpp"
 #include "src/components/map_position.h"
 #include "src/components/position.h"
 #include "src/texture.h"
@@ -36,34 +37,54 @@
 #include "src/utils/csv.h"
 #include "src/utils/key_value_file.h"
 
+#include "src/level/tags/cell.h"
+
 LevelConfig Game::get_level_config(size_t i) const
 {
-    
-    auto color_file = CSV{"/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/level_map"};
-    auto items_file = KeyValueFile{"/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/level_items"};
+    const std::string base_dir = "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/";
+    auto color_file = CSV{base_dir + "level_map"};
+    auto items_file = KeyValueFile{base_dir + "level_items"};
+        
     auto items = LevelItems{};
     
     for (const auto& [item_name, position_str] : items_file.read())
     {
         items.emplace_back(item_name, ITEMS_COLOR_MAP.at(item_name), MapPosition{position_str});
     }
+    
+    auto actions = KeyValueFile{base_dir + "level_actions"}.read();
 	
-	return {color_file.read(COLOR_DECODE_MAP), items, 0, 0};
+    return {color_file.read(COLOR_DECODE_MAP), items, actions.at("start"), actions.at("exit")};
 }
 
 Game::Game(Window* window, EventsQueue* events_queue)
 {
 	auto config = get_level_config(0);
-	
-	DI::get_player_kit()->create_player(Coord::start_x, Coord::start_y);
-	DI::get_map_kit()->create_map(config.labyrinth);
+    
+    DI::get_map_kit()->create_map(config.labyrinth, config.exit);
+    DI::get_player_kit()->create_player({Coord::start_x, Coord::start_y}, config.start);
     
     for (const auto& [item_name, color, pos] : config.items)
     {
-        DI::get_items_kit()->create_item(item_name, color, pos);
+        DI::get_items_kit()->create_item(item_name, color, pos, DI::get_registry().get<Position>(get_cell_at(pos)));
     }
     
-    events_queue->subscribe<MoveEvent>(new MoveListener{DI::get_registry(), DI::get_movement_system(), DI::get_inventory_system(), DI::get_items_system()});
+    events_queue->subscribe<MoveEvent>(new MoveListener{DI::get_registry(), DI::get_events_queue(), DI::get_movement_system(), DI::get_inventory_system(), DI::get_items_system()});
+    
+    DI::get_movement_system()->move_world_coords(get_cell_at({0, 0}), get_cell_at(config.start));
+}
+
+entt::entity Game::get_cell_at(const MapPosition& at)
+{
+    for (const auto [entity, map_position] : DI::get_registry().view<Cell, MapPosition>().each())
+    {
+        if (map_position.i == at.i and map_position.j == at.j)
+        {
+            return entity;
+        }
+    }
+    
+    return entt::null;
 }
 
 void Game::render(SDL_Renderer* renderer)
@@ -71,8 +92,9 @@ void Game::render(SDL_Renderer* renderer)
 	SDL_RenderClear(renderer);
 	
     DI::get_render_system()->render_map(renderer);
+    DI::get_render_system()->render_items(renderer);
     DI::get_render_system()->render_player(renderer);
-	
+
 	SDL_RenderPresent(renderer);
 }
 

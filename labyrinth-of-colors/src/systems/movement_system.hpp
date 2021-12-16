@@ -22,13 +22,13 @@ class MovementSystem
 private:
 	entt::registry& registry;
 	
-	void move_world_coords(const entt::entity& from, const entt::entity& to);
-	
 public:
     MovementSystem(entt::registry& registry) : registry{registry}
     { }
 	
     void move(const entt::entity& entity, const entt::entity& from, const entt::entity& to);
+    
+    void move_world_coords(const entt::entity& from, const entt::entity& to);
 	
 	bool can_move(const entt::entity& cell);
 };

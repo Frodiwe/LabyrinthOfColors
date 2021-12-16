@@ -9,24 +9,23 @@
 
 #include <string_view>
 
+#include "src/level/components/exit.h"
 #include "src/components/map_position.h"
-
 #include "src/level/cell_kit.hpp"
 #include "src/rect.hpp"
 #include "src/coord.hpp"
+#include "src/consts.h"
 
 MapKit::MapKit(entt::registry& registry, CellKit* cell_kit):
 	cell_kit{cell_kit},
 	registry{registry}
 { }
 
-void MapKit::create_map(const LevelMap& labyrinth)
+void MapKit::create_map(const LevelMap& labyrinth, const MapPosition& exit)
 {
 	const auto width = 100;
 	const auto height = 100;
-	const auto offset = 1;
-	
-	constexpr std::string_view texture_path = "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/brick-1.png";
+	const auto offset = 0;
 	
     auto y = 0;
     
@@ -36,17 +35,21 @@ void MapKit::create_map(const LevelMap& labyrinth)
 		
 		for (auto j = 0u; j < labyrinth[i].size(); j++)
 		{
-			const auto cell = cell_kit->create_cell(texture_path, {0, 0, 32, 32}, {x, y, width, height}, labyrinth[i][j]);
-			
-			registry.emplace<MapPosition>(cell, MapPosition{i, j});
+			const auto cell = cell_kit->create_cell(CELL_TEXTURES_MAP.at(labyrinth[i][j]), {0, 0, 32, 32}, {x, y, width, height}, labyrinth[i][j]);
+            auto map_pos = MapPosition{i, j};
+            
+			registry.emplace<MapPosition>(cell, map_pos);
+            
+            if (map_pos == exit)
+            {
+                registry.emplace<Exit>(cell, Texture{EXIT_TEXTURE_PATH, {0, 0, 32, 32}});
+            }
             
             x += width + offset;
 		}
 		
 		y += height + offset;
 	}
-	
-	
 	
 	return;
 }

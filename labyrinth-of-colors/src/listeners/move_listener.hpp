@@ -16,6 +16,7 @@ class MovementSystem;
 class InventorySystem;
 class ItemsSystem;
 class MoveEvent;
+class EventsQueue;
 struct MapPosition;
 
 class MoveListener : public Listener
@@ -29,6 +30,8 @@ private:
     
     ItemsSystem* items_system;
     
+    EventsQueue* events_queue;
+    
     entt::entity get_cell(const MapPosition& at) const;
     
     entt::entity get_player();
@@ -38,8 +41,8 @@ private:
     MapPosition get_abs_diff(int32_t i_diff, int32_t j_diff);
     
 public:
-    MoveListener(entt::registry& registry, MovementSystem* movement_system, InventorySystem* inventory_system, ItemsSystem* items_system)
-    : registry{registry}, movement_system{movement_system}, inventory_system{inventory_system}, items_system{items_system}
+    MoveListener(entt::registry& registry, EventsQueue* events_queue, MovementSystem* movement_system, InventorySystem* inventory_system, ItemsSystem* items_system)
+    : registry{registry}, movement_system{movement_system}, inventory_system{inventory_system}, items_system{items_system}, events_queue{events_queue}
     { }
     
     void operator()(Event* event);
