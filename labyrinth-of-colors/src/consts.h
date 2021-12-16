@@ -10,4 +10,6 @@
 
 constexpr auto EXIT_TEXTURE_PATH = "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/exit.png";
 
+constexpr auto FPS = 60;
+
 #endif /* consts_h */
