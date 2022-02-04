@@ -14,7 +14,13 @@
 
 class ChangeMapOpacity : public Listener
 {
+private:
+    entt::registry& registry;
+    
 public:
+    ChangeMapOpacity(entt::registry& registry) : registry{registry}
+    { }
+    
     void operator()(Event* event);
 };
 

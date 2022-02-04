@@ -34,9 +34,11 @@
 
 #include "src/listeners/move_listener.hpp"
 #include "src/listeners/give_base_inventory_listener.hpp"
+#include "src/listeners/change_map_opacity.hpp"
 
 #include "src/events/move_event.h"
 #include "src/events/player_created_event.h"
+#include "src/events/item_given_event.h"
 
 #include "src/utils/csv.h"
 #include "src/utils/key_value_file.h"
@@ -77,6 +79,7 @@ Game::Game(Window* window, EventsQueue* events_queue)
         DI::get_inventory_system(),
         DI::get_items_system()
     });
+    events_queue->subscribe<ItemGivenEvent>(new ChangeMapOpacity{DI::get_registry()});
     
 	auto config = get_level_config("2");
     

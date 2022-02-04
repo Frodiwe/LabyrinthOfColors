@@ -18,6 +18,9 @@
 
 class Texture
 {
+protected:
+    uint8_t alpha = 255;
+    
 public:
 	Texture(std::string_view path, Rect frame)
 		: path{path},
@@ -41,7 +44,7 @@ public:
     
     void set_alpha(uint8_t alpha)
     {
-        SDL_SetTextureAlphaMod(this->texture, alpha);
+        this->alpha = alpha;
     }
 	
 	void render(SDL_Renderer* renderer, const Rect& target_rect)
@@ -51,6 +54,8 @@ public:
         }
         
         target_frame = SDL_Rect{target_rect.x, target_rect.y, static_cast<int32_t>(target_rect.w), static_cast<int32_t>(target_rect.h)};
+        
+        SDL_SetTextureAlphaMod(this->texture, this->alpha);
         
 		SDL_RenderCopy(renderer, this->texture, &this->frame, &this->target_frame);
 	}
@@ -81,6 +86,8 @@ protected:
 		}
 
 		SDL_FreeSurface(texture_surface);
+        
+        SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
 
 		return texture;
 	}

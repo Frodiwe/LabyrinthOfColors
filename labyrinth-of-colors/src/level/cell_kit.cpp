@@ -27,7 +27,11 @@ entt::entity CellKit::create_cell(std::string_view texture_path, Rect frame, Rec
     
     if (color != CellColor::WALL)
     {
-        registry.emplace<Texture>(cell, Texture(texture_path, frame));
+        auto texture = Texture(texture_path, frame);
+        
+        texture.set_alpha(125);
+        
+        registry.emplace<Texture>(cell, std::move(texture));
     }
 	
 	return cell;
