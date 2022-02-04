@@ -30,5 +30,5 @@ void GiveBaseInventoryListener::operator()(Event *event)
     
     events_queue->publish<ItemGivenEvent>(item);
     
-    items_system->remove_item(item);
+    items_system->remove_item_from_map(item);
 }

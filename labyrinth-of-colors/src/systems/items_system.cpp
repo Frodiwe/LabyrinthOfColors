@@ -8,7 +8,10 @@
 #include "items_system.hpp"
 
 #include "src/components/map_position.h"
+#include "src/components/position.h"
 #include "src/components/item.h"
+
+#include "src/texture.h"
 
 #include <iostream>
 
@@ -29,7 +32,9 @@ entt::entity ItemsSystem::get_item(const MapPosition& position)
     return entt::null;
 }
 
-void ItemsSystem::remove_item(const entt::entity& item)
+void ItemsSystem::remove_item_from_map(const entt::entity& item)
 {
-    registry.destroy(item);
+    registry.remove<MapPosition>(item);
+    registry.remove<Position>(item);
+    registry.remove<Texture>(item);
 }

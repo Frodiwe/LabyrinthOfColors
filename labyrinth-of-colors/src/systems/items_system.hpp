@@ -23,7 +23,7 @@ public:
     
     entt::entity get_item(const MapPosition& position);
     
-    void remove_item(const entt::entity& item);
+    void remove_item_from_map(const entt::entity& item);
 };
 
 #endif /* items_system_hpp */

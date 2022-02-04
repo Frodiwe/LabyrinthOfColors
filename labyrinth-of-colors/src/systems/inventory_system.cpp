@@ -15,14 +15,22 @@
 
 void InventorySystem::give_item(const entt::entity& player, const entt::entity& item)
 {
-    std::cout << "Giving item " << registry.get<Item>(item).name << " to player" << std::endl;
+    std::cout << "Giving item \"" << registry.get<Item>(item).name << "\" to player" << std::endl;
     
-    registry.get<Inventory>(player).add(registry.get<CellColor>(item));
+    registry.emplace<Inventory>(item);
     
     return;
 }
 
 bool InventorySystem::has_color(const entt::entity& player, CellColor color)
 {
-    return registry.get<Inventory>(player).has(color);
+    for (const auto [entity, item, c] : registry.view<Inventory, Item, CellColor>().each())
+    {
+        if (c == color)
+        {
+            return true;
+        }
+    }
+    
+    return false;
 }
