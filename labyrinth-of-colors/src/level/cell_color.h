@@ -18,10 +18,4 @@ enum class CellColor
 	WALL,
 };
 
-extern const std::map<std::string, CellColor> COLOR_DECODE_MAP;
-extern const std::map<CellColor, std::string> CELL_TEXTURES_MAP;
-
-extern const std::map<std::string, CellColor> ITEMS_COLOR_MAP;
-extern const std::map<CellColor, std::string> ITEM_TEXTURES_MAP;
-
 #endif /* cell_color_h */

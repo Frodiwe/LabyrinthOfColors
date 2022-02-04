@@ -23,12 +23,16 @@
 
 void GiveBaseInventoryListener::operator()(Event *event)
 {
-    PlayerCreatedEvent* e = dynamic_cast<PlayerCreatedEvent*>(event);
-    auto item = items_kit->create_item("yellow_paint", CellColor::YELLOW);
+    PlayerCreatedEvent* e = dynamic_cast<PlayerCreatedEvent*>(event);\
     
-    inventory_system->give_item(e->player, item);
+    auto items = std::vector{
+        items_kit->create_item("yellow_paint", CellColor::YELLOW),
+        items_kit->create_item("yellow_paint_bucket", CellColor::YELLOW)
+    };
     
-    events_queue->publish<ItemGivenEvent>(item);
-    
-    items_system->remove_item_from_map(item);
+    for (const auto& item : items)
+    {
+        inventory_system->give_item(e->player, item);
+        events_queue->publish<ItemGivenEvent>(item);
+    }
 }

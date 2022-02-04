@@ -7,17 +7,19 @@
 
 #include "items_system.hpp"
 
+#include <iostream>
+
 #include "src/components/map_position.h"
 #include "src/components/position.h"
 #include "src/components/item.h"
 
 #include "src/texture.h"
 
-#include <iostream>
-
-entt::entity ItemsSystem::get_item(const MapPosition& position)
+std::vector<entt::entity> ItemsSystem::get_items_at(const MapPosition& position)
 {
-    std::cout << "Getting item at " << position.i << ", " << position.j << std::endl;
+    std::cout << "Getting items at " << position.i << ", " << position.j << std::endl;
+    
+    auto items = std::vector<entt::entity>{};
     
     for (const auto [e, item, pos] : registry.view<Item, MapPosition>().each())
     {
@@ -26,10 +28,10 @@ entt::entity ItemsSystem::get_item(const MapPosition& position)
             continue;
         }
         
-        return e;
+        items.push_back(e);
     }
     
-    return entt::null;
+    return items;
 }
 
 void ItemsSystem::remove_item_from_map(const entt::entity& item)

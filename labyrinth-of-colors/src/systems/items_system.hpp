@@ -8,6 +8,8 @@
 #ifndef items_system_hpp
 #define items_system_hpp
 
+#include <vector>
+
 #include "third_party/entt/entity/registry.hpp"
 
 struct MapPosition;
@@ -21,7 +23,7 @@ public:
     ItemsSystem(entt::registry& r) : registry{r}
     { }
     
-    entt::entity get_item(const MapPosition& position);
+    std::vector<entt::entity> get_items_at(const MapPosition& position);
     
     void remove_item_from_map(const entt::entity& item);
 };

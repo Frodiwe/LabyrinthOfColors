@@ -9,12 +9,14 @@
 
 #include <string>
 
+#include "src/consts.h"
+#include "src/texture.h"
+
 #include "src/components/map_position.h"
 #include "src/components/item.h"
 #include "src/components/size.h"
 #include "src/components/position.h"
 #include "src/level/cell_color.h"
-#include "src/texture.h"
 
 entt::entity ItemsKit::create_item(const std::string& name, const CellColor& color)
 {

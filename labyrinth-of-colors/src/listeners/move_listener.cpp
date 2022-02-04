@@ -53,7 +53,7 @@ void MoveListener::operator()(Event *event)
         return;
     }
     
-    if (const auto item = items_system->get_item(registry.get<MapPosition>(player)); item != entt::null)
+    for (const auto& item : items_system->get_items_at(registry.get<MapPosition>(player)))
     {
         inventory_system->give_item(player, item);
         

@@ -14,6 +14,8 @@
 
 #include <SDL2/SDL.h>
 
+#include "src/consts.h"
+
 #include "src/player_kit.hpp"
 #include "src/items_kit.hpp"
 
