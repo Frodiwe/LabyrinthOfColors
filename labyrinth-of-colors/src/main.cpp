@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     auto window = Window{800, 600, new KeyHandler{DI::get_events_queue()}};
 	auto game = Game(&window, DI::get_events_queue());
     
-    constexpr auto ms_per_frame = 1000ms / FPS;
+    constexpr std::chrono::milliseconds ms_per_frame = 1s / FPS;
 	
 	while (not window.is_quited())
 	{

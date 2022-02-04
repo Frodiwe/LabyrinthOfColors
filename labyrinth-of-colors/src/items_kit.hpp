@@ -23,6 +23,8 @@ public:
     ItemsKit(entt::registry& r) : registry{r}
     { }
     
+    entt::entity create_item(const std::string& item_name, const CellColor&);
+    
     entt::entity create_item(const std::string& item_name, const CellColor&, const MapPosition&, const Position&);
 };
 

@@ -24,7 +24,7 @@ entt::entity PlayerKit::create_player(const Position& start_pos, const MapPositi
 	registry.emplace<MapPosition>(player, start_map_pos.i, start_map_pos.j);
 	registry.emplace<Size>(player, 100ul, 100ul);
 	registry.emplace<Texture>(player, Texture( "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/wizard_idle.png", {0, 0, 32, 32}));
-    registry.emplace<Inventory>(player, std::vector{CellColor::YELLOW});
+    registry.emplace<Inventory>(player);
 	
 	return player;
 }

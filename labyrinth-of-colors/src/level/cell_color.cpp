@@ -24,4 +24,5 @@ const std::map<CellColor, std::string> CELL_TEXTURES_MAP {
 };
 const std::map<CellColor, std::string> ITEM_TEXTURES_MAP {
     {CellColor::RED, "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/bucket_red.png"},
+    {CellColor::YELLOW, "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/bucket_red.png"}
 };

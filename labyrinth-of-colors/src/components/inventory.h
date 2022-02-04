@@ -19,6 +19,8 @@ private:
     std::vector<CellColor> items;
     
 public:
+    Inventory() = default;
+    
     Inventory(const std::vector<CellColor>& items) : items{items}
     { }
     

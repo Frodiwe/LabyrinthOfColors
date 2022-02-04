@@ -9,6 +9,7 @@
 #define game_hpp
 
 #include <stdlib.h>
+#include <string>
 
 #include "third_party/entt/entity/registry.hpp"
 
@@ -22,7 +23,7 @@ class EventsQueue;
 class Game
 {
 private:
-	LevelConfig get_level_config(size_t) const;
+	LevelConfig get_level_config(const std::string&) const;
     
     entt::entity get_cell_at(const MapPosition&);
 	

@@ -12,6 +12,8 @@
 
 struct ExitEvent : public Event
 {
+    ExitEvent() = default;
+    
     std::string get_name() const override
     {
         return "EXIT";

@@ -38,6 +38,11 @@ public:
 	{
 		this->frame = SDL_Rect{x, y, w, h};
 	}
+    
+    void set_alpha(uint8_t alpha)
+    {
+        SDL_SetTextureAlphaMod(this->texture, alpha);
+    }
 	
 	void render(SDL_Renderer* renderer, const Rect& target_rect)
 	{

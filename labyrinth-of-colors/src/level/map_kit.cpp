@@ -10,6 +10,8 @@
 #include <string_view>
 
 #include "src/level/components/exit.h"
+#include "src/level/tags/unavailable.h"
+
 #include "src/components/map_position.h"
 #include "src/level/cell_kit.hpp"
 #include "src/rect.hpp"
@@ -39,6 +41,7 @@ void MapKit::create_map(const LevelMap& labyrinth, const MapPosition& exit)
             auto map_pos = MapPosition{i, j};
             
 			registry.emplace<MapPosition>(cell, map_pos);
+            registry.emplace<Unavailable>(cell);
             
             if (map_pos == exit)
             {

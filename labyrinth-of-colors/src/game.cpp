@@ -10,38 +10,42 @@
 #include "window.hpp"
 #include "di.hpp"
 
-#include <vector>
-#include <fstream>
 #include <string>
-#include <map>
-#include <regex>
-#include <tuple>
 
 #include <SDL2/SDL.h>
 
 #include "src/player_kit.hpp"
+#include "src/items_kit.hpp"
+
 #include "src/level/cell_color.h"
 #include "src/level/map_kit.hpp"
-#include "src/items_kit.hpp"
 #include "src/level/level_config.h"
+
 #include "src/coord.hpp"
 #include "src/events_queue.hpp"
+#include "src/texture.h"
+#include "src/events_queue.hpp"
+
 #include "src/systems/render_system.hpp"
 #include "src/systems/movement_system.hpp"
+
 #include "src/components/map_position.h"
 #include "src/components/position.h"
-#include "src/texture.h"
+
 #include "src/listeners/move_listener.hpp"
+#include "src/listeners/give_base_inventory_listener.hpp"
+
 #include "src/events/move_event.h"
-#include "src/events_queue.hpp"
+#include "src/events/player_created_event.h"
+
 #include "src/utils/csv.h"
 #include "src/utils/key_value_file.h"
 
 #include "src/level/tags/cell.h"
 
-LevelConfig Game::get_level_config(size_t i) const
+LevelConfig Game::get_level_config(const std::string& name) const
 {
-    const std::string base_dir = "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/";
+    const std::string base_dir = "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/" + name + "/";
     auto color_file = CSV{base_dir + "level_map"};
     auto items_file = KeyValueFile{base_dir + "level_items"};
         
@@ -59,17 +63,33 @@ LevelConfig Game::get_level_config(size_t i) const
 
 Game::Game(Window* window, EventsQueue* events_queue)
 {
-	auto config = get_level_config(0);
+    events_queue->subscribe<PlayerCreatedEvent>(new GiveBaseInventoryListener{
+        DI::get_registry(),
+        DI::get_events_queue(),
+        DI::get_inventory_system(),
+        DI::get_items_system(),
+        DI::get_items_kit()
+    });
+    events_queue->subscribe<MoveEvent>(new MoveListener{
+        DI::get_registry(),
+        DI::get_events_queue(),
+        DI::get_movement_system(),
+        DI::get_inventory_system(),
+        DI::get_items_system()
+    });
+    
+	auto config = get_level_config("2");
     
     DI::get_map_kit()->create_map(config.labyrinth, config.exit);
-    DI::get_player_kit()->create_player({Coord::start_x, Coord::start_y}, config.start);
+    
+    auto player = DI::get_player_kit()->create_player({Coord::start_x, Coord::start_y}, config.start);
+    
+    events_queue->publish<PlayerCreatedEvent>(player);
     
     for (const auto& [item_name, color, pos] : config.items)
     {
         DI::get_items_kit()->create_item(item_name, color, pos, DI::get_registry().get<Position>(get_cell_at(pos)));
     }
-    
-    events_queue->subscribe<MoveEvent>(new MoveListener{DI::get_registry(), DI::get_events_queue(), DI::get_movement_system(), DI::get_inventory_system(), DI::get_items_system()});
     
     DI::get_movement_system()->move_world_coords(get_cell_at({0, 0}), get_cell_at(config.start));
 }
