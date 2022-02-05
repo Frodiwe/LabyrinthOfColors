@@ -48,7 +48,7 @@ Window::Window(int32_t width, int32_t height, KeyHandler* kh) :
 
 bool Window::init_window()
 {
-	window_handler = SDL_CreateWindow("Labyrinth Of Colors", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI);
+	window_handler = SDL_CreateWindow("Labyrinth Of Colors", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
 	
 	return window_handler != nullptr;
 }

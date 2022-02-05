@@ -20,8 +20,8 @@ std::ostream& operator<<(std::ostream& os, Event* e)
 
 int main(int argc, char *argv[])
 {
-	Coord::start_x = 800;
-	Coord::start_y = 600;
+	Coord::start_x = 400;
+	Coord::start_y = 300;
 	
     auto window = Window{800, 600, new KeyHandler{DI::get_events_queue()}};
 	auto game = Game(&window, DI::get_events_queue());

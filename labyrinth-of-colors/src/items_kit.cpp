@@ -25,7 +25,7 @@ entt::entity ItemsKit::create_item(const std::string& name, const CellColor& col
     registry.emplace<Item>(item, name);
     registry.emplace<CellColor>(item, color);
     registry.emplace<Texture>(item, Texture(ITEM_TEXTURES_MAP.at(color), {0, 0, 32, 32}));
-    registry.emplace<Size>(item, 100ul, 100ul);
+    registry.emplace<Size>(item, 50ul, 50ul);
     
     return item;
 }
@@ -39,7 +39,7 @@ entt::entity ItemsKit::create_item(const std::string& name, const CellColor& col
     registry.emplace<Position>(item, position);
     registry.emplace<CellColor>(item, color);
     registry.emplace<Texture>(item, Texture(ITEM_TEXTURES_MAP.at(color), {0, 0, 32, 32}));
-    registry.emplace<Size>(item, 100ul, 100ul);
+    registry.emplace<Size>(item, 50ul, 50ul);
     
     return item;
 }

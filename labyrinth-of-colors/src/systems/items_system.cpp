@@ -38,5 +38,4 @@ void ItemsSystem::remove_item_from_map(const entt::entity& item)
 {
     registry.remove<MapPosition>(item);
     registry.remove<Position>(item);
-    registry.remove<Texture>(item);
 }

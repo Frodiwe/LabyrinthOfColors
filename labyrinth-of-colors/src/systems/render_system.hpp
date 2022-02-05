@@ -26,6 +26,8 @@ public:
     void render_items(SDL_Renderer* renderer);
     
     void render_player(SDL_Renderer* renderer);
+    
+    void render_inventory(SDL_Renderer* renderer);
 };
 
 #endif /* render_system_hpp */

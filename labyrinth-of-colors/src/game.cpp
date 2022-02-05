@@ -27,6 +27,7 @@
 #include "src/events_queue.hpp"
 #include "src/texture.h"
 #include "src/events_queue.hpp"
+#include "src/view.h"
 
 #include "src/systems/render_system.hpp"
 #include "src/systems/movement_system.hpp"
@@ -47,6 +48,35 @@
 
 #include "src/level/tags/cell.h"
 
+Game::Game(Window* window, EventsQueue* events_queue): events_queue{events_queue}
+{
+    subscribe_listeners();
+    
+    auto config = get_level_config("2");
+    
+    create_level(config);
+    events_queue->publish<PlayerCreatedEvent>(create_player(config.start));
+}
+
+void Game::subscribe_listeners()
+{
+    events_queue->subscribe<PlayerCreatedEvent>(new GiveBaseInventoryListener{
+        DI::get_registry(),
+        DI::get_events_queue(),
+        DI::get_inventory_system(),
+        DI::get_items_system(),
+        DI::get_items_kit()
+    });
+    events_queue->subscribe<MoveEvent>(new MoveListener{
+        DI::get_registry(),
+        DI::get_events_queue(),
+        DI::get_movement_system(),
+        DI::get_inventory_system(),
+        DI::get_items_system()
+    });
+    events_queue->subscribe<ItemGivenEvent>(new ChangeMapOpacity{DI::get_registry()});
+}
+
 LevelConfig Game::get_level_config(const std::string& name) const
 {
     const std::string base_dir = "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/" + name + "/";
@@ -65,31 +95,9 @@ LevelConfig Game::get_level_config(const std::string& name) const
     return {color_file.read(COLOR_DECODE_MAP), items, actions.at("start"), actions.at("exit")};
 }
 
-Game::Game(Window* window, EventsQueue* events_queue)
+void Game::create_level(LevelConfig config)
 {
-    events_queue->subscribe<PlayerCreatedEvent>(new GiveBaseInventoryListener{
-        DI::get_registry(),
-        DI::get_events_queue(),
-        DI::get_inventory_system(),
-        DI::get_items_system(),
-        DI::get_items_kit()
-    });
-    events_queue->subscribe<MoveEvent>(new MoveListener{
-        DI::get_registry(),
-        DI::get_events_queue(),
-        DI::get_movement_system(),
-        DI::get_inventory_system(),
-        DI::get_items_system()
-    });
-    events_queue->subscribe<ItemGivenEvent>(new ChangeMapOpacity{DI::get_registry()});
-    
-	auto config = get_level_config("2");
-    
     DI::get_map_kit()->create_map(config.labyrinth, config.exit);
-    
-    auto player = DI::get_player_kit()->create_player({Coord::start_x, Coord::start_y}, config.start);
-    
-    events_queue->publish<PlayerCreatedEvent>(player);
     
     for (const auto& [item_name, color, pos] : config.items)
     {
@@ -97,6 +105,11 @@ Game::Game(Window* window, EventsQueue* events_queue)
     }
     
     DI::get_movement_system()->move_world_coords(get_cell_at({0, 0}), get_cell_at(config.start));
+}
+
+entt::entity Game::create_player(MapPosition start)
+{
+    return DI::get_player_kit()->create_player({WIDTH / 2, HEIGHT / 2}, start);
 }
 
 entt::entity Game::get_cell_at(const MapPosition& at)
@@ -119,6 +132,7 @@ void Game::render(SDL_Renderer* renderer)
     DI::get_render_system()->render_map(renderer);
     DI::get_render_system()->render_items(renderer);
     DI::get_render_system()->render_player(renderer);
+    DI::get_render_system()->render_inventory(renderer);
 
 	SDL_RenderPresent(renderer);
 }

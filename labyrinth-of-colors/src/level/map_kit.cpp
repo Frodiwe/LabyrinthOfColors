@@ -25,8 +25,8 @@ MapKit::MapKit(entt::registry& registry, CellKit* cell_kit):
 
 void MapKit::create_map(const LevelMap& labyrinth, const MapPosition& exit)
 {
-	const auto width = 100;
-	const auto height = 100;
+	const auto width = 50;
+	const auto height = 50;
 	const auto offset = 0;
 	
     auto y = 0;

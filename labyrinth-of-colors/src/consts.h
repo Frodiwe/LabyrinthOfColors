@@ -13,6 +13,11 @@
 #include "src/level/cell_color.h"
 
 constexpr auto FPS = 60;
+constexpr auto WIDTH = 800;
+constexpr auto HEIGHT = 600;
+constexpr auto INVENTORY_WIDTH = 80;
+constexpr auto INVENTORY_ITEM_WIDTH = INVENTORY_WIDTH;
+constexpr auto INVENTORY_ITEM_HEIGHT = INVENTORY_ITEM_WIDTH;
 
 const std::string BASE_PATH = "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/";
 const auto EXIT_TEXTURE_PATH = BASE_PATH + "exit.png";
