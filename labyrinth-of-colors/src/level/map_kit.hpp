@@ -8,7 +8,7 @@
 #ifndef map_kit_hpp
 #define map_kit_hpp
 
-#include <vector>
+#include "third_party/entt/entity/registry.hpp"
 
 #include "src/level/cell_color.h"
 #include "src/level/level_config.h"
@@ -20,14 +20,14 @@ class CellKit;
 class MapKit
 {
 private:
+	entt::registry& registry;
+	
 	CellKit* cell_kit;
 	
-	CellAction get_cell_action(LevelActions, size_t, size_t) const;
-	
 public:
-	MapKit(CellKit*);
+	MapKit(entt::registry&, CellKit*);
 	
-	Map create_map(SDL_Renderer* renderer, const LevelMap& labyrinth, const LevelActions& actions);
+	void create_map(const LevelMap& labyrinth, const MapPosition& exit);
 };
 
 #endif /* map_kit_hpp */

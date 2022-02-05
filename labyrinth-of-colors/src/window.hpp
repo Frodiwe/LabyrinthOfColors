@@ -32,8 +32,6 @@ private:
 	
 	KeyHandler* key_handler = nullptr;
 	
-	std::shared_ptr<RenderController> render_controller;
-	
 	bool _is_quited = false;
 	
 	bool is_inited = false;
@@ -45,9 +43,7 @@ private:
 	bool init_image_loading();
 	
 public:
-	Window(std::shared_ptr<RenderController>, int32_t, int32_t);
-	
-	void render();
+	Window(int32_t, int32_t, KeyHandler*);
 	
 	void process_events();
 	

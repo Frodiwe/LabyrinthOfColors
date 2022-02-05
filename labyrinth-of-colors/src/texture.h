@@ -14,16 +14,17 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 
-#include "src/render_component.h"
 #include "src/rect.hpp"
 
-class Texture : public RenderComponent
+class Texture
 {
+protected:
+    uint8_t alpha = 255;
+    
 public:
-	Texture(SDL_Renderer* renderer, std::string_view path, Rect frame)
-		: texture{this->load_texture(renderer, path)},
-		  renderer{renderer},
-		  frame{frame.x, frame.y, frame.w, frame.h}
+	Texture(std::string_view path, Rect frame)
+		: path{path},
+		  frame{frame.x, frame.y, static_cast<int32_t>(frame.w), static_cast<int32_t>(frame.h)}
 	{ }
 	
 	~Texture()
@@ -40,16 +41,30 @@ public:
 	{
 		this->frame = SDL_Rect{x, y, w, h};
 	}
+    
+    void set_alpha(uint8_t alpha)
+    {
+        this->alpha = alpha;
+    }
 	
-	void render(const Rect& target_rect)
+	void render(SDL_Renderer* renderer, const Rect& target_rect)
 	{
-		SDL_RenderCopy(this->renderer, this->texture, &this->frame, new SDL_Rect{target_rect.x, target_rect.y, target_rect.w, target_rect.h});
+        if (not is_loaded()) {
+            texture = load_texture(renderer, path);
+        }
+        
+        target_frame = SDL_Rect{target_rect.x, target_rect.y, static_cast<int32_t>(target_rect.w), static_cast<int32_t>(target_rect.h)};
+        
+        SDL_SetTextureAlphaMod(this->texture, this->alpha);
+        
+		SDL_RenderCopy(renderer, this->texture, &this->frame, &this->target_frame);
 	}
 	
 protected:
-	SDL_Texture* texture;
-	SDL_Renderer* renderer;
+	SDL_Texture* texture = nullptr;
 	SDL_Rect frame;
+    SDL_Rect target_frame;
+    std::string path;
 	
 	SDL_Texture* load_texture(SDL_Renderer* renderer, std::string_view path)
 	{
@@ -71,6 +86,8 @@ protected:
 		}
 
 		SDL_FreeSurface(texture_surface);
+        
+        SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
 
 		return texture;
 	}

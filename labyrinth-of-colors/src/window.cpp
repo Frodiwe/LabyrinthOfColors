@@ -12,11 +12,10 @@
 
 #include "window.hpp"
 #include "key_handler.hpp"
-#include "render/render_controller.hpp"
 
-Window::Window(std::shared_ptr<RenderController> render_controller, int32_t width, int32_t height) :
-	key_handler{new KeyHandler{}}, event{new SDL_Event{}},
-	render_controller{render_controller},
+Window::Window(int32_t width, int32_t height, KeyHandler* kh) :
+	key_handler{kh},
+	event{new SDL_Event{}},
 	WIDTH{width},
 	HEIGHT{height}
 {
@@ -88,15 +87,6 @@ void Window::process_events()
 				key_handler->process(event->key);
 		}
 	}
-}
-
-void Window::render()
-{
-	SDL_RenderClear(renderer);
-	
-	render_controller->render_all();
-	
-	SDL_RenderPresent(renderer);
 }
 
 bool Window::is_quited() const

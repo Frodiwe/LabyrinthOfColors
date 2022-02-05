@@ -12,22 +12,24 @@
 
 #include <vector>
 #include <tuple>
+#include <string>
 
 #include "src/level/cell_color.h"
-#include "src/level/cell_action.h"
+#include "src/components/item.h"
+#include "src/components/map_position.h"
 
 using LevelMap = std::vector<std::vector<CellColor>>;
-using LevelActions = std::vector<std::tuple<CellAction, size_t, size_t>>;
+using LevelItems = std::vector<std::tuple<std::string, CellColor, MapPosition>>;
 
 struct LevelConfig
 {
 	LevelMap labyrinth;
-	
-	LevelActions actions;
-	
-	size_t start_i;
-	
-	size_t start_j;
+    
+    LevelItems items;
+    
+    MapPosition start;
+    
+    MapPosition exit;
 };
 
 #endif /* level_config_h */

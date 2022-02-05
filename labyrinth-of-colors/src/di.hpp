@@ -11,33 +11,61 @@
 #include <memory>
 #include <optional>
 
+#include "third_party/entt/entity/registry.hpp"
+
 class RenderList;
 class RenderController;
 class MapKit;
 class PlayerKit;
+class ItemsKit;
+class MovementSystem;
+class RenderSystem;
+class ItemsSystem;
+class InventorySystem;
+class EventsQueue;
 class CellKit;
 
 class DI
 {
 private:
-	static std::shared_ptr<RenderList> render_list;
-	
-	static std::shared_ptr<RenderController> render_controller;
-	
 	static CellKit* cell_kit;
 	
 	static MapKit* map_kit;
 	
 	static PlayerKit* player_kit;
+    
+    static ItemsKit* items_kit;
+	
+	static MovementSystem* movement_system;
+    
+    static RenderSystem* render_system;
+    
+    static ItemsSystem* items_system;
+    
+    static InventorySystem* inventory_system;
+    
+    static EventsQueue* events_queue;
+	
+	static entt::registry registry;
 	
 public:
-	static std::shared_ptr<RenderList> get_render_list();
-	
-	static std::shared_ptr<RenderController> get_render_controller();
-	
 	static MapKit* get_map_kit();
 	
 	static PlayerKit* get_player_kit();
+    
+    static ItemsKit* get_items_kit();
+	
+	static entt::registry& get_registry();
+	
+	static MovementSystem* get_movement_system();
+    
+    static RenderSystem* get_render_system();
+    
+    static ItemsSystem* get_items_system();
+    
+    static InventorySystem* get_inventory_system();
+    
+    static EventsQueue* get_events_queue();
 };
 
 #endif /* di_hpp */

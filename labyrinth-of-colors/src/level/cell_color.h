@@ -8,6 +8,9 @@
 #ifndef cell_color_h
 #define cell_color_h
 
+#include <map>
+#include <string>
+
 enum class CellColor
 {
 	YELLOW,

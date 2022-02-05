@@ -9,55 +9,50 @@
 
 #include <string_view>
 
-#include <SDL2/SDL.h>
+#include "src/level/components/exit.h"
+#include "src/level/tags/unavailable.h"
 
-#include "src/level/map.hpp"
+#include "src/components/map_position.h"
 #include "src/level/cell_kit.hpp"
 #include "src/rect.hpp"
+#include "src/coord.hpp"
+#include "src/consts.h"
 
-MapKit::MapKit(CellKit* cell_kit):
-	cell_kit{cell_kit}
+MapKit::MapKit(entt::registry& registry, CellKit* cell_kit):
+	cell_kit{cell_kit},
+	registry{registry}
 { }
 
-Map MapKit::create_map(SDL_Renderer* renderer, const LevelMap& labyrinth, const LevelActions& actions)
+void MapKit::create_map(const LevelMap& labyrinth, const MapPosition& exit)
 {
-	auto x = 0;
-	auto y = 0;
-	
 	const auto width = 100;
 	const auto height = 100;
-	const auto offset = 1;
+	const auto offset = 0;
 	
-	constexpr std::string_view texture_path = "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/brick-1.png";
-
-	auto result = std::vector<std::vector<Cell*>>{};
-	
-	for (const auto& row : labyrinth)
+    auto y = 0;
+    
+	for (auto i = 0u; i < labyrinth.size(); i++)
 	{
-		result.emplace_back(std::vector<Cell*>{});
+		auto x = 0;
 		
-		x = -width;
-		
-		for (const auto& color : row)
+		for (auto j = 0u; j < labyrinth[i].size(); j++)
 		{
-			result.back().emplace_back(cell_kit->create_cell(renderer, texture_path, {0, 0, 32, 32}, {x += width + offset, y, width, height}, color, get_cell_action(actions, result.size() - 1, result.back().size())));
+			const auto cell = cell_kit->create_cell(CELL_TEXTURES_MAP.at(labyrinth[i][j]), {0, 0, 32, 32}, {x, y, width, height}, labyrinth[i][j]);
+            auto map_pos = MapPosition{i, j};
+            
+			registry.emplace<MapPosition>(cell, map_pos);
+            registry.emplace<Unavailable>(cell);
+            
+            if (map_pos == exit)
+            {
+                registry.emplace<Exit>(cell, Texture{EXIT_TEXTURE_PATH, {0, 0, 32, 32}});
+            }
+            
+            x += width + offset;
 		}
 		
 		y += height + offset;
 	}
 	
-	return Map{std::move(result)};
-}
-
-CellAction MapKit::get_cell_action(LevelActions actions, size_t i, size_t j) const
-{
-	auto result = std::find_if(actions.begin(), actions.end(), [&i, &j](const auto& action) {
-		return std::get<1>(action) == i and std::get<2>(action) == j;
-	});
-	
-	if (result == actions.end()) {
-		return CellAction::NONE;
-	}
-	
-	return std::get<0>(*result);
+	return;
 }
