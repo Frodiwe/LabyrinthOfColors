@@ -8,31 +8,6 @@
 #ifndef inventory_h
 #define inventory_h
 
-#include <algorithm>
-#include <vector>
-
-#include "src/level/cell_color.h"
-
-class Inventory
-{
-private:
-    std::vector<CellColor> items;
-    
-public:
-    Inventory() = default;
-    
-    Inventory(const std::vector<CellColor>& items) : items{items}
-    { }
-    
-    void add(CellColor color)
-    {
-        items.emplace_back(color);
-    }
-    
-    bool has(CellColor color) const
-    {
-        return std::find(items.begin(), items.end(), color) != items.end();
-    }
-};
+class Inventory {};
 
 #endif /* inventory_h */
