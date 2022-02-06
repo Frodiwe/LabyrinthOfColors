@@ -11,6 +11,7 @@
 
 #include "src/consts.h"
 #include "src/texture.h"
+#include "src/category.h"
 
 #include "src/components/map_position.h"
 #include "src/components/item.h"
@@ -18,7 +19,7 @@
 #include "src/components/position.h"
 #include "src/level/cell_color.h"
 
-entt::entity ItemsKit::create_item(const std::string& name, const CellColor& color)
+entt::entity ItemsKit::create_item(const std::string& name, Category category, const CellColor& color)
 {
     const auto item = registry.create();
     
@@ -26,20 +27,17 @@ entt::entity ItemsKit::create_item(const std::string& name, const CellColor& col
     registry.emplace<CellColor>(item, color);
     registry.emplace<Texture>(item, Texture(ITEM_TEXTURES_MAP.at(color), {0, 0, 32, 32}));
     registry.emplace<Size>(item, 50ul, 50ul);
+    registry.emplace<Category>(item, category);
     
     return item;
 }
 
-entt::entity ItemsKit::create_item(const std::string& name, const CellColor& color, const MapPosition& map_position, const Position& position)
+entt::entity ItemsKit::create_item(const std::string& name, Category category, const CellColor& color, const MapPosition& map_position, const Position& position)
 {
-    const auto item = registry.create();
+    const auto item = create_item(name, category, color);
     
-    registry.emplace<Item>(item, name);
     registry.emplace<MapPosition>(item, map_position);
     registry.emplace<Position>(item, position);
-    registry.emplace<CellColor>(item, color);
-    registry.emplace<Texture>(item, Texture(ITEM_TEXTURES_MAP.at(color), {0, 0, 32, 32}));
-    registry.emplace<Size>(item, 50ul, 50ul);
     
     return item;
 }

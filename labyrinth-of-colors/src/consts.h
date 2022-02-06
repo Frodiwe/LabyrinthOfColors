@@ -11,12 +11,12 @@
 #include <map>
 
 #include "src/level/cell_color.h"
+#include "src/category.h"
 
 constexpr auto FPS = 60;
 constexpr auto WIDTH = 800;
 constexpr auto HEIGHT = 600;
-constexpr auto INVENTORY_WIDTH = 80;
-constexpr auto INVENTORY_ITEM_WIDTH = INVENTORY_WIDTH;
+constexpr auto INVENTORY_ITEM_WIDTH = 80;
 constexpr auto INVENTORY_ITEM_HEIGHT = INVENTORY_ITEM_WIDTH;
 
 const std::string BASE_PATH = "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/";
@@ -27,9 +27,9 @@ const std::map<std::string, CellColor> COLOR_DECODE_MAP {
     {"1", CellColor::YELLOW},
     {"2", CellColor::RED}
 };
-const std::map<std::string, CellColor> ITEMS_COLOR_MAP {
-    {"red_paint", CellColor::RED},
-    {"red_paint_bucket", CellColor::RED}
+const std::map<std::string, Category> CATEGORY_DECODE_MAP {
+    {"paint", Category::Paint},
+    {"bucket", Category::Bucket}
 };
 
 const std::map<CellColor, std::string> CELL_TEXTURES_MAP {

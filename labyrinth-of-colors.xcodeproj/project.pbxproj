@@ -67,6 +67,7 @@
 		7E69BF082697429B001F84C2 /* labyrinth-of-colors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "labyrinth-of-colors"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E69BF0B2697429B001F84C2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7E69BF14269742E7001F84C2 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		7EC0312C27B032130097EF5E /* category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = category.h; sourceTree = "<group>"; };
 		7EC3C76C26B82990004E8331 /* key_handler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = key_handler.cpp; sourceTree = "<group>"; };
 		7EC3C76D26B82990004E8331 /* key_handler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = key_handler.hpp; sourceTree = "<group>"; };
 		7EC3C77126B8369B004E8331 /* window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
@@ -232,6 +233,7 @@
 				7EFB4FE727567331002AD274 /* items_kit.hpp */,
 				7ECEAE7A27690822008C42B0 /* consts.h */,
 				7EF9349A27AEAF6700CB2564 /* view.h */,
+				7EC0312C27B032130097EF5E /* category.h */,
 			);
 			path = src;
 			sourceTree = "<group>";

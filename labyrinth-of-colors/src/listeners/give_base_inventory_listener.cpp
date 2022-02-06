@@ -18,6 +18,7 @@
 #include "src/systems/inventory_system.hpp"
 
 #include "src/items_kit.hpp"
+#include "src/category.h"
 
 #include "src/level/cell_color.h"
 
@@ -26,8 +27,8 @@ void GiveBaseInventoryListener::operator()(Event *event)
     PlayerCreatedEvent* e = dynamic_cast<PlayerCreatedEvent*>(event);\
     
     auto items = std::vector{
-        items_kit->create_item("yellow_paint", CellColor::YELLOW),
-        items_kit->create_item("yellow_paint_bucket", CellColor::YELLOW)
+        items_kit->create_item("yellow_paint", Category::Paint, CellColor::YELLOW),
+        items_kit->create_item("yellow_paint_bucket", Category::Bucket, CellColor::YELLOW)
     };
     
     for (const auto& item : items)

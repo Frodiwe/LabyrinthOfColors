@@ -80,18 +80,17 @@ void Game::subscribe_listeners()
 LevelConfig Game::get_level_config(const std::string& name) const
 {
     const std::string base_dir = "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/" + name + "/";
-    auto color_file = CSV{base_dir + "level_map"};
-    auto items_file = KeyValueFile{base_dir + "level_items"};
-        
+    auto items_file = CSV{base_dir + "level_items"};
     auto items = LevelItems{};
     
-    for (const auto& [item_name, position_str] : items_file.read())
+    for (const auto& attrs : items_file.read())
     {
-        items.emplace_back(item_name, ITEMS_COLOR_MAP.at(item_name), MapPosition{position_str});
+        items.emplace_back(attrs[0], CATEGORY_DECODE_MAP.at(attrs[1]), COLOR_DECODE_MAP.at(attrs[2]), MapPosition{attrs[3] + "," + attrs[4]});
     }
     
     auto actions = KeyValueFile{base_dir + "level_actions"}.read();
-	
+    auto color_file = CSV{base_dir + "level_map"};
+    
     return {color_file.read(COLOR_DECODE_MAP), items, actions.at("start"), actions.at("exit")};
 }
 
@@ -99,9 +98,9 @@ void Game::create_level(LevelConfig config)
 {
     DI::get_map_kit()->create_map(config.labyrinth, config.exit);
     
-    for (const auto& [item_name, color, pos] : config.items)
+    for (const auto& [item_name, category, color, pos] : config.items)
     {
-        DI::get_items_kit()->create_item(item_name, color, pos, DI::get_registry().get<Position>(get_cell_at(pos)));
+        DI::get_items_kit()->create_item(item_name, category, color, pos, DI::get_registry().get<Position>(get_cell_at(pos)));
     }
     
     DI::get_movement_system()->move_world_coords(get_cell_at({0, 0}), get_cell_at(config.start));

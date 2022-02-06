@@ -28,7 +28,7 @@ public:
     CSV(const std::string& file_name) : file{file_name}
     { }
     
-    template<typename TargetT>
+    template<typename TargetT = std::string>
     CSVResult<TargetT> read(const std::map<std::string, TargetT>& decode = {})
     {
         auto result = CSVResult<TargetT>{};
@@ -45,6 +45,14 @@ public:
             
             for (const auto& value : splitted_line)
             {
+                if constexpr (std::is_same_v<TargetT, std::string>)
+                if (decode.empty())
+                {
+                    result.back().emplace_back(value);
+                    
+                    continue;
+                }
+                
                 result.back().emplace_back(decode.at(value));
             }
         }

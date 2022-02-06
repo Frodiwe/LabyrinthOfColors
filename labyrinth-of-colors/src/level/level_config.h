@@ -17,9 +17,10 @@
 #include "src/level/cell_color.h"
 #include "src/components/item.h"
 #include "src/components/map_position.h"
+#include "src/category.h"
 
 using LevelMap = std::vector<std::vector<CellColor>>;
-using LevelItems = std::vector<std::tuple<std::string, CellColor, MapPosition>>;
+using LevelItems = std::vector<std::tuple<std::string, Category, CellColor, MapPosition>>;
 
 struct LevelConfig
 {

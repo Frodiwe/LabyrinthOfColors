@@ -23,6 +23,7 @@
 #include "src/view.h"
 #include "src/game.hpp"
 #include "src/consts.h"
+#include "src/category.h"
 
 void RenderSystem::render_map(SDL_Renderer* renderer)
 {
@@ -57,8 +58,23 @@ void RenderSystem::render_inventory(SDL_Renderer* renderer)
 {
     auto y = -INVENTORY_ITEM_HEIGHT;
     
-    for (const auto [entity, _, texture] : registry.view<Inventory, Item, Texture>().each())
+    for (const auto [entity, _, category, texture] : registry.view<Inventory, Item, Category, Texture>().each())
     {
-        texture.render(renderer, {WIDTH - INVENTORY_WIDTH, y += INVENTORY_ITEM_HEIGHT, INVENTORY_ITEM_WIDTH, INVENTORY_ITEM_HEIGHT});
+        if (category == Category::Bucket) {
+            continue;
+        }
+        
+        texture.render(renderer, {WIDTH - INVENTORY_ITEM_WIDTH, y += INVENTORY_ITEM_HEIGHT, INVENTORY_ITEM_WIDTH, INVENTORY_ITEM_HEIGHT});
+    }
+    
+    auto x = -INVENTORY_ITEM_WIDTH;
+    
+    for (const auto [entity, _, category, texture] : registry.view<Inventory, Item, Category, Texture>().each())
+    {
+        if (category != Category::Bucket) {
+            continue;
+        }
+        
+        texture.render(renderer, {x += INVENTORY_ITEM_WIDTH, HEIGHT - INVENTORY_ITEM_HEIGHT, INVENTORY_ITEM_WIDTH, INVENTORY_ITEM_HEIGHT});
     }
 }
