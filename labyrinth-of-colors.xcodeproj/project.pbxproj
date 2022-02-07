@@ -10,7 +10,6 @@
 		7E2CFF7C26ED32370023414F /* di.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E2CFF7A26ED32370023414F /* di.cpp */; };
 		7E2CFFB226F3648F0023414F /* cell_kit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E2CFFB026F3648F0023414F /* cell_kit.cpp */; };
 		7E2CFFBB26F3912A0023414F /* map_kit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E2CFFB926F3912A0023414F /* map_kit.cpp */; };
-		7E2CFFDB26F803EC0023414F /* coord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E2CFFD926F803EC0023414F /* coord.cpp */; };
 		7E4EFA0C2742B54B00C296AF /* movement_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E4EFA0A2742B54B00C296AF /* movement_system.cpp */; };
 		7E4EFA1027454B1500C296AF /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E4EFA0E27454B1500C296AF /* game.cpp */; };
 		7E54A2A8269C4C0B00332A48 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E54A2A7269C4C0B00332A48 /* SDL2_image.framework */; };
@@ -53,7 +52,6 @@
 		7E2CFFCF26F69CA90023414F /* level_map */ = {isa = PBXFileReference; lastKnownFileType = text; path = level_map; sourceTree = "<group>"; };
 		7E2CFFD626F69EED0023414F /* level_config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = level_config.h; sourceTree = "<group>"; };
 		7E2CFFD726F69F780023414F /* cell_color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cell_color.h; sourceTree = "<group>"; };
-		7E2CFFD926F803EC0023414F /* coord.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = coord.cpp; sourceTree = "<group>"; };
 		7E2CFFDA26F803EC0023414F /* coord.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = coord.hpp; sourceTree = "<group>"; };
 		7E4EFA0027415AED00C296AF /* position.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = position.h; sourceTree = "<group>"; };
 		7E4EFA0327415BB100C296AF /* size.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = size.h; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 				7E2CFF7A26ED32370023414F /* di.cpp */,
 				7E2CFF7B26ED32370023414F /* di.hpp */,
 				7E2CFFA326F20FE20023414F /* rect.hpp */,
-				7E2CFFD926F803EC0023414F /* coord.cpp */,
 				7E2CFFDA26F803EC0023414F /* coord.hpp */,
 				7EEF1DAE273D62CD00E79202 /* player_kit.cpp */,
 				7EEF1DAF273D62CD00E79202 /* player_kit.hpp */,
@@ -653,7 +650,6 @@
 				7EFB4FE827567331002AD274 /* items_kit.cpp in Sources */,
 				7EEF1DB0273D62CD00E79202 /* player_kit.cpp in Sources */,
 				7E2CFFBB26F3912A0023414F /* map_kit.cpp in Sources */,
-				7E2CFFDB26F803EC0023414F /* coord.cpp in Sources */,
 				7ECEAE872778F7F4008C42B0 /* change_map_opacity.cpp in Sources */,
 				7E4EFA0C2742B54B00C296AF /* movement_system.cpp in Sources */,
 				7EC3C77326B8369B004E8331 /* window.cpp in Sources */,

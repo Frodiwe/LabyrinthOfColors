@@ -56,7 +56,7 @@ void RenderSystem::render_items(SDL_Renderer* renderer)
 
 void RenderSystem::render_inventory(SDL_Renderer* renderer)
 {
-    auto y = -INVENTORY_ITEM_HEIGHT;
+    auto y = -Consts::inventory_item_height;
     
     for (const auto [entity, _, category, texture] : registry.view<Inventory, Item, Category, Texture>().each())
     {
@@ -64,10 +64,10 @@ void RenderSystem::render_inventory(SDL_Renderer* renderer)
             continue;
         }
         
-        texture.render(renderer, {WIDTH - INVENTORY_ITEM_WIDTH, y += INVENTORY_ITEM_HEIGHT, INVENTORY_ITEM_WIDTH, INVENTORY_ITEM_HEIGHT});
+        texture.render(renderer, {Consts::window_width - Consts::inventory_item_width, y += Consts::inventory_item_height, Consts::inventory_item_width, Consts::inventory_item_height});
     }
     
-    auto x = -INVENTORY_ITEM_WIDTH;
+    auto x = -Consts::inventory_item_width;
     
     for (const auto [entity, _, category, texture] : registry.view<Inventory, Item, Category, Texture>().each())
     {
@@ -75,6 +75,6 @@ void RenderSystem::render_inventory(SDL_Renderer* renderer)
             continue;
         }
         
-        texture.render(renderer, {x += INVENTORY_ITEM_WIDTH, HEIGHT - INVENTORY_ITEM_HEIGHT, INVENTORY_ITEM_WIDTH, INVENTORY_ITEM_HEIGHT});
+        texture.render(renderer, {x += Consts::inventory_item_width, Consts::window_height - Consts::inventory_item_height, Consts::inventory_item_width, Consts::inventory_item_height});
     }
 }

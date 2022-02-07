@@ -13,33 +13,39 @@
 #include "src/level/cell_color.h"
 #include "src/category.h"
 
-constexpr auto FPS = 60;
-constexpr auto WIDTH = 800;
-constexpr auto HEIGHT = 600;
-constexpr auto INVENTORY_ITEM_WIDTH = 80;
-constexpr auto INVENTORY_ITEM_HEIGHT = INVENTORY_ITEM_WIDTH;
+class Consts
+{
+private:
+    static inline const auto base_path = std::string{"/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/"};
+    
+public:
+    static constexpr auto fps = 60;
+    static constexpr auto window_width = 800;
+    static constexpr auto window_height = 600;
+    static constexpr auto inventory_item_width = 80;
+    static constexpr auto inventory_item_height = inventory_item_width;
+    
+    static inline const auto exit_texture_path = base_path + "exit.png";
 
-const std::string BASE_PATH = "/Volumes/Development/gamedev/projects/labyrinth-of-colors/labyrinth-of-colors/assets/";
-const auto EXIT_TEXTURE_PATH = BASE_PATH + "exit.png";
+    static inline const auto color_map = std::map<std::string, CellColor>{
+        {"0", CellColor::WALL},
+        {"1", CellColor::YELLOW},
+        {"2", CellColor::RED}
+    };
+    static inline const auto category_map = std::map<std::string, Category>{
+        {"paint", Category::Paint},
+        {"bucket", Category::Bucket}
+    };
 
-const std::map<std::string, CellColor> COLOR_DECODE_MAP {
-    {"0", CellColor::WALL},
-    {"1", CellColor::YELLOW},
-    {"2", CellColor::RED}
-};
-const std::map<std::string, Category> CATEGORY_DECODE_MAP {
-    {"paint", Category::Paint},
-    {"bucket", Category::Bucket}
-};
-
-const std::map<CellColor, std::string> CELL_TEXTURES_MAP {
-    {CellColor::RED, BASE_PATH + "cell_red.png"},
-    {CellColor::YELLOW, BASE_PATH + "cell_yellow.png"},
-    {CellColor::WALL, ""}
-};
-const std::map<CellColor, std::string> ITEM_TEXTURES_MAP {
-    {CellColor::RED, BASE_PATH + "bucket_red.png"},
-    {CellColor::YELLOW, BASE_PATH + "bucket_red.png"}
+    static inline const std::map<CellColor, std::string> cell_textures_map {
+        {CellColor::RED, base_path + "cell_red.png"},
+        {CellColor::YELLOW, base_path + "cell_yellow.png"},
+        {CellColor::WALL, ""}
+    };
+    static inline const std::map<CellColor, std::string> item_textures_map {
+        {CellColor::RED, base_path + "bucket_red.png"},
+        {CellColor::YELLOW, base_path + "bucket_red.png"}
+    };
 };
 
 #endif /* consts_h */

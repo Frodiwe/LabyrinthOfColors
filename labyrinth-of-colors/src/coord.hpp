@@ -13,9 +13,9 @@
 class Coord
 {
 public:
-	static int32_t start_x;
+	static inline int32_t start_x = 0;
 	
-	static int32_t start_y;
+	static inline int32_t start_y = 0;
 };
 
 #endif /* coord_hpp */

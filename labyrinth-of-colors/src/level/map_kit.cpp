@@ -37,7 +37,7 @@ void MapKit::create_map(const LevelMap& labyrinth, const MapPosition& exit)
 		
 		for (auto j = 0u; j < labyrinth[i].size(); j++)
 		{
-			const auto cell = cell_kit->create_cell(CELL_TEXTURES_MAP.at(labyrinth[i][j]), {0, 0, 32, 32}, {x, y, width, height}, labyrinth[i][j]);
+			const auto cell = cell_kit->create_cell(Consts::cell_textures_map.at(labyrinth[i][j]), {0, 0, 32, 32}, {x, y, width, height}, labyrinth[i][j]);
             auto map_pos = MapPosition{i, j};
             
 			registry.emplace<MapPosition>(cell, map_pos);
@@ -45,7 +45,7 @@ void MapKit::create_map(const LevelMap& labyrinth, const MapPosition& exit)
             
             if (map_pos == exit)
             {
-                registry.emplace<Exit>(cell, Texture{EXIT_TEXTURE_PATH, {0, 0, 32, 32}});
+                registry.emplace<Exit>(cell, Texture{Consts::exit_texture_path, {0, 0, 32, 32}});
             }
             
             x += width + offset;

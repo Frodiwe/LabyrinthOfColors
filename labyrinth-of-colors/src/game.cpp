@@ -85,13 +85,13 @@ LevelConfig Game::get_level_config(const std::string& name) const
     
     for (const auto& attrs : items_file.read())
     {
-        items.emplace_back(attrs[0], CATEGORY_DECODE_MAP.at(attrs[1]), COLOR_DECODE_MAP.at(attrs[2]), MapPosition{attrs[3] + "," + attrs[4]});
+        items.emplace_back(attrs[0], Consts::category_map.at(attrs[1]), Consts::color_map.at(attrs[2]), MapPosition{attrs[3] + "," + attrs[4]});
     }
     
     auto actions = KeyValueFile{base_dir + "level_actions"}.read();
     auto color_file = CSV{base_dir + "level_map"};
     
-    return {color_file.read(COLOR_DECODE_MAP), items, actions.at("start"), actions.at("exit")};
+    return {color_file.read(Consts::color_map), items, actions.at("start"), actions.at("exit")};
 }
 
 void Game::create_level(LevelConfig config)
@@ -108,7 +108,7 @@ void Game::create_level(LevelConfig config)
 
 entt::entity Game::create_player(MapPosition start)
 {
-    return DI::get_player_kit()->create_player({WIDTH / 2, HEIGHT / 2}, start);
+    return DI::get_player_kit()->create_player({Consts::window_width / 2, Consts::window_height / 2}, start);
 }
 
 entt::entity Game::get_cell_at(const MapPosition& at)

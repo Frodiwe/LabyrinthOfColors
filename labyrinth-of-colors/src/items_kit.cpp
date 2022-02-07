@@ -25,7 +25,7 @@ entt::entity ItemsKit::create_item(const std::string& name, Category category, c
     
     registry.emplace<Item>(item, name);
     registry.emplace<CellColor>(item, color);
-    registry.emplace<Texture>(item, Texture(ITEM_TEXTURES_MAP.at(color), {0, 0, 32, 32}));
+    registry.emplace<Texture>(item, Texture(Consts::item_textures_map.at(color), {0, 0, 32, 32}));
     registry.emplace<Size>(item, 50ul, 50ul);
     registry.emplace<Category>(item, category);
     
