@@ -9,24 +9,30 @@
 
 #include "src/events/exit_event.h"
 #include "src/events/move_event.h"
+#include "src/events/move_in_event.h"
+#include "src/events/move_out_event.h"
 #include "src/events/item_given_event.h"
 #include "src/events/event.h"
 
 #include "src/components/map_position.h"
-#include "src/level/tags/cell.h"
 #include "src/tags/player.h"
+
+#include "src/level/tags/cell.h"
 #include "src/level/components/exit.h"
+
 #include "src/systems/movement_system.hpp"
 #include "src/systems/render_system.hpp"
 #include "src/systems/items_system.hpp"
 #include "src/systems/inventory_system.hpp"
+#include "src/systems/player_system.hpp"
+
 #include "src/events_queue.hpp"
 
 void MoveListener::operator()(Event *event)
 {
     MoveEvent* e = dynamic_cast<MoveEvent*>(event);
     
-    auto player = get_player();
+    auto player = player_system->get_player();
     auto to = get_target_pos(registry.get<MapPosition>(player), get_abs_diff(e->i_diff, e->j_diff), e->i_diff < 0 or e->j_diff < 0);
     
     auto cell = get_cell(to);
@@ -44,28 +50,11 @@ void MoveListener::operator()(Event *event)
         return;
     }
     
+    auto from_cell = get_cell(registry.get<MapPosition>(player));
+    
+    events_queue->publish<MoveOutEvent>(from_cell);
     movement_system->move(player, get_cell(registry.get<MapPosition>(player)), cell);
-    
-    if (registry.all_of<Exit>(cell))
-    {
-        events_queue->publish<ExitEvent>();
-        
-        return;
-    }
-    
-    for (const auto& item : items_system->get_items_at(registry.get<MapPosition>(player)))
-    {
-        inventory_system->give_item(player, item);
-        
-        events_queue->publish<ItemGivenEvent>(item);
-        
-        items_system->remove_item_from_map(item);
-    }
-}
-
-entt::entity MoveListener::get_player()
-{
-    return std::get<0>(*registry.view<Player>().each().begin());
+    events_queue->publish<MoveInEvent>(cell);
 }
                            
 entt::entity MoveListener::get_cell(const MapPosition& at) const

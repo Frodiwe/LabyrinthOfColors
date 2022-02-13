@@ -38,8 +38,14 @@
 #include "src/listeners/move_listener.hpp"
 #include "src/listeners/give_base_inventory_listener.hpp"
 #include "src/listeners/change_map_opacity.hpp"
+#include "src/listeners/handle_exit_listener.hpp"
+#include "src/listeners/take_items_listener.hpp"
+#include "src/listeners/activate_factory_listener.hpp"
+#include "src/listeners/deactivate_factory_listener.hpp"
 
 #include "src/events/move_event.h"
+#include "src/events/move_in_event.h"
+#include "src/events/move_out_event.h"
 #include "src/events/player_created_event.h"
 #include "src/events/item_given_event.h"
 
@@ -70,11 +76,33 @@ void Game::subscribe_listeners()
     events_queue->subscribe<MoveEvent>(new MoveListener{
         DI::get_registry(),
         DI::get_events_queue(),
+        DI::get_player_system(),
         DI::get_movement_system(),
         DI::get_inventory_system(),
         DI::get_items_system()
     });
-    events_queue->subscribe<ItemGivenEvent>(new ChangeMapOpacity{DI::get_registry()});
+    events_queue->subscribe<ItemGivenEvent>(new ChangeMapOpacity{
+        DI::get_registry()
+    });
+    events_queue->subscribe<MoveInEvent>(new HandleExitListener{
+        DI::get_registry(),
+        DI::get_events_queue()
+    });
+    events_queue->subscribe<MoveInEvent>(new TakeItemsListener{
+        DI::get_registry(),
+        DI::get_events_queue(),
+        DI::get_player_system(),
+        DI::get_items_system(),
+        DI::get_inventory_system()
+    });
+    events_queue->subscribe<MoveInEvent>(new ActivateFactoryListener{
+        DI::get_registry(),
+        DI::get_blending_system()
+    });
+    events_queue->subscribe<MoveOutEvent>(new DeactivateFactoryListener{
+        DI::get_registry(),
+        DI::get_blending_system()
+    });
 }
 
 LevelConfig Game::get_level_config(const std::string& name) const

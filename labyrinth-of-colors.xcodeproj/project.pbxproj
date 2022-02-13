@@ -15,6 +15,11 @@
 		7E54A2A8269C4C0B00332A48 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E54A2A7269C4C0B00332A48 /* SDL2_image.framework */; };
 		7E69BF0C2697429B001F84C2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E69BF0B2697429B001F84C2 /* main.cpp */; };
 		7E69BF15269742E7001F84C2 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E69BF14269742E7001F84C2 /* SDL2.framework */; };
+		7EC0313527B7DC1D0097EF5E /* handle_exit_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC0313327B7DC1D0097EF5E /* handle_exit_listener.cpp */; };
+		7EC0313827B7DC450097EF5E /* take_items_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC0313627B7DC450097EF5E /* take_items_listener.cpp */; };
+		7EC0313B27B7DC580097EF5E /* activate_factory_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC0313927B7DC580097EF5E /* activate_factory_listener.cpp */; };
+		7EC0313E27B7DC660097EF5E /* deactivate_factory_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC0313C27B7DC660097EF5E /* deactivate_factory_listener.cpp */; };
+		7EC0314127B992DC0097EF5E /* blending_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC0313F27B992DC0097EF5E /* blending_system.cpp */; };
 		7EC3C76E26B82990004E8331 /* key_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C76C26B82990004E8331 /* key_handler.cpp */; };
 		7EC3C77326B8369B004E8331 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C77126B8369B004E8331 /* window.cpp */; };
 		7EC3C7A426C2CFBC004E8331 /* entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C7A326C2CFBC004E8331 /* entity.cpp */; };
@@ -66,6 +71,19 @@
 		7E69BF0B2697429B001F84C2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7E69BF14269742E7001F84C2 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		7EC0312C27B032130097EF5E /* category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = category.h; sourceTree = "<group>"; };
+		7EC0312E27B7DAA40097EF5E /* move_in_event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = move_in_event.h; sourceTree = "<group>"; };
+		7EC0312F27B7DB340097EF5E /* move_out_event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = move_out_event.h; sourceTree = "<group>"; };
+		7EC0313327B7DC1D0097EF5E /* handle_exit_listener.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = handle_exit_listener.cpp; sourceTree = "<group>"; };
+		7EC0313427B7DC1D0097EF5E /* handle_exit_listener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = handle_exit_listener.hpp; sourceTree = "<group>"; };
+		7EC0313627B7DC450097EF5E /* take_items_listener.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = take_items_listener.cpp; sourceTree = "<group>"; };
+		7EC0313727B7DC450097EF5E /* take_items_listener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = take_items_listener.hpp; sourceTree = "<group>"; };
+		7EC0313927B7DC580097EF5E /* activate_factory_listener.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = activate_factory_listener.cpp; sourceTree = "<group>"; };
+		7EC0313A27B7DC580097EF5E /* activate_factory_listener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = activate_factory_listener.hpp; sourceTree = "<group>"; };
+		7EC0313C27B7DC660097EF5E /* deactivate_factory_listener.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = deactivate_factory_listener.cpp; sourceTree = "<group>"; };
+		7EC0313D27B7DC660097EF5E /* deactivate_factory_listener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = deactivate_factory_listener.hpp; sourceTree = "<group>"; };
+		7EC0313F27B992DC0097EF5E /* blending_system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = blending_system.cpp; sourceTree = "<group>"; };
+		7EC0314027B992DC0097EF5E /* blending_system.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = blending_system.hpp; sourceTree = "<group>"; };
+		7EC0314227B993090097EF5E /* color_factory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = color_factory.h; sourceTree = "<group>"; };
 		7EC3C76C26B82990004E8331 /* key_handler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = key_handler.cpp; sourceTree = "<group>"; };
 		7EC3C76D26B82990004E8331 /* key_handler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = key_handler.hpp; sourceTree = "<group>"; };
 		7EC3C77126B8369B004E8331 /* window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
@@ -285,6 +303,8 @@
 				7EFB4FEE2757B5D9002AD274 /* inventory_system.hpp */,
 				7ECEAE812778F318008C42B0 /* player_system.cpp */,
 				7ECEAE822778F318008C42B0 /* player_system.hpp */,
+				7EC0313F27B992DC0097EF5E /* blending_system.cpp */,
+				7EC0314027B992DC0097EF5E /* blending_system.hpp */,
 			);
 			path = systems;
 			sourceTree = "<group>";
@@ -297,6 +317,7 @@
 				7E4EFA0327415BB100C296AF /* size.h */,
 				7EFB4FE927567AD6002AD274 /* item.h */,
 				7ECEAE6B276236C5008C42B0 /* inventory.h */,
+				7EC0314227B993090097EF5E /* color_factory.h */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -561,6 +582,8 @@
 				7ECEAE792768E8D9008C42B0 /* exit_event.h */,
 				7ECEAE842778F6FE008C42B0 /* item_given_event.h */,
 				7EF9349227AC9CC200CB2564 /* player_created_event.h */,
+				7EC0312E27B7DAA40097EF5E /* move_in_event.h */,
+				7EC0312F27B7DB340097EF5E /* move_out_event.h */,
 			);
 			path = events;
 			sourceTree = "<group>";
@@ -575,6 +598,14 @@
 				7ECEAE862778F7F4008C42B0 /* change_map_opacity.hpp */,
 				7EF9349627AC9D6100CB2564 /* give_base_inventory_listener.cpp */,
 				7EF9349727AC9D6100CB2564 /* give_base_inventory_listener.hpp */,
+				7EC0313327B7DC1D0097EF5E /* handle_exit_listener.cpp */,
+				7EC0313427B7DC1D0097EF5E /* handle_exit_listener.hpp */,
+				7EC0313627B7DC450097EF5E /* take_items_listener.cpp */,
+				7EC0313727B7DC450097EF5E /* take_items_listener.hpp */,
+				7EC0313927B7DC580097EF5E /* activate_factory_listener.cpp */,
+				7EC0313A27B7DC580097EF5E /* activate_factory_listener.hpp */,
+				7EC0313C27B7DC660097EF5E /* deactivate_factory_listener.cpp */,
+				7EC0313D27B7DC660097EF5E /* deactivate_factory_listener.hpp */,
 			);
 			path = listeners;
 			sourceTree = "<group>";
@@ -640,6 +671,7 @@
 				7EC3C76E26B82990004E8331 /* key_handler.cpp in Sources */,
 				7EF9349827AC9D6100CB2564 /* give_base_inventory_listener.cpp in Sources */,
 				7E69BF0C2697429B001F84C2 /* main.cpp in Sources */,
+				7EC0313527B7DC1D0097EF5E /* handle_exit_listener.cpp in Sources */,
 				7ECEAE832778F318008C42B0 /* player_system.cpp in Sources */,
 				7E4EFA1027454B1500C296AF /* game.cpp in Sources */,
 				7E2CFFB226F3648F0023414F /* cell_kit.cpp in Sources */,
@@ -648,9 +680,13 @@
 				7EFB4FEF2757B5D9002AD274 /* inventory_system.cpp in Sources */,
 				7EFB4FDE274D5CF8002AD274 /* render_system.cpp in Sources */,
 				7EFB4FE827567331002AD274 /* items_kit.cpp in Sources */,
+				7EC0314127B992DC0097EF5E /* blending_system.cpp in Sources */,
 				7EEF1DB0273D62CD00E79202 /* player_kit.cpp in Sources */,
+				7EC0313827B7DC450097EF5E /* take_items_listener.cpp in Sources */,
 				7E2CFFBB26F3912A0023414F /* map_kit.cpp in Sources */,
 				7ECEAE872778F7F4008C42B0 /* change_map_opacity.cpp in Sources */,
+				7EC0313E27B7DC660097EF5E /* deactivate_factory_listener.cpp in Sources */,
+				7EC0313B27B7DC580097EF5E /* activate_factory_listener.cpp in Sources */,
 				7E4EFA0C2742B54B00C296AF /* movement_system.cpp in Sources */,
 				7EC3C77326B8369B004E8331 /* window.cpp in Sources */,
 			);

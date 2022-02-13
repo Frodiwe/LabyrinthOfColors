@@ -22,6 +22,8 @@ class MovementSystem;
 class RenderSystem;
 class ItemsSystem;
 class InventorySystem;
+class PlayerSystem;
+class BlendingSystem;
 class EventsQueue;
 class CellKit;
 
@@ -44,6 +46,10 @@ private:
     
     static InventorySystem* inventory_system;
     
+    static PlayerSystem* player_system;
+    
+    static BlendingSystem* blending_system;
+    
     static EventsQueue* events_queue;
 	
 	static entt::registry registry;
@@ -64,6 +70,10 @@ public:
     static ItemsSystem* get_items_system();
     
     static InventorySystem* get_inventory_system();
+    
+    static PlayerSystem* get_player_system();
+    
+    static BlendingSystem* get_blending_system();
     
     static EventsQueue* get_events_queue();
 };

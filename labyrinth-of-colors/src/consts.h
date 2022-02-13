@@ -44,7 +44,7 @@ public:
     };
     static inline const std::map<CellColor, std::string> item_textures_map {
         {CellColor::RED, base_path + "bucket_red.png"},
-        {CellColor::YELLOW, base_path + "bucket_red.png"}
+        {CellColor::YELLOW, base_path + "bucket_yellow.png"}
     };
 };
 

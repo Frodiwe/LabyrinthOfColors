@@ -9,12 +9,17 @@
 
 #include "src/level/cell_kit.hpp"
 #include "src/level/map_kit.hpp"
+
 #include "src/player_kit.hpp"
 #include "src/items_kit.hpp"
+
 #include "src/systems/movement_system.hpp"
 #include "src/systems/render_system.hpp"
 #include "src/systems/items_system.hpp"
 #include "src/systems/inventory_system.hpp"
+#include "src/systems/player_system.hpp"
+#include "src/systems/blending_system.hpp"
+
 #include "src/events_queue.hpp"
 
 entt::registry DI::registry;
@@ -34,6 +39,10 @@ RenderSystem* DI::render_system = new RenderSystem(DI::registry);
 ItemsSystem* DI::items_system = new ItemsSystem(DI::registry);
 
 InventorySystem* DI::inventory_system = new InventorySystem(DI::registry);
+
+PlayerSystem* DI::player_system = new PlayerSystem(DI::registry);
+
+BlendingSystem* DI::blending_system = new BlendingSystem();
 
 EventsQueue* DI::events_queue = new EventsQueue{};
 
@@ -75,6 +84,16 @@ ItemsSystem* DI::get_items_system()
 InventorySystem* DI::get_inventory_system()
 {
     return inventory_system;
+}
+
+PlayerSystem* DI::get_player_system()
+{
+    return player_system;
+}
+
+BlendingSystem* DI::get_blending_system()
+{
+    return blending_system;
 }
 
 EventsQueue* DI::get_events_queue()
