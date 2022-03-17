@@ -13,9 +13,11 @@
 
 enum class CellColor
 {
+    WALL,
+    
 	YELLOW,
 	RED,
-	WALL,
+    GREEN,
 };
 
 #endif /* cell_color_h */

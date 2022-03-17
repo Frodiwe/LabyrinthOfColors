@@ -12,12 +12,13 @@
 
 #include <string>
 
-#include <SDL2/SDL.h>
+#include "SDL2/SDL.h"
 
 #include "src/consts.h"
 
 #include "src/player_kit.hpp"
 #include "src/items_kit.hpp"
+#include "src/color_factory_kit.hpp"
 
 #include "src/level/cell_color.h"
 #include "src/level/map_kit.hpp"
@@ -42,12 +43,16 @@
 #include "src/listeners/take_items_listener.hpp"
 #include "src/listeners/activate_factory_listener.hpp"
 #include "src/listeners/deactivate_factory_listener.hpp"
+#include "src/listeners/select_blending_color_listener.hpp"
+#include "src/listeners/blend_colors_listener.hpp"
 
 #include "src/events/move_event.h"
 #include "src/events/move_in_event.h"
 #include "src/events/move_out_event.h"
 #include "src/events/player_created_event.h"
 #include "src/events/item_given_event.h"
+#include "src/events/select_inventory_item_event.h"
+#include "src/events/submit_event.h"
 
 #include "src/utils/csv.h"
 #include "src/utils/key_value_file.h"
@@ -97,11 +102,24 @@ void Game::subscribe_listeners()
     });
     events_queue->subscribe<MoveInEvent>(new ActivateFactoryListener{
         DI::get_registry(),
-        DI::get_blending_system()
+        DI::get_color_factory_system()
     });
     events_queue->subscribe<MoveOutEvent>(new DeactivateFactoryListener{
         DI::get_registry(),
-        DI::get_blending_system()
+        DI::get_color_factory_system()
+    });
+    events_queue->subscribe<SelectInventoryItemEvent>(new SelectBlendingColorListener{
+        DI::get_registry(),
+        DI::get_color_factory_system(),
+        DI::get_inventory_system(),
+    });
+    events_queue->subscribe<SubmitEvent>(new BlendColorsListener{
+        DI::get_registry(),
+        DI::get_color_factory_system(),
+        DI::get_items_system(),
+        DI::get_items_kit(),
+        DI::get_inventory_system(),
+        DI::get_player_system()
     });
 }
 
@@ -130,6 +148,9 @@ void Game::create_level(LevelConfig config)
     {
         DI::get_items_kit()->create_item(item_name, category, color, pos, DI::get_registry().get<Position>(get_cell_at(pos)));
     }
+    
+    // hardcoded
+    DI::get_color_factory_kit()->create_factory({9, 16});
     
     DI::get_movement_system()->move_world_coords(get_cell_at({0, 0}), get_cell_at(config.start));
 }

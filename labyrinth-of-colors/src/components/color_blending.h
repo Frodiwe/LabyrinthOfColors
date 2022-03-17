@@ -1,18 +1,18 @@
 //
-//  color_factory.h
+//  color_blending.h
 //  labyrinth-of-colors
 //
 //  Created by Fiodar Navumenka on 13.02.22.
 //
 
-#ifndef color_factory_h
-#define color_factory_h
+#ifndef color_blending_h
+#define color_blending_h
 
 #include <vector>
 
 #include "src/level/cell_color.h"
 
-struct ColorFactory
+struct ColorBlending
 {
 private:
     size_t factory_size;
@@ -20,7 +20,7 @@ private:
     std::vector<CellColor> colors;
     
 public:
-    ColorFactory(size_t factory_size = 2) : factory_size{factory_size}
+    ColorBlending(size_t factory_size = 2) : factory_size{factory_size}
     { }
     
     void add_color(CellColor color)
@@ -32,10 +32,15 @@ public:
         colors.emplace_back(color);
     }
     
-    const std::vector<CellColor>& get_colors() const
+    std::vector<CellColor> get_colors() const
     {
         return colors;
     }
+    
+    void clear()
+    {
+        colors.clear();
+    }
 };
 
-#endif /* color_factory_h */
+#endif /* color_blending_h */

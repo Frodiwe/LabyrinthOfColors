@@ -12,13 +12,14 @@
 
 #include "src/player_kit.hpp"
 #include "src/items_kit.hpp"
+#include "src/color_factory_kit.hpp"
 
 #include "src/systems/movement_system.hpp"
 #include "src/systems/render_system.hpp"
 #include "src/systems/items_system.hpp"
 #include "src/systems/inventory_system.hpp"
 #include "src/systems/player_system.hpp"
-#include "src/systems/blending_system.hpp"
+#include "src/systems/color_factory_system.hpp"
 
 #include "src/events_queue.hpp"
 
@@ -32,6 +33,8 @@ PlayerKit* DI::player_kit = new PlayerKit(DI::registry);
 
 ItemsKit* DI::items_kit = new ItemsKit(DI::registry);
 
+ColorFactoryKit* DI::color_factory_kit = new ColorFactoryKit(DI::registry);
+
 MovementSystem* DI::movement_system = new MovementSystem(DI::registry);
 
 RenderSystem* DI::render_system = new RenderSystem(DI::registry);
@@ -42,7 +45,7 @@ InventorySystem* DI::inventory_system = new InventorySystem(DI::registry);
 
 PlayerSystem* DI::player_system = new PlayerSystem(DI::registry);
 
-BlendingSystem* DI::blending_system = new BlendingSystem();
+ColorFactorySystem* DI::color_factory_system = new ColorFactorySystem(DI::registry);
 
 EventsQueue* DI::events_queue = new EventsQueue{};
 
@@ -59,6 +62,11 @@ PlayerKit* DI::get_player_kit()
 ItemsKit* DI::get_items_kit()
 {
     return items_kit;
+}
+
+ColorFactoryKit* DI::get_color_factory_kit()
+{
+    return color_factory_kit;
 }
 
 entt::registry& DI::get_registry()
@@ -91,9 +99,9 @@ PlayerSystem* DI::get_player_system()
     return player_system;
 }
 
-BlendingSystem* DI::get_blending_system()
+ColorFactorySystem* DI::get_color_factory_system()
 {
-    return blending_system;
+    return color_factory_system;
 }
 
 EventsQueue* DI::get_events_queue()

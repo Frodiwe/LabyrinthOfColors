@@ -7,8 +7,6 @@
 
 #include "render_system.hpp"
 
-#include <SDL2/SDL.h>
-
 #include "src/components/position.h"
 #include "src/components/size.h"
 #include "src/components/item.h"

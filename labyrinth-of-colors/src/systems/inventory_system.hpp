@@ -21,8 +21,16 @@ public:
     InventorySystem(entt::registry& r) : registry{r}
     { }
     
-    void give_item(const entt::entity& player, const entt::entity& item);
+    void give_item(const entt::entity player, const entt::entity item);
     
-    bool has_color(const entt::entity& player, CellColor color);
+    entt::entity remove_item(const entt::entity player, const entt::entity item);
+    
+    entt::entity get_nth_bucket(size_t n);
+    
+    bool has_color(const entt::entity player, CellColor color);
+    
+    entt::entity get_bucket_by_color(CellColor color);
+    
+    size_t buckets_count() const;
 };
 #endif /* inventory_system_hpp */

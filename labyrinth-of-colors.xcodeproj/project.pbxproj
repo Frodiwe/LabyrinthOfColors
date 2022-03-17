@@ -7,19 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		332BB13527C014CD001DB97B /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 332BB13327C014AE001DB97B /* libSDL2.a */; };
+		332BB13627C014FC001DB97B /* libSDL2_test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 332BB13227C014AE001DB97B /* libSDL2_test.a */; };
+		332BB13727C01523001DB97B /* libSDL2main.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 332BB13427C014AE001DB97B /* libSDL2main.a */; };
+		332BB13927C01559001DB97B /* libSDL2_image.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 332BB13827C01542001DB97B /* libSDL2_image.a */; };
 		7E2CFF7C26ED32370023414F /* di.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E2CFF7A26ED32370023414F /* di.cpp */; };
 		7E2CFFB226F3648F0023414F /* cell_kit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E2CFFB026F3648F0023414F /* cell_kit.cpp */; };
 		7E2CFFBB26F3912A0023414F /* map_kit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E2CFFB926F3912A0023414F /* map_kit.cpp */; };
 		7E4EFA0C2742B54B00C296AF /* movement_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E4EFA0A2742B54B00C296AF /* movement_system.cpp */; };
 		7E4EFA1027454B1500C296AF /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E4EFA0E27454B1500C296AF /* game.cpp */; };
-		7E54A2A8269C4C0B00332A48 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E54A2A7269C4C0B00332A48 /* SDL2_image.framework */; };
+		7E5EB01627BD3FCE00D2C84B /* select_blending_color_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E5EB01427BD3FCE00D2C84B /* select_blending_color_listener.cpp */; };
+		7E5EB01927BE685F00D2C84B /* color_factory_kit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E5EB01727BE685F00D2C84B /* color_factory_kit.cpp */; };
+		7E5EB02227BE72AE00D2C84B /* blend_colors_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E5EB02027BE72AE00D2C84B /* blend_colors_listener.cpp */; };
 		7E69BF0C2697429B001F84C2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E69BF0B2697429B001F84C2 /* main.cpp */; };
-		7E69BF15269742E7001F84C2 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E69BF14269742E7001F84C2 /* SDL2.framework */; };
 		7EC0313527B7DC1D0097EF5E /* handle_exit_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC0313327B7DC1D0097EF5E /* handle_exit_listener.cpp */; };
 		7EC0313827B7DC450097EF5E /* take_items_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC0313627B7DC450097EF5E /* take_items_listener.cpp */; };
 		7EC0313B27B7DC580097EF5E /* activate_factory_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC0313927B7DC580097EF5E /* activate_factory_listener.cpp */; };
 		7EC0313E27B7DC660097EF5E /* deactivate_factory_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC0313C27B7DC660097EF5E /* deactivate_factory_listener.cpp */; };
-		7EC0314127B992DC0097EF5E /* blending_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC0313F27B992DC0097EF5E /* blending_system.cpp */; };
+		7EC0314127B992DC0097EF5E /* color_factory_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC0313F27B992DC0097EF5E /* color_factory_system.cpp */; };
 		7EC3C76E26B82990004E8331 /* key_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C76C26B82990004E8331 /* key_handler.cpp */; };
 		7EC3C77326B8369B004E8331 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C77126B8369B004E8331 /* window.cpp */; };
 		7EC3C7A426C2CFBC004E8331 /* entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C7A326C2CFBC004E8331 /* entity.cpp */; };
@@ -47,6 +52,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		332BB13227C014AE001DB97B /* libSDL2_test.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_test.a; path = ../../../../../opt/homebrew/Cellar/sdl2/2.0.20/lib/libSDL2_test.a; sourceTree = "<group>"; };
+		332BB13327C014AE001DB97B /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../../../../opt/homebrew/Cellar/sdl2/2.0.20/lib/libSDL2.a; sourceTree = "<group>"; };
+		332BB13427C014AE001DB97B /* libSDL2main.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2main.a; path = ../../../../../opt/homebrew/Cellar/sdl2/2.0.20/lib/libSDL2main.a; sourceTree = "<group>"; };
+		332BB13827C01542001DB97B /* libSDL2_image.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_image.a; path = ../../../../../opt/homebrew/Cellar/sdl2_image/2.0.5/lib/libSDL2_image.a; sourceTree = "<group>"; };
 		7E2CFF7A26ED32370023414F /* di.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = di.cpp; sourceTree = "<group>"; };
 		7E2CFF7B26ED32370023414F /* di.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = di.hpp; sourceTree = "<group>"; };
 		7E2CFFA326F20FE20023414F /* rect.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rect.hpp; sourceTree = "<group>"; };
@@ -67,6 +76,17 @@
 		7E4EFA0F27454B1500C296AF /* game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = game.hpp; sourceTree = "<group>"; };
 		7E54A2A7269C4C0B00332A48 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		7E54A2AC269C578D00332A48 /* texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = texture.h; sourceTree = "<group>"; };
+		7E5EB01227BD3EC500D2C84B /* submit_event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = submit_event.h; sourceTree = "<group>"; };
+		7E5EB01327BD3F4E00D2C84B /* select_inventory_item_event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = select_inventory_item_event.h; sourceTree = "<group>"; };
+		7E5EB01427BD3FCE00D2C84B /* select_blending_color_listener.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = select_blending_color_listener.cpp; sourceTree = "<group>"; };
+		7E5EB01527BD3FCE00D2C84B /* select_blending_color_listener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = select_blending_color_listener.hpp; sourceTree = "<group>"; };
+		7E5EB01727BE685F00D2C84B /* color_factory_kit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = color_factory_kit.cpp; sourceTree = "<group>"; };
+		7E5EB01827BE685F00D2C84B /* color_factory_kit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = color_factory_kit.hpp; sourceTree = "<group>"; };
+		7E5EB01E27BE6F1600D2C84B /* color_factory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = color_factory.h; sourceTree = "<group>"; };
+		7E5EB01F27BE6F2900D2C84B /* name.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = name.h; sourceTree = "<group>"; };
+		7E5EB02027BE72AE00D2C84B /* blend_colors_listener.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = blend_colors_listener.cpp; sourceTree = "<group>"; };
+		7E5EB02127BE72AE00D2C84B /* blend_colors_listener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = blend_colors_listener.hpp; sourceTree = "<group>"; };
+		7E5EB02327BE985300D2C84B /* active.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = active.h; sourceTree = "<group>"; };
 		7E69BF082697429B001F84C2 /* labyrinth-of-colors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "labyrinth-of-colors"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E69BF0B2697429B001F84C2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7E69BF14269742E7001F84C2 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
@@ -81,9 +101,9 @@
 		7EC0313A27B7DC580097EF5E /* activate_factory_listener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = activate_factory_listener.hpp; sourceTree = "<group>"; };
 		7EC0313C27B7DC660097EF5E /* deactivate_factory_listener.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = deactivate_factory_listener.cpp; sourceTree = "<group>"; };
 		7EC0313D27B7DC660097EF5E /* deactivate_factory_listener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = deactivate_factory_listener.hpp; sourceTree = "<group>"; };
-		7EC0313F27B992DC0097EF5E /* blending_system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = blending_system.cpp; sourceTree = "<group>"; };
-		7EC0314027B992DC0097EF5E /* blending_system.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = blending_system.hpp; sourceTree = "<group>"; };
-		7EC0314227B993090097EF5E /* color_factory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = color_factory.h; sourceTree = "<group>"; };
+		7EC0313F27B992DC0097EF5E /* color_factory_system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = color_factory_system.cpp; sourceTree = "<group>"; };
+		7EC0314027B992DC0097EF5E /* color_factory_system.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = color_factory_system.hpp; sourceTree = "<group>"; };
+		7EC0314227B993090097EF5E /* color_blending.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = color_blending.h; sourceTree = "<group>"; };
 		7EC3C76C26B82990004E8331 /* key_handler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = key_handler.cpp; sourceTree = "<group>"; };
 		7EC3C76D26B82990004E8331 /* key_handler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = key_handler.hpp; sourceTree = "<group>"; };
 		7EC3C77126B8369B004E8331 /* window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
@@ -209,8 +229,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E54A2A8269C4C0B00332A48 /* SDL2_image.framework in Frameworks */,
-				7E69BF15269742E7001F84C2 /* SDL2.framework in Frameworks */,
+				332BB13927C01559001DB97B /* libSDL2_image.a in Frameworks */,
+				332BB13627C014FC001DB97B /* libSDL2_test.a in Frameworks */,
+				332BB13527C014CD001DB97B /* libSDL2.a in Frameworks */,
+				332BB13727C01523001DB97B /* libSDL2main.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +271,8 @@
 				7ECEAE7A27690822008C42B0 /* consts.h */,
 				7EF9349A27AEAF6700CB2564 /* view.h */,
 				7EC0312C27B032130097EF5E /* category.h */,
+				7E5EB01727BE685F00D2C84B /* color_factory_kit.cpp */,
+				7E5EB01827BE685F00D2C84B /* color_factory_kit.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -303,8 +327,8 @@
 				7EFB4FEE2757B5D9002AD274 /* inventory_system.hpp */,
 				7ECEAE812778F318008C42B0 /* player_system.cpp */,
 				7ECEAE822778F318008C42B0 /* player_system.hpp */,
-				7EC0313F27B992DC0097EF5E /* blending_system.cpp */,
-				7EC0314027B992DC0097EF5E /* blending_system.hpp */,
+				7EC0313F27B992DC0097EF5E /* color_factory_system.cpp */,
+				7EC0314027B992DC0097EF5E /* color_factory_system.hpp */,
 			);
 			path = systems;
 			sourceTree = "<group>";
@@ -317,7 +341,8 @@
 				7E4EFA0327415BB100C296AF /* size.h */,
 				7EFB4FE927567AD6002AD274 /* item.h */,
 				7ECEAE6B276236C5008C42B0 /* inventory.h */,
-				7EC0314227B993090097EF5E /* color_factory.h */,
+				7EC0314227B993090097EF5E /* color_blending.h */,
+				7E5EB01F27BE6F2900D2C84B /* name.h */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -352,6 +377,10 @@
 		7E69BF13269742E7001F84C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				332BB13827C01542001DB97B /* libSDL2_image.a */,
+				332BB13227C014AE001DB97B /* libSDL2_test.a */,
+				332BB13327C014AE001DB97B /* libSDL2.a */,
+				332BB13427C014AE001DB97B /* libSDL2main.a */,
 				7E54A2A7269C4C0B00332A48 /* SDL2_image.framework */,
 				7E69BF14269742E7001F84C2 /* SDL2.framework */,
 			);
@@ -570,6 +599,8 @@
 			isa = PBXGroup;
 			children = (
 				7EFB4FDB274BD6B8002AD274 /* player.h */,
+				7E5EB01E27BE6F1600D2C84B /* color_factory.h */,
+				7E5EB02327BE985300D2C84B /* active.h */,
 			);
 			path = tags;
 			sourceTree = "<group>";
@@ -584,6 +615,8 @@
 				7EF9349227AC9CC200CB2564 /* player_created_event.h */,
 				7EC0312E27B7DAA40097EF5E /* move_in_event.h */,
 				7EC0312F27B7DB340097EF5E /* move_out_event.h */,
+				7E5EB01227BD3EC500D2C84B /* submit_event.h */,
+				7E5EB01327BD3F4E00D2C84B /* select_inventory_item_event.h */,
 			);
 			path = events;
 			sourceTree = "<group>";
@@ -606,6 +639,10 @@
 				7EC0313A27B7DC580097EF5E /* activate_factory_listener.hpp */,
 				7EC0313C27B7DC660097EF5E /* deactivate_factory_listener.cpp */,
 				7EC0313D27B7DC660097EF5E /* deactivate_factory_listener.hpp */,
+				7E5EB01427BD3FCE00D2C84B /* select_blending_color_listener.cpp */,
+				7E5EB01527BD3FCE00D2C84B /* select_blending_color_listener.hpp */,
+				7E5EB02027BE72AE00D2C84B /* blend_colors_listener.cpp */,
+				7E5EB02127BE72AE00D2C84B /* blend_colors_listener.hpp */,
 			);
 			path = listeners;
 			sourceTree = "<group>";
@@ -674,13 +711,14 @@
 				7EC0313527B7DC1D0097EF5E /* handle_exit_listener.cpp in Sources */,
 				7ECEAE832778F318008C42B0 /* player_system.cpp in Sources */,
 				7E4EFA1027454B1500C296AF /* game.cpp in Sources */,
+				7E5EB01627BD3FCE00D2C84B /* select_blending_color_listener.cpp in Sources */,
 				7E2CFFB226F3648F0023414F /* cell_kit.cpp in Sources */,
 				7EC3C7A426C2CFBC004E8331 /* entity.cpp in Sources */,
 				7EFB4FEC27567D15002AD274 /* items_system.cpp in Sources */,
 				7EFB4FEF2757B5D9002AD274 /* inventory_system.cpp in Sources */,
 				7EFB4FDE274D5CF8002AD274 /* render_system.cpp in Sources */,
 				7EFB4FE827567331002AD274 /* items_kit.cpp in Sources */,
-				7EC0314127B992DC0097EF5E /* blending_system.cpp in Sources */,
+				7EC0314127B992DC0097EF5E /* color_factory_system.cpp in Sources */,
 				7EEF1DB0273D62CD00E79202 /* player_kit.cpp in Sources */,
 				7EC0313827B7DC450097EF5E /* take_items_listener.cpp in Sources */,
 				7E2CFFBB26F3912A0023414F /* map_kit.cpp in Sources */,
@@ -688,7 +726,9 @@
 				7EC0313E27B7DC660097EF5E /* deactivate_factory_listener.cpp in Sources */,
 				7EC0313B27B7DC580097EF5E /* activate_factory_listener.cpp in Sources */,
 				7E4EFA0C2742B54B00C296AF /* movement_system.cpp in Sources */,
+				7E5EB02227BE72AE00D2C84B /* blend_colors_listener.cpp in Sources */,
 				7EC3C77326B8369B004E8331 /* window.cpp in Sources */,
+				7E5EB01927BE685F00D2C84B /* color_factory_kit.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,8 +854,18 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/Cellar/sdl2/2.0.20/lib,
+					/opt/homebrew/Cellar/sdl2_image/2.0.5/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$SRCROOT/**";
+				USER_HEADER_SEARCH_PATHS = (
+					"$SRCROOT/**",
+					"/opt/homebrew/Cellar/sdl2/2.0.20/include\n/opt/homebrew/Cellar/sdl2/2.0.20/include",
+					/opt/homebrew/Cellar/sdl2_image/2.0.5/include,
+				);
 			};
 			name = Debug;
 		};
@@ -827,8 +877,18 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/Cellar/sdl2/2.0.20/lib,
+					/opt/homebrew/Cellar/sdl2_image/2.0.5/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$SRCROOT/**";
+				USER_HEADER_SEARCH_PATHS = (
+					"$SRCROOT/**",
+					"/opt/homebrew/Cellar/sdl2/2.0.20/include\n/opt/homebrew/Cellar/sdl2/2.0.20/include",
+					/opt/homebrew/Cellar/sdl2_image/2.0.5/include,
+				);
 			};
 			name = Release;
 		};

@@ -8,15 +8,18 @@
 #include "activate_factory_listener.hpp"
 
 #include "src/events/move_in_event.h"
-#include "src/systems/blending_system.hpp"
-#include "src/components/color_factory.h"
+#include "src/systems/color_factory_system.hpp"
+
+#include "src/components/map_position.h"
 
 void ActivateFactoryListener::operator()(Event *event)
 {
     MoveInEvent* e = dynamic_cast<MoveInEvent*>(event);
     
-    if (registry.all_of<ColorFactory>(e->to_cell))
+    if (auto color_factory = color_factory_system->get_factory_at(registry.get<MapPosition>(e->to_cell)); color_factory != entt::null)
     {
-        blending_system->activate();
+        color_factory_system->activate(color_factory);
+        
+        std::cout << "Factory at " << registry.get<MapPosition>(e->to_cell).i << ", " << registry.get<MapPosition>(e->to_cell).j << " activated" << std::endl;
     }
 }

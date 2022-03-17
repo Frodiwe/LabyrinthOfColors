@@ -12,17 +12,17 @@
 
 #include "src/listeners/listener.h"
 
-class BlendingSystem;
+class ColorFactorySystem;
 
 class DeactivateFactoryListener : public Listener
 {
 private:
     entt::registry& registry;
     
-    BlendingSystem* blending_system;
+    ColorFactorySystem* color_factory_system;
     
 public:
-    DeactivateFactoryListener(entt::registry& registry, BlendingSystem* blending_system) : registry{registry}, blending_system{blending_system}
+    DeactivateFactoryListener(entt::registry& registry, ColorFactorySystem* color_factory_system) : registry{registry}, color_factory_system{color_factory_system}
     { }
     
     void operator()(Event* event);

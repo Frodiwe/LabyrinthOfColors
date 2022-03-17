@@ -25,6 +25,8 @@ public:
     
     std::vector<entt::entity> get_items_at(const MapPosition& position);
     
+    void destroy_item(const entt::entity item);
+    
     void remove_item_from_map(const entt::entity& item);
 };
 

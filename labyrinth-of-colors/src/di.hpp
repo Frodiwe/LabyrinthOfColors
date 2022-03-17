@@ -18,12 +18,13 @@ class RenderController;
 class MapKit;
 class PlayerKit;
 class ItemsKit;
+class ColorFactoryKit;
 class MovementSystem;
 class RenderSystem;
 class ItemsSystem;
 class InventorySystem;
 class PlayerSystem;
-class BlendingSystem;
+class ColorFactorySystem;
 class EventsQueue;
 class CellKit;
 
@@ -37,6 +38,8 @@ private:
 	static PlayerKit* player_kit;
     
     static ItemsKit* items_kit;
+    
+    static ColorFactoryKit* color_factory_kit;
 	
 	static MovementSystem* movement_system;
     
@@ -48,7 +51,7 @@ private:
     
     static PlayerSystem* player_system;
     
-    static BlendingSystem* blending_system;
+    static ColorFactorySystem* color_factory_system;
     
     static EventsQueue* events_queue;
 	
@@ -60,6 +63,8 @@ public:
 	static PlayerKit* get_player_kit();
     
     static ItemsKit* get_items_kit();
+    
+    static ColorFactoryKit* get_color_factory_kit();
 	
 	static entt::registry& get_registry();
 	
@@ -73,7 +78,7 @@ public:
     
     static PlayerSystem* get_player_system();
     
-    static BlendingSystem* get_blending_system();
+    static ColorFactorySystem* get_color_factory_system();
     
     static EventsQueue* get_events_queue();
 };

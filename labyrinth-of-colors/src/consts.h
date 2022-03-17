@@ -40,11 +40,13 @@ public:
     static inline const std::map<CellColor, std::string> cell_textures_map {
         {CellColor::RED, base_path + "cell_red.png"},
         {CellColor::YELLOW, base_path + "cell_yellow.png"},
+        {CellColor::GREEN, base_path + "cell_yellow.png"},
         {CellColor::WALL, ""}
     };
     static inline const std::map<CellColor, std::string> item_textures_map {
         {CellColor::RED, base_path + "bucket_red.png"},
-        {CellColor::YELLOW, base_path + "bucket_yellow.png"}
+        {CellColor::YELLOW, base_path + "bucket_yellow.png"},
+        {CellColor::GREEN, base_path + "bucket_yellow.png"}
     };
 };
 
