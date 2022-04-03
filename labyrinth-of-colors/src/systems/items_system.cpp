@@ -34,11 +34,6 @@ std::vector<entt::entity> ItemsSystem::get_items_at(const MapPosition& position)
     return items;
 }
 
-void ItemsSystem::destroy_item(const entt::entity item)
-{
-    registry.destroy(item);
-}
-
 void ItemsSystem::remove_item_from_map(const entt::entity& item)
 {
     registry.remove<MapPosition>(item);

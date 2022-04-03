@@ -7,6 +7,8 @@
 
 #include "color_factory_system.hpp"
 
+#include "src/consts.h"
+
 #include "src/tags/color_factory.h"
 #include "src/tags/active.h"
 
@@ -53,8 +55,16 @@ bool ColorFactorySystem::has_active_factory() const
     return get_active_factory() != entt::null;
 }
 
-CellColor ColorFactorySystem::blend(const std::vector<CellColor>& colors)
+CellColor ColorFactorySystem::blend(const std::set<CellColor>& colors)
 {
-    return CellColor::GREEN;
+    for (const auto& [color, components] : Consts::color_mixes)
+    {
+        if (components == colors)
+        {
+            return color;
+        }
+    }
+    
+    return CellColor::WALL;
 }
 

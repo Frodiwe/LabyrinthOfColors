@@ -11,6 +11,9 @@
 #include "src/components/item.h"
 #include "src/components/inventory.h"
 #include "src/category.h"
+#include "src/events/item_given_event.h"
+
+#include "src/events_queue.hpp"
 
 #include <iostream>
 #include <algorithm>
@@ -21,6 +24,8 @@ void InventorySystem::give_item(const entt::entity player, const entt::entity it
     std::cout << "Giving item \"" << registry.get<Item>(item).name << "\" to player" << std::endl;
     
     registry.emplace<Inventory>(item);
+    
+    events_queue->publish<ItemGivenEvent>(item);
     
     return;
 }
@@ -36,9 +41,9 @@ entt::entity InventorySystem::remove_item(entt::entity player, entt::entity item
 
 bool InventorySystem::has_color(const entt::entity player, CellColor color)
 {
-    for (const auto [entity, item, c] : registry.view<Inventory, Item, CellColor>().each())
+    for (const auto [entity, item, c, category] : registry.view<Inventory, Item, CellColor, Category>().each())
     {
-        if (c == color)
+        if (c == color and category == Category::Paint)
         {
             return true;
         }

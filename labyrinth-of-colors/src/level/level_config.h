@@ -21,6 +21,7 @@
 
 using LevelMap = std::vector<std::vector<CellColor>>;
 using LevelItems = std::vector<std::tuple<std::string, Category, CellColor, MapPosition>>;
+using LevelFactories = std::vector<MapPosition>;
 
 struct LevelConfig
 {
@@ -31,6 +32,8 @@ struct LevelConfig
     MapPosition start;
     
     MapPosition exit;
+    
+    LevelFactories factories;
 };
 
 #endif /* level_config_h */

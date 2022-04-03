@@ -17,7 +17,13 @@ enum class CellColor
     
 	YELLOW,
 	RED,
+    BLUE,
+    WHITE,
+    BLACK,
     GREEN,
+    SAND,
+    
+    RAINBOW
 };
 
 #endif /* cell_color_h */

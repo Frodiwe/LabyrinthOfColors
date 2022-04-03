@@ -11,14 +11,17 @@
 #include "third_party/entt/entity/registry.hpp"
 
 enum class CellColor;
+class EventsQueue;
 
 class InventorySystem
 {
 private:
     entt::registry& registry;
     
+    EventsQueue* events_queue;
+    
 public:
-    InventorySystem(entt::registry& r) : registry{r}
+    InventorySystem(entt::registry& r, EventsQueue* events_queue) : registry{r}, events_queue{events_queue}
     { }
     
     void give_item(const entt::entity player, const entt::entity item);

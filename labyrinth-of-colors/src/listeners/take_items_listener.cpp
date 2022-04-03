@@ -15,7 +15,8 @@
 #include "src/systems/player_system.hpp"
 
 #include "src/components/map_position.h"
-#include "src/events_queue.hpp"
+
+#include "src/category.h"
 
 void TakeItemsListener::operator()(Event *event)
 {
@@ -23,8 +24,12 @@ void TakeItemsListener::operator()(Event *event)
     
     for (const auto& item : items_system->get_items_at(registry.get<MapPosition>(e->to_cell)))
     {
+        if (registry.get<Category>(item) == Category::Paint and inventory_system->has_color(player_system->get_player(), registry.get<CellColor>(item)))
+        {
+            continue;
+        }
+        
         inventory_system->give_item(player_system->get_player(), item);
-        events_queue->publish<ItemGivenEvent>(item);
         items_system->remove_item_from_map(item);
     }
 }

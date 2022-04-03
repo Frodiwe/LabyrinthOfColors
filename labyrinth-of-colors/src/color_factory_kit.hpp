@@ -11,6 +11,7 @@
 #include "third_party/entt/entity/registry.hpp"
 
 struct MapPosition;
+struct Position;
 
 class ColorFactoryKit
 {
@@ -21,7 +22,7 @@ public:
     ColorFactoryKit(entt::registry& registry) : registry{registry}
     { }
     
-    entt::entity create_factory(MapPosition map_position) const;
+    entt::entity create_factory(MapPosition map_position, Position position) const;
 };
 
 #endif /* color_factory_kit_hpp */

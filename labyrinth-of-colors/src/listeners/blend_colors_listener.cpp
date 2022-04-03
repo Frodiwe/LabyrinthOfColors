@@ -41,16 +41,20 @@ void BlendColorsListener::operator()(Event *event)
     
     const auto blended_color = color_factory_system->blend(get_blender().get_colors());
     
+    if (blended_color == CellColor::WALL)
+    {
+        return;
+    }
+    
     inventory_system->give_item(player_system->get_player(), items_kit->create_item("mixed_paint", Category::Paint, blended_color));
     inventory_system->give_item(player_system->get_player(), items_kit->create_item("mixed_paint_bucket", Category::Bucket, blended_color));
     
     for (const auto& color : get_blender().get_colors())
     {
         const auto bucket = inventory_system->get_bucket_by_color(color);
-        
+
         inventory_system->remove_item(player_system->get_player(), bucket);
-        items_system->destroy_item(bucket);
     }
     
-    registry.replace<ColorBlending>(color_factory_system->get_active_factory());
+    registry.destroy(color_factory_system->get_active_factory());
 }

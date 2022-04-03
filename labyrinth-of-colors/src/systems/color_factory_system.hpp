@@ -8,7 +8,7 @@
 #ifndef blending_system_hpp
 #define blending_system_hpp
 
-#include <vector>
+#include <set>
 
 #include "third_party/entt/entity/registry.hpp"
 
@@ -35,7 +35,7 @@ public:
     
     entt::entity get_factory_at(MapPosition position);
     
-    CellColor blend(const std::vector<CellColor>& colors);
+    CellColor blend(const std::set<CellColor>& colors);
 };
 
 #endif /* blending_system_hpp */

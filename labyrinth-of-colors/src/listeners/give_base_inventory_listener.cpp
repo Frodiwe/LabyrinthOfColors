@@ -28,7 +28,9 @@ void GiveBaseInventoryListener::operator()(Event *event)
     
     auto items = std::vector{
         items_kit->create_item("yellow_paint", Category::Paint, CellColor::YELLOW),
-        items_kit->create_item("yellow_paint_bucket", Category::Bucket, CellColor::YELLOW)
+        items_kit->create_item("yellow_paint_bucket", Category::Bucket, CellColor::YELLOW),
+        
+        items_kit->create_item("rainbow_paint", Category::Paint, CellColor::RAINBOW),
     };
     
     for (const auto& item : items)

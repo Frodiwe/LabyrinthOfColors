@@ -14,7 +14,6 @@
 
 class Event;
 class ColorFactorySystem;
-class ItemsSystem;
 class ItemsKit;
 class InventorySystem;
 class PlayerSystem;
@@ -26,8 +25,6 @@ private:
     
     ColorFactorySystem* color_factory_system;
     
-    ItemsSystem* items_system;
-    
     ItemsKit* items_kit;
     
     InventorySystem* inventory_system;
@@ -35,8 +32,8 @@ private:
     PlayerSystem* player_system;
     
 public:
-    BlendColorsListener(entt::registry& registry, ColorFactorySystem* cf_s, ItemsSystem* it_s, ItemsKit* it_k, InventorySystem* in_s, PlayerSystem* pl_s)
-    : registry{registry}, color_factory_system{cf_s}, items_system{it_s}, items_kit{it_k}, inventory_system{in_s}, player_system{pl_s}
+    BlendColorsListener(entt::registry& registry, ColorFactorySystem* cf_s, ItemsKit* it_k, InventorySystem* in_s, PlayerSystem* pl_s)
+    : registry{registry}, color_factory_system{cf_s}, items_kit{it_k}, inventory_system{in_s}, player_system{pl_s}
     { }
     
     void operator()(Event* event) override;

@@ -11,7 +11,10 @@
 #include "src/components/size.h"
 #include "src/components/item.h"
 #include "src/components/inventory.h"
+
+#include "src/tags/color_factory.h"
 #include "src/tags/player.h"
+#include "src/tags/visible_on_map.h"
 
 #include "src/level/tags/cell.h"
 #include "src/level/components/exit.h"
@@ -46,7 +49,7 @@ void RenderSystem::render_player(SDL_Renderer* renderer)
 
 void RenderSystem::render_items(SDL_Renderer* renderer)
 {
-    for (const auto [entity, _, texture, pos, size] : registry.view<Item, Texture, Position, Size>().each())
+    for (const auto [entity, _, texture, pos, size] : registry.view<VisibleOnMap, Item, Texture, Position, Size>().each())
     {
         texture.render(renderer, {Coord::start_x + pos.x, Coord::start_y + pos.y, size.width, size.height});
     }
@@ -54,7 +57,7 @@ void RenderSystem::render_items(SDL_Renderer* renderer)
 
 void RenderSystem::render_inventory(SDL_Renderer* renderer)
 {
-    auto y = -Consts::inventory_item_height;
+    auto y = 0;
     
     for (const auto [entity, _, category, texture] : registry.view<Inventory, Item, Category, Texture>().each())
     {
@@ -62,7 +65,9 @@ void RenderSystem::render_inventory(SDL_Renderer* renderer)
             continue;
         }
         
-        texture.render(renderer, {Consts::window_width - Consts::inventory_item_width, y += Consts::inventory_item_height, Consts::inventory_item_width, Consts::inventory_item_height});
+        texture.render(renderer, {Consts::window_width - Consts::inventory_item_width, y, Consts::inventory_item_width, Consts::inventory_item_height});
+        
+        y += Consts::inventory_item_height;
     }
     
     auto x = -Consts::inventory_item_width;
@@ -74,5 +79,13 @@ void RenderSystem::render_inventory(SDL_Renderer* renderer)
         }
         
         texture.render(renderer, {x += Consts::inventory_item_width, Consts::window_height - Consts::inventory_item_height, Consts::inventory_item_width, Consts::inventory_item_height});
+    }
+}
+
+void RenderSystem::render_factories(SDL_Renderer* renderer)
+{
+    for (const auto [entity, texture, pos, size] : registry.view<Texture, Position, Size, ColorFactory>().each())
+    {
+        texture.render(renderer, {Coord::start_x + pos.x, Coord::start_y + pos.y, size.width, size.height});
     }
 }

@@ -63,7 +63,7 @@ Game::Game(Window* window, EventsQueue* events_queue): events_queue{events_queue
 {
     subscribe_listeners();
     
-    auto config = get_level_config("2");
+    auto config = get_level_config("10");
     
     create_level(config);
     events_queue->publish<PlayerCreatedEvent>(create_player(config.start));
@@ -95,7 +95,6 @@ void Game::subscribe_listeners()
     });
     events_queue->subscribe<MoveInEvent>(new TakeItemsListener{
         DI::get_registry(),
-        DI::get_events_queue(),
         DI::get_player_system(),
         DI::get_items_system(),
         DI::get_inventory_system()
@@ -116,7 +115,6 @@ void Game::subscribe_listeners()
     events_queue->subscribe<SubmitEvent>(new BlendColorsListener{
         DI::get_registry(),
         DI::get_color_factory_system(),
-        DI::get_items_system(),
         DI::get_items_kit(),
         DI::get_inventory_system(),
         DI::get_player_system()
@@ -136,8 +134,15 @@ LevelConfig Game::get_level_config(const std::string& name) const
     
     auto actions = KeyValueFile{base_dir + "level_actions"}.read();
     auto color_file = CSV{base_dir + "level_map"};
+    auto factories_file = CSV{base_dir + "factories"}.read();
+    auto factories = LevelFactories{};
     
-    return {color_file.read(Consts::color_map), items, actions.at("start"), actions.at("exit")};
+    for (const auto& factory_config : factories_file)
+    {
+        factories.emplace_back(std::stoul(factory_config[2]), std::stoul(factory_config[3]));
+    }
+    
+    return {color_file.read(Consts::color_map), items, actions.at("start"), actions.at("exit"), factories};
 }
 
 void Game::create_level(LevelConfig config)
@@ -149,8 +154,10 @@ void Game::create_level(LevelConfig config)
         DI::get_items_kit()->create_item(item_name, category, color, pos, DI::get_registry().get<Position>(get_cell_at(pos)));
     }
     
-    // hardcoded
-    DI::get_color_factory_kit()->create_factory({9, 16});
+    for (const auto& factory_pos : config.factories)
+    {
+        DI::get_color_factory_kit()->create_factory(factory_pos, DI::get_registry().get<Position>(get_cell_at(factory_pos)));
+    }
     
     DI::get_movement_system()->move_world_coords(get_cell_at({0, 0}), get_cell_at(config.start));
 }
@@ -179,6 +186,8 @@ void Game::render(SDL_Renderer* renderer)
 	
     DI::get_render_system()->render_map(renderer);
     DI::get_render_system()->render_items(renderer);
+    DI::get_render_system()->render_factories(renderer);
+    
     DI::get_render_system()->render_player(renderer);
     DI::get_render_system()->render_inventory(renderer);
 

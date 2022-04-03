@@ -28,11 +28,9 @@ private:
     
     PlayerSystem* player_system;
     
-    EventsQueue* events_queue;
-    
 public:
-    TakeItemsListener(entt::registry& registry, EventsQueue* events_queue, PlayerSystem* player_system, ItemsSystem* items_system, InventorySystem* inventory_system)
-    : registry{registry}, events_queue{events_queue}, player_system{player_system}, items_system{items_system}, inventory_system{inventory_system}
+    TakeItemsListener(entt::registry& registry, PlayerSystem* player_system, ItemsSystem* items_system, InventorySystem* inventory_system)
+    : registry{registry}, player_system{player_system}, items_system{items_system}, inventory_system{inventory_system}
     { }
     
     void operator()(Event* event);

@@ -17,6 +17,7 @@
 #include "src/components/item.h"
 #include "src/components/size.h"
 #include "src/components/position.h"
+#include "src/tags/visible_on_map.h"
 #include "src/level/cell_color.h"
 
 entt::entity ItemsKit::create_item(const std::string& name, Category category, const CellColor& color)
@@ -25,9 +26,14 @@ entt::entity ItemsKit::create_item(const std::string& name, Category category, c
     
     registry.emplace<Item>(item, name);
     registry.emplace<CellColor>(item, color);
-    registry.emplace<Texture>(item, Texture(Consts::item_textures_map.at(color), {0, 0, 32, 32}));
+    registry.emplace<Texture>(item, Texture(Consts::item_textures_map.at(category).at(color), {0, 0, 32, 32}));
     registry.emplace<Size>(item, 50ul, 50ul);
     registry.emplace<Category>(item, category);
+    
+    if (category != Category::Paint)
+    {
+        registry.emplace<VisibleOnMap>(item);
+    }
     
     return item;
 }

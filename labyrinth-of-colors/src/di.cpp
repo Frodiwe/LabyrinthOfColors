@@ -41,13 +41,13 @@ RenderSystem* DI::render_system = new RenderSystem(DI::registry);
 
 ItemsSystem* DI::items_system = new ItemsSystem(DI::registry);
 
-InventorySystem* DI::inventory_system = new InventorySystem(DI::registry);
+EventsQueue* DI::events_queue = new EventsQueue{};
+
+InventorySystem* DI::inventory_system = new InventorySystem(DI::registry, DI::events_queue);
 
 PlayerSystem* DI::player_system = new PlayerSystem(DI::registry);
 
 ColorFactorySystem* DI::color_factory_system = new ColorFactorySystem(DI::registry);
-
-EventsQueue* DI::events_queue = new EventsQueue{};
 
 MapKit* DI::get_map_kit()
 {
